@@ -1,0 +1,32 @@
+{
+  "schema": "H56_README_IMAGE_PROVENANCE_V1",
+  "images": [
+    {
+      "asset": "ui-results.jpg",
+      "sha256": "80e3d3de228305927535aabcf2f1415b60858249c38c0ad044b4398b75af5613",
+      "bytes": 131503,
+      "source_description": "Archived actual local UI recording; synthetic qualification inputs.",
+      "source_video_sha256": "b282f7b0e0c98df0d8718adaf0bfee89c215a3361952ba953814aec02a30d822",
+      "frame_time_seconds": 14,
+      "transformation_for_readme": "Byte-identical reuse of an already retained frame; no new product execution or image generation."
+    },
+    {
+      "asset": "nebius-r5-receipt.png",
+      "sha256": "eac5388f11edeae6539204efa22fe4ed7cd90bd786c08d69effae1340e46497c",
+      "bytes": 454331,
+      "source_description": "Rendered evidence card from recorded real Nebius R5 inference; digest prefixes and response excerpt are labeled.",
+      "source_video_sha256": "59bd56ff0d26afa04bc34c26020209df359ccef7ebb8c1ddc5bb5ccc05f25c90",
+      "frame_time_seconds": 34,
+      "transformation_for_readme": "Byte-identical reuse of an already retained frame; no new product execution or image generation."
+    },
+    {
+      "asset": "r5-computed-result.png",
+      "sha256": "27fa1f8337d049c2b215aea0deedc4646dcfcbf568f31e58ca92954d3df590d6",
+      "bytes": 681546,
+      "source_description": "Rendered evidence card from recorded R5 scenario input and actual four-core assessment.",
+      "source_video_sha256": "59bd56ff0d26afa04bc34c26020209df359ccef7ebb8c1ddc5bb5ccc05f25c90",
+      "frame_time_seconds": 64,
+      "transformation_for_readme": "Byte-identical reuse of an already retained frame; no new product execution or image generation."
+    }
+  ]
+}

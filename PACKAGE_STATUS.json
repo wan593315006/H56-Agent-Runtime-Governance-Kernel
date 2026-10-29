@@ -1,6 +1,6 @@
 {
   "schema_id": "H56_ASSEMBLED_CANDIDATE_STATUS_V2",
-  "candidate_id": "H56-CANDIDATE-20261030-V2",
+  "candidate_id": "H56-CANDIDATE-20261030-V3",
   "role": "PRIVATE_REVIEW_AND_DEMONSTRATION_CANDIDATE",
   "current_entry": "demo.py",
   "ui_entry": "ui/serve.py",
@@ -16,7 +16,7 @@
   "computation_members": 139,
   "source_manifest_sha256": "adeca462c152a7ee34c4bdee0f1f9b3833adab6b1aa5ae6e110d2ae58a42c6cb",
   "validation_reference": "metadata/BASELINE_ACCEPTANCE.json",
-  "validation_scope": "Offline qualification, adapter integration and local UI; successor acceptance is bound to its commit in the external handoff.",
+  "validation_scope": "Runtime implementation and registered core bytes match the accepted V2 candidate. This successor adds documentation/images and updated inventories.",
   "historical_metadata": false,
   "supersedes_source_delivery_status": true,
   "original_status_preserved": "Private remediation preimage; not the current runtime state.",
@@ -24,5 +24,7 @@
   "public_blockers": [
     "Owner-selected LICENSE, asset distribution scope and explicit publication decision"
   ],
-  "business_execution_authorized": false
+  "business_execution_authorized": false,
+  "documentation_update": "Product introduction, capabilities, Mermaid architecture, recorded screenshots, origins/updates and roadmap.",
+  "runtime_source_reference_commit": "a2facd8c5316e19a41fddc2a74c46d7f1d646d94"
 }

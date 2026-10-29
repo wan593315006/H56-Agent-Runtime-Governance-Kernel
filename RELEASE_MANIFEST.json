@@ -1,6 +1,6 @@
 {
   "schema": "H56_ASSEMBLED_CANDIDATE_MANIFEST_V1",
-  "candidate_id": "H56-CANDIDATE-20261030-V2",
+  "candidate_id": "H56-CANDIDATE-20261030-V3",
   "source_head": "9a480ad1c0d89143ede35f6bc2b4057c68bc4f93",
   "source_state": "WORKING_TREE_SNAPSHOT_WITH_RECORDED_CANDIDATE_CHANGES",
   "distribution_status": "PRIVATE_CANDIDATE_LICENSE_AND_PUBLICATION_SEPARATE",
@@ -47,20 +47,20 @@
     },
     {
       "path": "PACKAGE_MANIFEST.json",
-      "bytes": 53341,
-      "sha256": "f99e42afeb747a8fb5b69568f9d2fa0baccb7da3d58b1cdef7afd570a46b9d6b",
+      "bytes": 54004,
+      "sha256": "99b488cb31392e86abd3740868b1cf6c3a98a4f12a26392b7e9e533c506d0012",
       "computation_closure": false
     },
     {
       "path": "PACKAGE_STATUS.json",
-      "bytes": 1170,
-      "sha256": "c45e7fc60ff4dd5d14f7ecaaadda57ecc3e4f70ceb67169fb4fd01065cdfbc2d",
+      "bytes": 1411,
+      "sha256": "e2c1e7bb02865d6cb56d5b5f0c1df7448efa30ec1e28fa2a13d56c093542bbac",
       "computation_closure": false
     },
     {
       "path": "README.md",
-      "bytes": 6364,
-      "sha256": "5781f589a9c80bc80917b6a96c7fc4af207aeb8a1e6afb46ab5df52830ec73a7",
+      "bytes": 13442,
+      "sha256": "69723df758c4d7a2835e7e591c962324cf66759f2f4a5f725b828a09c491a3d8",
       "computation_closure": false
     },
     {
@@ -79,6 +79,30 @@
       "path": "demo.py",
       "bytes": 32745,
       "sha256": "abf67dc45cfb24c611cd5325cb7b9281365d8b0d73c840758ce80eb67de624aa",
+      "computation_closure": false
+    },
+    {
+      "path": "docs/images/PROVENANCE.json",
+      "bytes": 1692,
+      "sha256": "36577e4e9e75a51f3d116d276231868e806a5c1848d0713ae3b5e6b461a7b73f",
+      "computation_closure": false
+    },
+    {
+      "path": "docs/images/nebius-r5-receipt.png",
+      "bytes": 454331,
+      "sha256": "eac5388f11edeae6539204efa22fe4ed7cd90bd786c08d69effae1340e46497c",
+      "computation_closure": false
+    },
+    {
+      "path": "docs/images/r5-computed-result.png",
+      "bytes": 681546,
+      "sha256": "27fa1f8337d049c2b215aea0deedc4646dcfcbf568f31e58ca92954d3df590d6",
+      "computation_closure": false
+    },
+    {
+      "path": "docs/images/ui-results.jpg",
+      "bytes": 131503,
+      "sha256": "80e3d3de228305927535aabcf2f1415b60858249c38c0ad044b4398b75af5613",
       "computation_closure": false
     },
     {
@@ -1433,5 +1457,5 @@
     }
   ],
   "self_exclusion": "This file and .git are excluded from their own content inventory; the candidate Git commit binds this file.",
-  "supersedes_candidate_commit": "08654f039ceb6ac845cd2231ad8a022d660f6fc4"
+  "supersedes_candidate_commit": "a2facd8c5316e19a41fddc2a74c46d7f1d646d94"
 }
