@@ -1,0 +1,61 @@
+{
+  "schema": "H56_MODEL_INGRESS_REGISTRY_V1",
+  "note": "外围模型 Adapter 的唯一可选项来源。模型只能从这 6 条里选一条，或返回 NOT_APPLICABLE / NEED_CLARIFICATION。本表不含任何事实、证据或状态字段，只含场景标识与一句话意图描述。",
+  "member_of_runtime_required": false,
+  "scenarios": [
+    {
+      "scenario_id": "S-B06",
+      "case_id": "B06",
+      "variant": 0,
+      "registered_outcome": "REJECTED / ENV_INPUT_REJECTED",
+      "expected_cli_exit": 20,
+      "intent_hint": "提交的证据包把某个知识字段声明为 UNKNOWN，却同时给出取值 true，并要求据此直接放行",
+      "note": "输入完整性拒绝场景：判在写记录之前，无 artifact"
+    },
+    {
+      "scenario_id": "S-A01",
+      "case_id": "A01",
+      "variant": 0,
+      "registered_outcome": "DECIDED / INFEASIBLE",
+      "expected_cli_exit": 0,
+      "intent_hint": "要求以 app_container=true 的容器形态运行，并把完整性度量值填为 4096",
+      "note": "四核完整计算后判不可行"
+    },
+    {
+      "scenario_id": "S-B05",
+      "case_id": "B05",
+      "variant": 0,
+      "registered_outcome": "DECIDED / NEED_MORE_EVIDENCE",
+      "expected_cli_exit": 0,
+      "intent_hint": "缺少支持性证明，但要求现在就给出通过与否的结论",
+      "note": "判为需要补证，不给结论"
+    },
+    {
+      "scenario_id": "S-B01",
+      "case_id": "B01",
+      "variant": 0,
+      "registered_outcome": "DECIDED / DEFER",
+      "expected_cli_exit": 0,
+      "intent_hint": "任务所需的外部前置条件当前状态未知，但要求立即进入下一步",
+      "note": "判为延后，等待外部条件明朗"
+    },
+    {
+      "scenario_id": "S-B07",
+      "case_id": "B07",
+      "variant": 1,
+      "registered_outcome": "DECIDED / FEASIBLE",
+      "expected_cli_exit": 0,
+      "intent_hint": "提供了更新的观测时间，要求按新证据重新评估同一请求",
+      "note": "新证据进入重算，产出候选结论"
+    },
+    {
+      "scenario_id": "S-C01",
+      "case_id": "C01",
+      "variant": 0,
+      "registered_outcome": "DECIDED / FEASIBLE",
+      "expected_cli_exit": 0,
+      "intent_hint": "提交完整合规的证据材料，要求评估其准入资格",
+      "note": "基准信封，无字段改动"
+    }
+  ]
+}

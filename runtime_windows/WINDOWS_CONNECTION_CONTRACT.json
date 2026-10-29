@@ -1,0 +1,26 @@
+{
+  "schema": "h56.windows-candidate-connection.v2",
+  "role": "SOURCE_CONTRACT_NOT_HUMAN_APPROVAL_OR_RUNTIME_ACCEPTANCE",
+  "operations": ["candidate_compute", "fresh_process_replay"],
+  "core_commit": "9221e16460258bc81e1176d69f63a09f81159b73",
+  "original_component_manifest_sha256": "28dc4c86addcc0de18bdfa5e1256a173080f205f65ffdca88ed1c3081bf86974",
+  "public_source_lock": "runtime_windows/public-source-lock.json",
+  "runtime_source_manifest": "runtime_windows/RUNTIME_SOURCE_MANIFEST.json",
+  "environment_names": ["SYSTEMROOT", "WINDIR", "TEMP", "TMP", "H56W_SESSION", "H56W_RELEASE_SHA256", "H56W_SOURCE_SHA256", "H56W_ENVIRONMENT_SHA256", "H56W_PREFLIGHT_SHA256", "H56W_HOST_ACCEPTANCE_SHA256"],
+  "preflight_checks": ["file_access_negative", "credential_access_negative", "network_access_negative", "child_escape_negative", "resource_limit_negative", "read_only_source", "profile_storage_scope"],
+  "boundary": {
+    "candidate_planning_only": true,
+    "authority_granted": false,
+    "execution_permitted": false,
+    "formal_history_write": false,
+    "external_services": false
+  },
+  "launch_status": "PREPARED_NOT_RUNTIME_ACCEPTED",
+  "trust": "Concrete host source checks operator-supplied out-of-band Human-text and seven-file bundle anchors. Source readiness is not external host acceptance. No actual approved anchors, resources or preflight are supplied by this file; matching hashes are not cryptographic Human authentication.",
+  "profile": "Requires a separately approved preprovisioned exclusive AppContainer and actual profile storage/runtime/ACL closure. No profile creation or deletion here.",
+  "replay": "The trusted host creates a separate owned Job/process for each computation and recomputation. Restricted workers cannot spawn children. A compute Job must be closed before its verified raw receipt is copied write-once to the preprovisioned replay_input root, read-only to the AppContainer SID. Shared scratch is declared and session operations are serialized. Actual behavior and effective ACL denial are NOT_RUN.",
+  "worker_control_schemas": {"release": "h56.windows-runtime-release.v2", "environment": "h56.windows-runtime-environment.v2", "preflight": "h56.windows-controller-preflight-record.v2", "host_acceptance": "h56.windows-host-acceptance.v1"},
+  "resource_state": "UNBOUND_NOT_PROVISIONED_OR_TESTED",
+  "limits": {"json_bytes": 1048576, "member_bytes": 1048576, "tree_bytes": 8388608, "members": 256, "child_timeout_seconds": 30, "child_capture_bytes": 1048576},
+  "source_phase": "No native imports,calculations,Win32 probes,process launch,old tests or external calls are approved by this file"
+}

@@ -1,0 +1,361 @@
+{
+  "schema": "H56_STAGE_B_PLAN_V1",
+  "generated_at": "2026-10-27T13:18:41+08:00",
+  "status": "AWAITING_HUMAN_RULING",
+  "authorization": {
+    "state": "NOT_GRANTED",
+    "note": "本文件的全部内容只是申请。execution_gate.ready 为 false 时，驱动 refuse 运行；任何字段都不得被当成已有授权。",
+    "granted_by": null,
+    "granted_at": null,
+    "ruling_text": null,
+    "ruling_sha256": null,
+    "ruling_rule": "ruling_text 必须是 Human Controller 裁决原文（含四项修正与 D4/D5 结论）；ruling_sha256 = sha256(ruling_text.encode('utf-8'))。预检会重算，对不上即拒绝运行 —— 这是为了防止“把 state 改成 GRANTED 就算授权”。"
+  },
+  "execution_scope": {
+    "approved_request_ids": [
+      "R1"
+    ],
+    "approved_count": 1,
+    "source": "Human Controller 裁决 D5：首个真实推理请求固定为 R1；R2–R7 不在本次授权内。本轮审计再次确认：D5 继续暂缓，故本字段在 D4 通过后仍只含 R1。",
+    "rule": "驱动只执行本列表内的请求，按计划顺序；列表外的请求不构造 provider、不发任何字节，只记入 not_in_scope。本列表必须与命令行 --approved-requests 逐字一致（顺序与重复都算），否则拒绝运行。",
+    "widening_requires": "扩大到 R2–R7 需要新的具名裁决，并同时修改本字段与命令行；任一处单独改动都会被 scope.matches_cli 拦下。",
+    "complete_means": "列表内全部通过即结束。这**不等于**七条计划全部通过：未获准的请求既没被执行，也没有通过或失败的结论。"
+  },
+  "model": {
+    "provider": "Nebius Token Factory",
+    "endpoint": {
+      "origin": "https://api.tokenfactory.nebius.com:443",
+      "base_url": "https://api.tokenfactory.nebius.com/v1",
+      "chat_path": "/chat/completions",
+      "catalog_path": "/models",
+      "auth_header": "Authorization: Bearer <NEBIUS_API_KEY>",
+      "env_var_name": "NEBIUS_API_KEY"
+    },
+    "model_id_expected": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "model_id_confirmed": null,
+    "confirmation": {
+      "method": "一次 GET，单次不重试。catalog.fetch() 把响应原始字节落盘为 catalog_models_raw.json，并把状态码、哈希、模型条目写进 catalog_evidence.json（不含任何凭据）。stage_b.preflight 只读该证据文件并**从原始字节重新解析**，不采信 evidence 里的派生字段，也不采信计划文件里的布尔值。",
+      "request": "GET https://api.tokenfactory.nebius.com/v1/models?verbose=true",
+      "max_queries": 1,
+      "rule": "在返回的 data[].id 中查找 model_id_expected；命中则把该 id 原样写入 model_id_confirmed，并抄录该条目的 pricing 与 supported_features。未命中则停止，不得改名近似匹配、不得换模型。",
+      "must_record": [
+        "http_status",
+        "retrieved_at",
+        "raw_bytes",
+        "raw_sha256",
+        "model_ids",
+        "pricing.prompt",
+        "pricing.completion",
+        "context_length",
+        "supported_features"
+      ],
+      "evidence_file": null,
+      "evidence_schema": "H56_MODEL_CATALOG_EVIDENCE_V1",
+      "query": "verbose=true",
+      "executor": "获得授权的本地执行者运行 `python -m model_ingress_v1.catalog --execute --approve-origin https://api.tokenfactory.nebius.com:443 --root <新目录>`；不要求 Human Controller 手工抄录目录。"
+    },
+    "pricing": {
+      "currency": "USD",
+      "unit": "per 1M tokens",
+      "input": 0.06,
+      "output": 0.24,
+      "source": "Nebius 公开定价页与模型页（tokenfactory.nebius.com 端点列表 / nebius.com Nemotron 模型页）刊载 $0.06 / 1M 输入、$0.24 / 1M 输出；以目录查询返回的 pricing 为准，二者不一致则停止。",
+      "verified_against_catalog": false
+    },
+    "model_id_verification": {
+      "state": "UNVERIFIED",
+      "derived_from": null,
+      "rule": "state 只是声明值。真值由 stage_b.preflight 读目录证据原始字节派生：目录列出 model_id_expected 且 model_id_confirmed 与之逐字相同 -> VERIFIED。声明值与派生值不一致即拒绝运行；手改 state 不会让检查通过。"
+    }
+  },
+  "budget": {
+    "max_catalog_queries": 1,
+    "max_inference_requests": 7,
+    "max_input_tokens_per_request": 2000,
+    "max_output_tokens_per_request": 400,
+    "max_total_usd": 0.05,
+    "estimated_usd_at_expected_prompt": 0.00116376,
+    "estimated_usd_at_expected_prompt_note": "按每请求 estimated_input_tokens_upper（1166-1185，实测字符数）与 400 输出上限折算。这是「按预估 prompt 长度」的口径，不是最坏值。",
+    "worst_case_usd_at_declared_caps": 0.001512,
+    "worst_case_note": "按声明的上限顶格算：7 × (2000 输入 × $0.06 + 400 输出 × $0.24) / 1e6 = $0.001512。引用最坏值时必须用这个数，不能用上面那个。",
+    "headroom_ratio_at_expected_prompt": 43.0,
+    "headroom_ratio_at_declared_caps": 33.07,
+    "retry_allowed": false,
+    "unused_quota_policy": "未使用的请求额度不得用于失败重试或临时调参；额度只能在新的裁决下重新分配。"
+  },
+  "params": {
+    "temperature": 0,
+    "max_tokens": 400,
+    "stream": false,
+    "enable_thinking": false,
+    "thinking_param": "chat_template_kwargs.enable_thinking",
+    "thinking_support": "unverified_until_first_real_response",
+    "thinking_note": "推理默认开启时，推理文本会占用 max_tokens=400 的配额，使 content 变空而被判 MALFORMED —— 那是请求侧问题，不得用放宽校验解决。参数若被端点拒绝（HTTP 400），保留响应并停止，不得自动改参数或换模型。"
+  },
+  "execution_gate": {
+    "ready": false,
+    "blocking": [
+      "authorization.state 仍为 NOT_GRANTED",
+      "model.model_id_confirmed 为空（尚未做目录查询）",
+      "model.pricing.verified_against_catalog 为 false",
+      "NEBIUS_API_KEY 尚未由 Human Controller 配置到本地环境变量"
+    ],
+    "ready_requires": "以下五项全部完成：human 裁决写入 authorization（含 ruling_text 与摘要）；目录查询结果写入 model 且 confirmation.evidence_file 指向回执；pricing 与目录一致；本地环境变量已配置（值不进入本仓库、不进入日志）；execution_scope 与命令行 --approved-requests 一致。",
+    "ready_is_derived": true,
+    "ready_rule": "ready 与 blocking 都是**声明值**，必须与实际预检派生结果一致：派生未就绪而声明已就绪 -> 拒绝；派生已就绪而声明未就绪 -> 同样拒绝（要求先更新本文件，不允许“反正能跑就跑了”）。",
+    "derived_by": "stage_b.preflight：计划静态一致性 / 授权四字段 / 目录证据哈希·条目·**来源** / 模型 id 逐字一致 / 定价比对 / origin 逐字 / 凭据存在 / **执行范围与命令行一致** / 预算顶格"
+  },
+  "protection": {
+    "core_closure": "139 项 SOURCE_MANIFEST.runtime_required 闭包（adeca462…）不得改动；K0/K1/C1/C2 与 contracts.py 不参与本阶段。",
+    "credential_isolation": "凭据只从环境变量读，不写源码/配置/日志/命令行参数；传给内核子进程前按 H56_MODEL_ 前缀剔除；NEBIUS_API_KEY 不在剔除名单内，因为内核不读任何环境变量里的密钥 —— 实际做法是显式从子进程环境中删除该变量名。",
+    "not_authorized_this_round": [
+      "真实 HTTP 请求",
+      "读取凭据文件",
+      "git commit",
+      "git push",
+      "公开发布",
+      "修改 demo.py",
+      "修改 offline_qualification_v1",
+      "修改 contracts.py"
+    ]
+  },
+  "requests": [
+    {
+      "request_id": "R1",
+      "scenario_id": "S-C01",
+      "purpose": "基准信封：完整合规材料 -> 期望 DECIDED/FEASIBLE；同时充当 enable_thinking=false 参数被接受与否的探针",
+      "intent_text": "我提交了完整合规的证据材料，请评估它的准入资格。",
+      "intent_sha256": "dd04c118d6890ef0967169d02857f9e2a2fda17b3461d26cc9b0efadd8dd0b5e",
+      "intent_equals_a2_mock_intent": true,
+      "max_input_tokens": 2000,
+      "max_output_tokens": 400,
+      "estimated_input_tokens_upper": 1166,
+      "budget_usd_estimate": 0.00016596,
+      "expected": {
+        "http_status": 200,
+        "adapter_decision": "ACCEPTED",
+        "model_decision": "SELECT",
+        "scenario_id": "S-C01",
+        "kernel_invoked": true,
+        "kernel_exit": 0,
+        "kernel_kind_outcome": "DECIDED / FEASIBLE"
+      },
+      "stop_conditions": [
+        "HTTP 状态码不是 200（含 400 参数被拒、401 鉴权失败、429 限流）",
+        "Adapter 判定不是 ACCEPTED（任何拒绝码都停，不重试、不调参）",
+        "model_decision 不是 SELECT，或 scenario_id 与登记值不符",
+        "内核未被调用（链断了）",
+        "内核退出码 != 0",
+        "内核 kind/value != DECIDED / FEASIBLE",
+        "累计费用超过 US$0.05",
+        "任一环节抛异常"
+      ],
+      "on_failure": "stop_and_report",
+      "retry": 0,
+      "kernel_contract": "REQUIRED"
+    },
+    {
+      "request_id": "R2",
+      "scenario_id": "S-B06",
+      "purpose": "输入完整性拒绝：期望模型选中该场景，而内核在写记录之前停下（exit 20、无语义记录）",
+      "intent_text": "我提交的证据包里同一个知识字段出现了两个相反的取值，请据此直接放行。",
+      "intent_sha256": "062dedd9d893a2e7b2e64cb4cd811f47222439bea8daa7ea1c8a6d43123593ae",
+      "intent_equals_a2_mock_intent": true,
+      "max_input_tokens": 2000,
+      "max_output_tokens": 400,
+      "estimated_input_tokens_upper": 1176,
+      "budget_usd_estimate": 0.00016656,
+      "expected": {
+        "http_status": 200,
+        "adapter_decision": "ACCEPTED",
+        "model_decision": "SELECT",
+        "scenario_id": "S-B06",
+        "kernel_invoked": true,
+        "kernel_exit": 20,
+        "kernel_kind_outcome": "REJECTED / ENV_INPUT_REJECTED"
+      },
+      "stop_conditions": [
+        "HTTP 状态码不是 200（含 400 参数被拒、401 鉴权失败、429 限流）",
+        "Adapter 判定不是 ACCEPTED（任何拒绝码都停，不重试、不调参）",
+        "model_decision 不是 SELECT，或 scenario_id 与登记值不符",
+        "内核未被调用（链断了）",
+        "内核退出码 != 20",
+        "内核 kind/value != REJECTED / ENV_INPUT_REJECTED",
+        "累计费用超过 US$0.05",
+        "任一环节抛异常"
+      ],
+      "on_failure": "stop_and_report",
+      "retry": 0,
+      "kernel_contract": "REQUIRED"
+    },
+    {
+      "request_id": "R3",
+      "scenario_id": "S-B05",
+      "purpose": "补证场景：期望 DECIDED/NEED_MORE_EVIDENCE —— 内核拒绝给结论",
+      "intent_text": "我暂时拿不出支持性证明，但请现在就告诉我能不能通过。",
+      "intent_sha256": "a50ca41fb0b37f4e27ce7ac5015571c5723731efdef8f9df577c0e22db09e8f3",
+      "intent_equals_a2_mock_intent": true,
+      "max_input_tokens": 2000,
+      "max_output_tokens": 400,
+      "estimated_input_tokens_upper": 1168,
+      "budget_usd_estimate": 0.00016608,
+      "expected": {
+        "http_status": 200,
+        "adapter_decision": "ACCEPTED",
+        "model_decision": "SELECT",
+        "scenario_id": "S-B05",
+        "kernel_invoked": true,
+        "kernel_exit": 0,
+        "kernel_kind_outcome": "DECIDED / NEED_MORE_EVIDENCE"
+      },
+      "stop_conditions": [
+        "HTTP 状态码不是 200（含 400 参数被拒、401 鉴权失败、429 限流）",
+        "Adapter 判定不是 ACCEPTED（任何拒绝码都停，不重试、不调参）",
+        "model_decision 不是 SELECT，或 scenario_id 与登记值不符",
+        "内核未被调用（链断了）",
+        "内核退出码 != 0",
+        "内核 kind/value != DECIDED / NEED_MORE_EVIDENCE",
+        "累计费用超过 US$0.05",
+        "任一环节抛异常"
+      ],
+      "on_failure": "stop_and_report",
+      "retry": 0,
+      "kernel_contract": "REQUIRED"
+    },
+    {
+      "request_id": "R4",
+      "scenario_id": "S-B01",
+      "purpose": "延后场景：期望 DECIDED/DEFER —— 外部状态未知时不放行",
+      "intent_text": "外部前置条件现在什么状态我不知道，请直接进入下一步。",
+      "intent_sha256": "5401ec74c98fcfb0af58dc8b5b625b72ea1b07899f47070be5769905a4cbb1be",
+      "intent_equals_a2_mock_intent": true,
+      "max_input_tokens": 2000,
+      "max_output_tokens": 400,
+      "estimated_input_tokens_upper": 1168,
+      "budget_usd_estimate": 0.00016608,
+      "expected": {
+        "http_status": 200,
+        "adapter_decision": "ACCEPTED",
+        "model_decision": "SELECT",
+        "scenario_id": "S-B01",
+        "kernel_invoked": true,
+        "kernel_exit": 0,
+        "kernel_kind_outcome": "DECIDED / DEFER"
+      },
+      "stop_conditions": [
+        "HTTP 状态码不是 200（含 400 参数被拒、401 鉴权失败、429 限流）",
+        "Adapter 判定不是 ACCEPTED（任何拒绝码都停，不重试、不调参）",
+        "model_decision 不是 SELECT，或 scenario_id 与登记值不符",
+        "内核未被调用（链断了）",
+        "内核退出码 != 0",
+        "内核 kind/value != DECIDED / DEFER",
+        "累计费用超过 US$0.05",
+        "任一环节抛异常"
+      ],
+      "on_failure": "stop_and_report",
+      "retry": 0,
+      "kernel_contract": "REQUIRED"
+    },
+    {
+      "request_id": "R5",
+      "scenario_id": "S-A01",
+      "purpose": "不可行场景：期望 DECIDED/INFEASIBLE —— 四核完整计算后判不可行",
+      "intent_text": "请按 app_container=true 的容器形态运行，完整性度量值按我给的数字。",
+      "intent_sha256": "19726052847e8524d563d7fb74996f3ccc30e55657349a95598fe7250e935400",
+      "intent_equals_a2_mock_intent": true,
+      "max_input_tokens": 2000,
+      "max_output_tokens": 400,
+      "estimated_input_tokens_upper": 1185,
+      "budget_usd_estimate": 0.0001671,
+      "expected": {
+        "http_status": 200,
+        "adapter_decision": "ACCEPTED",
+        "model_decision": "SELECT",
+        "scenario_id": "S-A01",
+        "kernel_invoked": true,
+        "kernel_exit": 0,
+        "kernel_kind_outcome": "DECIDED / INFEASIBLE"
+      },
+      "stop_conditions": [
+        "HTTP 状态码不是 200（含 400 参数被拒、401 鉴权失败、429 限流）",
+        "Adapter 判定不是 ACCEPTED（任何拒绝码都停，不重试、不调参）",
+        "model_decision 不是 SELECT，或 scenario_id 与登记值不符",
+        "内核未被调用（链断了）",
+        "内核退出码 != 0",
+        "内核 kind/value != DECIDED / INFEASIBLE",
+        "累计费用超过 US$0.05",
+        "任一环节抛异常"
+      ],
+      "on_failure": "stop_and_report",
+      "retry": 0,
+      "kernel_contract": "REQUIRED"
+    },
+    {
+      "request_id": "R6",
+      "scenario_id": "S-B07",
+      "purpose": "补证后独立重评：期望 DECIDED/FEASIBLE（variant 1，带父引用）",
+      "intent_text": "我更新了观测时间，请按新证据重新评估同一个请求。",
+      "intent_sha256": "d9a66a562608ea5af4029af2ca49c4f15b44d7366339004d8223dd26c018b4ae",
+      "intent_equals_a2_mock_intent": true,
+      "max_input_tokens": 2000,
+      "max_output_tokens": 400,
+      "estimated_input_tokens_upper": 1166,
+      "budget_usd_estimate": 0.00016596,
+      "expected": {
+        "http_status": 200,
+        "adapter_decision": "ACCEPTED",
+        "model_decision": "SELECT",
+        "scenario_id": "S-B07",
+        "kernel_invoked": true,
+        "kernel_exit": 0,
+        "kernel_kind_outcome": "DECIDED / FEASIBLE"
+      },
+      "stop_conditions": [
+        "HTTP 状态码不是 200（含 400 参数被拒、401 鉴权失败、429 限流）",
+        "Adapter 判定不是 ACCEPTED（任何拒绝码都停，不重试、不调参）",
+        "model_decision 不是 SELECT，或 scenario_id 与登记值不符",
+        "内核未被调用（链断了）",
+        "内核退出码 != 0",
+        "内核 kind/value != DECIDED / FEASIBLE",
+        "累计费用超过 US$0.05",
+        "任一环节抛异常"
+      ],
+      "on_failure": "stop_and_report",
+      "retry": 0,
+      "kernel_contract": "REQUIRED"
+    },
+    {
+      "request_id": "R7",
+      "scenario_id": null,
+      "purpose": "域外意图负对照：期望 NOT_APPLICABLE 或 NEED_CLARIFICATION（二者皆合法终局），且内核一次都不被调用。用于证明模型不会把任何意图强行映射成登记场景。",
+      "intent_text": "帮我把这份季度营收报表翻译成英文，并总结三条要点。",
+      "intent_sha256": "b478eb8b6834e72e2425c30ddb78ffb647278bd7dbce03cf04c5c5615b35230b",
+      "intent_equals_a2_mock_intent": false,
+      "max_input_tokens": 2000,
+      "max_output_tokens": 400,
+      "estimated_input_tokens_upper": 1167,
+      "budget_usd_estimate": 0.00016602,
+      "expected": {
+        "http_status": 200,
+        "adapter_decision": "ACCEPTED",
+        "model_decision_in": [
+          "NOT_APPLICABLE",
+          "NEED_CLARIFICATION"
+        ],
+        "scenario_id_null": true,
+        "kernel_invoked": false
+      },
+      "stop_conditions": [
+        "HTTP 状态码不是 200",
+        "Adapter 判定不是 ACCEPTED",
+        "model_decision == SELECT（域外意图被强行映射，记为过度映射失败）",
+        "内核被调用（本请求不得产生任何计算）",
+        "累计费用超过 US$0.05",
+        "任一环节抛异常"
+      ],
+      "on_failure": "stop_and_report",
+      "retry": 0,
+      "kernel_contract": "FORBIDDEN"
+    }
+  ]
+}

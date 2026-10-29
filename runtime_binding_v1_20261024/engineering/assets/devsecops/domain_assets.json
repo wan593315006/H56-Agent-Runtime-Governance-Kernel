@@ -1,0 +1,379 @@
+{
+  "adapter_descriptor": {
+    "domain_id": "DEVSECOPS",
+    "id": "ASSET:DEVSECOPS:ADAPTER_DESCRIPTOR:V1",
+    "value": {
+      "adapter_id": "H56OS:SHARED_BOUNDED_ADAPTER:V1",
+      "operators": [
+        "FIELD",
+        "CONST",
+        "EQUALS",
+        "IN_SET",
+        "EXISTS",
+        "STRICT_INT_LE",
+        "ALL",
+        "ANY",
+        "NOT"
+      ],
+      "qualification_owner": "ORIGINAL_C2_ONLY",
+      "version": "1.0.0"
+    },
+    "version": "1.0.0"
+  },
+  "availability_assertions": {
+    "domain_id": "DEVSECOPS",
+    "id": "ASSET:DEVSECOPS:AVAILABILITY_ASSERTIONS:V1",
+    "value": {
+      "AVAILABLE": {
+        "allowed_method_ids": [
+          "METHOD:DEVSECOPS:QUALIFY:V1"
+        ],
+        "allowed_state_patterns": [
+          "STATE:DEVSECOPS:READY:V1",
+          "STATE:DEVSECOPS:PENDING:V1"
+        ],
+        "allowed_task_kinds": [
+          "TASK:DEVSECOPS:QUALIFY:V1"
+        ],
+        "assertion_hash": "f448e2a63aa2255e157d92c0317c85659e724d4a4dd99bbf2d59455243fe3ca3",
+        "availability_state": "DECLARED_AVAILABLE",
+        "capability_id": "CAP:DEVSECOPS:QUALIFY:V1",
+        "definition_hash": "3e1e27296d43dd6817dde99b809951eefbea83e1e7b63eb44c22eca59d4bde27",
+        "minimum_budget_units": 3,
+        "required_evidence_state": "SUFFICIENT"
+      },
+      "UNKNOWN": {
+        "allowed_method_ids": [
+          "METHOD:DEVSECOPS:QUALIFY:V1"
+        ],
+        "allowed_state_patterns": [
+          "STATE:DEVSECOPS:READY:V1",
+          "STATE:DEVSECOPS:PENDING:V1"
+        ],
+        "allowed_task_kinds": [
+          "TASK:DEVSECOPS:QUALIFY:V1"
+        ],
+        "assertion_hash": "2e0789bdb6420a6838e106dbe0b7afa0393634efc60ec2a5f873212ec5161d6f",
+        "availability_state": "DECLARED_UNKNOWN",
+        "capability_id": "CAP:DEVSECOPS:QUALIFY:V1",
+        "definition_hash": "3e1e27296d43dd6817dde99b809951eefbea83e1e7b63eb44c22eca59d4bde27",
+        "minimum_budget_units": 3,
+        "required_evidence_state": "SUFFICIENT"
+      }
+    },
+    "version": "1.0.0"
+  },
+  "budget_contract": {
+    "domain_id": "DEVSECOPS",
+    "id": "ASSET:DEVSECOPS:BUDGET_CONTRACT:V1",
+    "value": {
+      "available_field": "compute_budget_units",
+      "money_is_budget": false,
+      "unit": "C2_COMPUTE_UNIT"
+    },
+    "version": "1.0.0"
+  },
+  "catalog": {
+    "domain_id": "DEVSECOPS",
+    "id": "ASSET:DEVSECOPS:CATALOG:V1",
+    "value": {
+      "catalog_hash": "a4e9979f4f8a4074c8c0b4a92dc13b1aad6ca7d377c15523c34aee3e6e9868d9",
+      "catalog_id": "CATALOG:DEVSECOPS:CANDIDATE:V1",
+      "catalog_version": "1.0.0",
+      "definitions": [
+        {
+          "capability_id": "CAP:DEVSECOPS:QUALIFY:V1",
+          "definition_hash": "3e1e27296d43dd6817dde99b809951eefbea83e1e7b63eb44c22eca59d4bde27",
+          "extension_profile": "CORE",
+          "failure_boundary_hash": "c1d815bd066e13d2566356a442111e494f7e018a34e0ab74dc074131a5c8d013",
+          "input_contract": {
+            "schema_hash": "f595396e015b34631811546f2bfcb1a793b3233e9efe029df319d984fd27adc6",
+            "schema_id": "SCHEMA:DEVSECOPS:INPUT:V1",
+            "schema_version": "1.0.0"
+          },
+          "observation_requirement_hash": "37785de90daa7f51281be5ff7e8a0e571609d82c519ba558c81c6c17e1c3d725",
+          "output_contract": {
+            "schema_hash": "914a526406c64450c2a80409c3779072871ccf705c06305db2ba548244f305a9",
+            "schema_id": "SCHEMA:CANDIDATE_QUALIFICATION:V1",
+            "schema_version": "1.0.0"
+          },
+          "precondition_hash": "6ea04b87a75af14b18b6a7905cdf8089bd428d0db6ab65a863fbee1f71cc16a0",
+          "resource_requirement_hash": "1851681c1d6d58a51715af1f7ee52ee38720172cfe7308bb5151c41bf1af188d",
+          "risk_class": "LOW",
+          "scope_hash": "21595cee48849c551848a0f17606750944828b4acf57413305779b4c77dde983",
+          "source_hash": "4d9d78f41a98cde0eb8a66741eb1af4fda8b9f30e2cdb0c41b9ec232e7efc404",
+          "source_id": "SOURCE:DEVSECOPS:SYNTHETIC:V1",
+          "source_version": "1.0.0",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    "version": "1.0.0"
+  },
+  "domain_profile": {
+    "domain_id": "DEVSECOPS",
+    "id": "ASSET:DEVSECOPS:DOMAIN_PROFILE:V1",
+    "value": {
+      "kind": "CANDIDATE_DOMAIN_BINDINGS_NOT_NEW_ONTOLOGY",
+      "namespace": "DEVSECOPS",
+      "semantic_bindings": {
+        "candidate": "uro:Candidate",
+        "capability": "uro:Capability",
+        "method": "uro:Method",
+        "object": "uro:Observation"
+      }
+    },
+    "version": "1.0.0"
+  },
+  "evaluation_declarations": {
+    "domain_id": "DEVSECOPS",
+    "id": "ASSET:DEVSECOPS:EVALUATION_DECLARATIONS:V1",
+    "value": {
+      "NORMAL": {
+        "authority_state": "DECLARED_SUFFICIENT",
+        "execution_permission": false,
+        "scope": "SYNTHETIC_CANDIDATE_ASSUMPTION_ONLY"
+      },
+      "UNKNOWN": {
+        "authority_state": "DECLARED_UNKNOWN",
+        "execution_permission": false,
+        "scope": "SYNTHETIC_CANDIDATE_ASSUMPTION_ONLY"
+      }
+    },
+    "version": "1.0.0"
+  },
+  "evidence_requirements": {
+    "domain_id": "DEVSECOPS",
+    "id": "ASSET:DEVSECOPS:EVIDENCE_REQUIREMENTS:V1",
+    "value": {
+      "quality_field": "evidence_quality",
+      "required_ids": [
+        "EVIDENCE:DEVSECOPS:REPORT:V1"
+      ],
+      "truth_scope": "SYNTHETIC_CONTENT_HASH_ONLY"
+    },
+    "version": "1.0.0"
+  },
+  "fact_contract": {
+    "domain_id": "DEVSECOPS",
+    "id": "ASSET:DEVSECOPS:FACT_CONTRACT:V1",
+    "value": {
+      "authority": "NONE",
+      "contract_id": "K0:CANONICAL_FACT:V1",
+      "fact_type": "assertion",
+      "projection_key": "state_projection",
+      "source_kind": "ISOLATED_SYNTHETIC_TEST_ONLY"
+    },
+    "version": "1.0.0"
+  },
+  "mapping": {
+    "domain_id": "DEVSECOPS",
+    "id": "ASSET:DEVSECOPS:MAPPING:V1",
+    "value": {
+      "identity_binding": "Snapshot+History+VersionTuple+Profile+Method+Policy+Catalog",
+      "input_contract": "K1:STATE_COMPILER:V1",
+      "patterns": [
+        {
+          "id": "STATE:DEVSECOPS:READY:V1",
+          "when": {
+            "EQUALS": [
+              {
+                "FIELD": "record_status"
+              },
+              {
+                "CONST": "READY"
+              }
+            ]
+          }
+        },
+        {
+          "id": "STATE:DEVSECOPS:PENDING:V1",
+          "when": {
+            "EQUALS": [
+              {
+                "FIELD": "record_status"
+              },
+              {
+                "CONST": "PENDING"
+              }
+            ]
+          }
+        }
+      ],
+      "unknown": "REJECT_BEFORE_C2"
+    },
+    "version": "1.0.0"
+  },
+  "method_pack": {
+    "domain_id": "DEVSECOPS",
+    "id": "ASSET:DEVSECOPS:METHOD_PACK:V1",
+    "value": {
+      "atoms": [
+        {
+          "id": "ATOM:DEVSECOPS:TYPED_REQUEST:V1",
+          "kind": "READ_SYNTHETIC_DESCRIPTION"
+        },
+        {
+          "id": "ATOM:DEVSECOPS:SNAPSHOT_MAPPING:V1",
+          "kind": "DECLARED_MAPPING_DESCRIPTION"
+        }
+      ],
+      "capability_id": "CAP:DEVSECOPS:QUALIFY:V1",
+      "execution_enabled": false,
+      "formal_mlm_asset": false,
+      "kind": "DECLARATIVE_CANDIDATE_METHOD_DESCRIPTION",
+      "method_id": "METHOD:DEVSECOPS:QUALIFY:V1",
+      "task_kind": "TASK:DEVSECOPS:QUALIFY:V1"
+    },
+    "version": "1.0.0"
+  },
+  "object_schema": {
+    "domain_id": "DEVSECOPS",
+    "id": "ASSET:DEVSECOPS:OBJECT_SCHEMA:V1",
+    "value": {
+      "candidate_argument_bindings": {
+        "change_version": "change_version"
+      },
+      "fields": {
+        "change_version": {
+          "type": "string"
+        },
+        "compute_budget_units": {
+          "type": "strict_integer"
+        },
+        "critical_findings": {
+          "nullable": true,
+          "type": "strict_integer"
+        },
+        "evidence_quality": {
+          "enum": [
+            "SUFFICIENT",
+            "INSUFFICIENT",
+            "UNKNOWN"
+          ],
+          "nullable": true,
+          "type": "string"
+        },
+        "record_status": {
+          "enum": [
+            "READY",
+            "PENDING"
+          ],
+          "type": "string"
+        },
+        "review_status": {
+          "enum": [
+            "APPROVED",
+            "DENIED"
+          ],
+          "nullable": true,
+          "type": "string"
+        },
+        "tests_passed": {
+          "nullable": true,
+          "type": "boolean"
+        }
+      },
+      "money_unit": "NOT_APPLICABLE",
+      "object_id": "OBJECT:DEVSECOPS:SYNTHETIC_001",
+      "object_version": "1.0.0"
+    },
+    "version": "1.0.0"
+  },
+  "policy": {
+    "domain_id": "DEVSECOPS",
+    "id": "ASSET:DEVSECOPS:POLICY:V1",
+    "value": {
+      "effect": "C2_CONTEXT_INPUT_ONLY",
+      "rule": {
+        "ALL": [
+          {
+            "EQUALS": [
+              {
+                "FIELD": "tests_passed"
+              },
+              {
+                "CONST": true
+              }
+            ]
+          },
+          {
+            "STRICT_INT_LE": [
+              {
+                "FIELD": "critical_findings"
+              },
+              {
+                "CONST": 0
+              }
+            ]
+          },
+          {
+            "EQUALS": [
+              {
+                "FIELD": "review_status"
+              },
+              {
+                "CONST": "APPROVED"
+              }
+            ]
+          }
+        ]
+      },
+      "unknown": "DECLARED_UNKNOWN"
+    },
+    "version": "1.0.0"
+  },
+  "project_profile": {
+    "domain_id": "DEVSECOPS",
+    "id": "ASSET:DEVSECOPS:PROJECT_PROFILE:V1",
+    "value": {
+      "historical_profile_registration": false,
+      "project_id": "PROJECT:H56OS:DEVSECOPS:V1",
+      "scope": "ISOLATED_SYNTHETIC_CANDIDATE_ONLY"
+    },
+    "version": "1.0.0"
+  },
+  "replay_contract": {
+    "domain_id": "DEVSECOPS",
+    "id": "ASSET:DEVSECOPS:REPLAY_CONTRACT:V1",
+    "value": {
+      "compare": "FULL_SEMANTIC_OBJECTS",
+      "contract_id": "H56OS:FRESH_RECOMPUTE:V1",
+      "source": "APPROVED_FROZEN_INPUTS",
+      "stored_projection_is_authority": false
+    },
+    "version": "1.0.0"
+  },
+  "runtime_ontology_binding": {
+    "domain_id": "DEVSECOPS",
+    "id": "ASSET:DEVSECOPS:RUNTIME_ONTOLOGY_BINDING:V1",
+    "value": {
+      "profile_hash": "5234e7badaf43dbe56e5aedaf47e0b540f72401aeb3f7227900d75586ca85008",
+      "profile_id": "URO:PROFILE:V1_1",
+      "profile_version": "1.1.0",
+      "source_commit": "9221e16460258bc81e1176d69f63a09f81159b73"
+    },
+    "version": "1.0.0"
+  },
+  "synthetic_source": {
+    "domain_id": "DEVSECOPS",
+    "id": "ASSET:DEVSECOPS:SYNTHETIC_SOURCE:V1",
+    "value": {
+      "external_fact_truth": false,
+      "source_id": "SOURCE:DEVSECOPS:SYNTHETIC:V1",
+      "trust_level": "ISOLATED_SYNTHETIC_TEST_ONLY"
+    },
+    "version": "1.0.0"
+  },
+  "version_tuple": {
+    "domain_id": "DEVSECOPS",
+    "id": "ASSET:DEVSECOPS:VERSION_TUPLE:V1",
+    "value": {
+      "compiler_version": "K1:STATE_COMPILER:V1",
+      "evidence_policy_version": "1.0.0",
+      "policy_version": "1.0.0",
+      "schema_version": "1.0.0"
+    },
+    "version": "1.0.0"
+  }
+}

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>H56 · 离线资格评估 · 演示</title>
+<style>
+  :root {
+    --bg: #0a0f13;
+    --bg2: #0e151a;
+    --panel: #111a20;
+    --line: #1e2c35;
+    --line2: #2a3d49;
+    --text: #e3ecf2;
+    --dim: #7f93a2;
+    --dim2: #5b6d7a;
+    --teal: #46d3c4;
+    --teal-d: #1d5f59;
+    --amber: #f2c078;
+    --amber-d: #6a4d1e;
+    --red: #ef7676;
+    --mono: ui-monospace, "Cascadia Mono", "Consolas", "SF Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: radial-gradient(1200px 600px at 50% -240px, #12232b 0%, var(--bg) 62%) fixed;
+    color: var(--text);
+    font: 15px/1.6 system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 34px 26px 80px; }
+
+  header.top { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .brand h1 { margin: 0; font-size: 27px; letter-spacing: .2px; font-weight: 650; }
+  .brand h1 span { color: var(--teal); }
+  .brand p { margin: 8px 0 0; color: var(--dim); font-size: 13.5px; max-width: 720px; }
+  .badge {
+    border: 1px solid var(--amber-d); background: rgba(242,192,120,.08);
+    color: var(--amber); border-radius: 999px; padding: 6px 13px;
+    font-size: 11.5px; letter-spacing: .04em; white-space: nowrap; font-family: var(--mono);
+  }
+
+  .hero { margin-top: 26px; border: 1px solid var(--line); border-radius: 16px;
+          background: linear-gradient(180deg, #101c23, #0d151a); padding: 22px; }
+  .btn-run {
+    width: 100%; border: 0; cursor: pointer; border-radius: 12px; padding: 20px;
+    font-size: 19px; font-weight: 680; letter-spacing: .02em; color: #04211f;
+    background: linear-gradient(180deg, #5fe6d6, #38c3b4);
+    box-shadow: 0 10px 30px -12px rgba(70,211,196,.6), inset 0 1px 0 rgba(255,255,255,.45);
+    transition: transform .12s ease, filter .12s ease;
+  }
+  .btn-run:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.04); }
+  .btn-run:disabled { cursor: default; filter: grayscale(.55) brightness(.7); box-shadow: none; }
+  .hint { margin: 12px 0 0; color: var(--dim); font-size: 12.5px; text-align: center; }
+  .hint code { font-family: var(--mono); color: #a9c2d1; }
+
+  .progress { margin-top: 16px; display: none; }
+  .progress.on { display: block; }
+  .bar { height: 7px; border-radius: 99px; background: #101d24; overflow: hidden; border: 1px solid var(--line); }
+  .bar > i { display: block; height: 100%; width: 0%; border-radius: 99px;
+             background: linear-gradient(90deg, #2f9c92, var(--teal)); transition: width .35s ease; }
+  .bar-meta { display: flex; justify-content: space-between; gap: 12px;
+              margin-top: 9px; color: var(--dim); font-size: 12.5px; font-family: var(--mono); }
+  .tick { margin-top: 8px; font-family: var(--mono); font-size: 11.5px; color: var(--dim2);
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis; direction: ltr; }
+
+  .summary { margin-top: 22px; display: none; }
+  .summary.on { display: block; }
+  .cards { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+  .card { border: 1px solid var(--line); border-radius: 13px; background: var(--panel); padding: 16px 15px; }
+  .card .k { color: var(--dim); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; }
+  .card .v { font-size: 30px; font-weight: 660; margin-top: 6px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .card .s { color: var(--dim2); font-size: 11.5px; margin-top: 5px; font-family: var(--mono); }
+  .v.teal { color: var(--teal); } .v.amber { color: var(--amber); }
+
+  .split { display: grid; grid-template-columns: 1.15fr 1fr; gap: 12px; margin-top: 12px; }
+  .box { border: 1px solid var(--line); border-radius: 13px; background: var(--panel); padding: 15px 16px; }
+  .box h3 { margin: 0 0 11px; font-size: 12.5px; letter-spacing: .07em; color: var(--dim);
+            text-transform: uppercase; font-weight: 600; }
+
+  .dist { display: flex; flex-direction: column; gap: 8px; }
+  .dist .row { display: grid; grid-template-columns: 152px 1fr 40px; align-items: center; gap: 10px; font-size: 13px; }
+  .dist .name { font-family: var(--mono); font-size: 12px; color: #b9cdda; }
+  .dist .track { height: 9px; background: #0c1519; border-radius: 99px; overflow: hidden; border: 1px solid #16242c; }
+  .dist .fill { height: 100%; background: var(--teal); border-radius: 99px; opacity: .85; }
+  .dist .fill.a { background: var(--amber); }
+  .dist .num { text-align: right; font-variant-numeric: tabular-nums; color: var(--dim); font-size: 12.5px; }
+
+  .props { display: grid; grid-template-columns: 1fr 1fr; gap: 7px 14px; }
+  .prop { display: flex; align-items: baseline; gap: 8px; font-size: 12.8px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); flex: none; transform: translateY(-1px); }
+  .dot.skip { background: var(--dim2); } .dot.fail { background: var(--red); }
+  .prop .nm { color: #cbdae3; } .prop .ds { color: var(--dim2); font-size: 11.5px; font-family: var(--mono); }
+
+  .panels { margin-top: 20px; display: none; }
+  .panels.on { display: block; }
+  details.panel { border: 1px solid var(--line); border-radius: 14px; background: var(--panel);
+                  margin-bottom: 12px; overflow: hidden; }
+  details.panel > summary {
+    cursor: pointer; list-style: none; padding: 16px 18px; display: flex; align-items: center; gap: 12px;
+    font-size: 14.5px; font-weight: 600; user-select: none;
+  }
+  details.panel > summary::-webkit-details-marker { display: none; }
+  details.panel > summary::after {
+    content: "展开"; margin-left: auto; font-size: 11.5px; color: var(--dim2);
+    font-weight: 500; font-family: var(--mono);
+  }
+  details.panel[open] > summary::after { content: "收起"; }
+  details.panel[open] > summary { border-bottom: 1px solid var(--line); }
+  .tag { font-size: 11px; padding: 2.5px 8px; border-radius: 99px; font-family: var(--mono);
+         border: 1px solid var(--line2); color: var(--dim); }
+  .tag.teal { color: var(--teal); border-color: var(--teal-d); background: rgba(70,211,196,.07); }
+  .tag.amber { color: var(--amber); border-color: var(--amber-d); background: rgba(242,192,120,.07); }
+  .body { padding: 16px 18px 18px; }
+
+  table.grid { width: 100%; border-collapse: collapse; font-size: 12.8px; }
+  table.grid th { text-align: left; color: var(--dim2); font-weight: 600; font-size: 11px;
+                  letter-spacing: .06em; text-transform: uppercase; padding: 0 10px 9px 0; white-space: nowrap; }
+  table.grid td { padding: 8px 10px 8px 0; border-top: 1px solid #16232b; vertical-align: top; }
+  table.grid tr:hover td { background: rgba(70,211,196,.035); }
+  .mono { font-family: var(--mono); font-size: 11.8px; }
+  .muted { color: var(--dim2); }
+  .dec { font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: .02em; }
+  .dec.FEASIBLE { color: var(--teal); }
+  .dec.INFEASIBLE { color: #9fb2c0; }
+  .dec.DEFER { color: var(--amber); }
+  .dec.NEED_MORE_EVIDENCE { color: #d9a6f0; }
+  .chip { display: inline-block; font-family: var(--mono); font-size: 10.7px; color: #9fb6c5;
+          border: 1px solid #22323d; border-radius: 5px; padding: 1.5px 6px; margin: 1px 4px 1px 0;
+          background: #0d171d; white-space: nowrap; }
+  .link { color: var(--teal); cursor: pointer; font-size: 11.5px; text-decoration: none; border-bottom: 1px dotted #2c6f69; }
+  .link:hover { color: #7ff0e3; }
+
+  .rej-note { border-left: 3px solid var(--amber); background: rgba(242,192,120,.06);
+              padding: 11px 14px; border-radius: 0 8px 8px 0; color: #e8d3ae; font-size: 12.8px; margin-bottom: 15px; }
+  .rej-group { border: 1px solid var(--line); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+  .rej-head { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: #0d171d; flex-wrap: wrap; }
+  .rej-head .code { font-family: var(--mono); font-size: 12.5px; color: var(--amber); font-weight: 600; }
+  .rej-head .cnt { font-size: 11.5px; color: var(--dim2); font-family: var(--mono); }
+  .rej-body { padding: 11px 14px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .rej-case { font-family: var(--mono); font-size: 11.5px; color: #c3d4de; border: 1px solid #22323d;
+              background: #0b1418; border-radius: 5px; padding: 2px 7px; cursor: pointer; }
+  .rej-case:hover { border-color: var(--amber-d); color: var(--amber); }
+  .stage { font-size: 10.8px; color: var(--dim); }
+
+  .ev-grid { display: grid; grid-template-columns: 210px 1fr; gap: 14px; }
+  select.case-pick { width: 100%; background: #0b1418; color: var(--text); border: 1px solid var(--line2);
+                     border-radius: 8px; padding: 9px 10px; font-family: var(--mono); font-size: 12.5px; }
+  .ev-list { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .ev-row { display: grid; grid-template-columns: 1fr 92px 96px; gap: 10px; align-items: center;
+            padding: 9px 12px; border-top: 1px solid #16232b; font-size: 12.3px; }
+  .ev-row:first-child { border-top: 0; }
+  .ev-row .nm { font-family: var(--mono); font-size: 11.5px; color: #b9cdda; overflow: hidden;
+                text-overflow: ellipsis; white-space: nowrap; }
+  .ev-row .sz { color: var(--dim2); font-family: var(--mono); font-size: 11.3px; text-align: right; }
+  pre.raw { margin: 12px 0 0; max-height: 340px; overflow: auto; background: #080e12;
+            border: 1px solid var(--line); border-radius: 10px; padding: 14px;
+            font-family: var(--mono); font-size: 11.5px; line-height: 1.55; color: #adc6d4;
+            white-space: pre-wrap; word-break: break-word; }
+  .ev-meta { margin: 0 0 10px; color: var(--dim); font-size: 12.3px; }
+  .ev-meta b { color: #cfe0ea; font-weight: 600; }
+
+  footer { margin-top: 30px; border-top: 1px solid var(--line); padding-top: 18px;
+           color: var(--dim2); font-size: 11.8px; line-height: 1.85; }
+  footer b { color: var(--dim); font-weight: 600; }
+  footer code { font-family: var(--mono); color: #93a9b7; }
+  .kv { display: grid; grid-template-columns: 132px 1fr; gap: 2px 12px; font-family: var(--mono); font-size: 11.3px; }
+  .kv span:nth-child(odd) { color: var(--dim2); }
+  .kv span:nth-child(even) { color: #a9c2d1; word-break: break-all; }
+
+  @media (max-width: 900px) {
+    .cards { grid-template-columns: repeat(2, 1fr); }
+    .split { grid-template-columns: 1fr; }
+    .ev-grid { grid-template-columns: 1fr; }
+    .props { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <h1>H56 · 离线<span>资格评估</span>引擎</h1>
+      <p>通过输入/来源门禁并产生记录的合成案件会真实执行
+         <code>K0 → K1 → C1 → C2</code>（每例 22 次原生调用）；拒绝路径在写记录前停止。
+         本页只展示本次本机运行结果，不做回放。</p>
+      <p class="hint" style="margin-top:8px">任务描述来自合成 fixture
+         （<code>origin=SYNTHETIC_DEMO_TASK</code>，证据等级 <code>SYNTHETIC_ONLY</code>），
+         本交付<strong>未接入真实模型</strong>；全部判定在本地确定性计算，候选结论不含执行授权。</p>
+    </div>
+    <div class="badge">AUTHORITY TREE = 当前源码身份</div>
+  </header>
+
+  <section class="hero">
+    <button class="btn-run" id="run">跑完整演示</button>
+    <p class="hint">全量回归 31 案件 / 56 变体，其中输入证据字节互不相同的是 26 条 · 可选双解释器 ·
+      7 项性质自检（未配置跨版本时为 SKIP）· 约 40–60 秒 ·
+      <code>python ui/serve.py</code></p>
+    <div class="progress" id="progress">
+      <div class="bar"><i id="bar"></i></div>
+      <div class="bar-meta">
+        <span id="pCount">0 / 56 变体</span>
+        <span id="pTime">0.0s</span>
+      </div>
+      <div class="tick" id="tick">等待执行…</div>
+    </div>
+  </section>
+
+  <section class="summary" id="summary">
+    <div class="cards">
+      <div class="card"><div class="k">变体行数</div><div class="v" id="cTotal">–</div><div class="s" id="cTotalSub">回归基线行</div></div>
+      <div class="card"><div class="k">有效输入</div><div class="v" id="cDistinct">–</div><div class="s" id="cDistinctSub">输入字节互不相同</div></div>
+      <div class="card"><div class="k">DECIDED</div><div class="v teal" id="cDecided">–</div><div class="s">生成不可变记录</div></div>
+      <div class="card"><div class="k">REJECTED</div><div class="v amber" id="cRejected">–</div><div class="s">拒斥路径生效</div></div>
+      <div class="card"><div class="k">拒斥原因码</div><div class="v amber" id="cCodes">–</div><div class="s">类 · 去重计数</div></div>
+      <div class="card"><div class="k">性质自检</div><div class="v" id="cProps">–</div><div class="s" id="cPropsSub">/ 7 PASS</div></div>
+    </div>
+
+    <div class="split">
+      <div class="box">
+        <h3>判定分布（按输入去重，非行数）</h3>
+        <div class="dist" id="dist"></div>
+      </div>
+      <div class="box">
+        <h3>7 项性质（本次运行实测）</h3>
+        <div class="props" id="props"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panels" id="panels">
+
+    <details class="panel" id="p1">
+      <summary>
+        判定详情
+        <span class="tag teal" id="tag1">42 条</span>
+        <span class="tag">每例 22 次原生调用</span>
+      </summary>
+      <div class="body">
+        <table class="grid">
+          <thead><tr>
+            <th>案件</th><th>判定</th><th>判定依据码</th><th>原生调用</th>
+            <th>semantic_sha256</th><th></th>
+          </tr></thead>
+          <tbody id="tbodyDecided"></tbody>
+        </table>
+      </div>
+    </details>
+
+    <details class="panel" id="p2">
+      <summary>
+        拒绝路径
+        <span class="tag amber" id="tag2">14 条 / 5 类</span>
+        <span class="tag">STOPPED · 未生成记录</span>
+      </summary>
+      <div class="body">
+        <div class="rej-note" id="rejNote"></div>
+        <div id="rejGroups"></div>
+      </div>
+    </details>
+
+    <details class="panel" id="p3">
+      <summary>
+        证据链
+        <span class="tag" id="tag3">逐文件 sha256</span>
+        <span class="tag">可查看原始字节</span>
+      </summary>
+      <div class="body">
+        <div class="ev-grid">
+          <div>
+            <h3 style="margin:0 0 9px">选择案件</h3>
+            <select class="case-pick" id="casePick"></select>
+            <p class="ev-meta" id="evMeta" style="margin-top:11px"></p>
+          </div>
+          <div>
+            <div class="ev-list" id="evList"></div>
+            <pre class="raw" id="evRaw">选择上面的「查看」加载该文件的原始 JSON。</pre>
+          </div>
+        </div>
+      </div>
+    </details>
+
+  </section>
+
+  <footer>
+    <div class="kv" id="runMeta">
+      <span>状态</span><span id="mState">未运行</span>
+    </div>
+    <p style="margin:13px 0 0">
+      <b>证据口径声明</b>　只有与冻结源码身份一致的本仓库工作树或干净克隆上的运行结果计入交付；
+      路径只用于展示运行位置。
+      <code>separation_workspace_v1</code> 上此前的任何测试结论标记为
+      <code>NOT_ON_AUTHORITY_TREE</code>，不作为交付证据。
+    </p>
+  </footer>
+
+</div>
+
+<script>window.H56_RUN_TOKEN = "__H56_RUN_TOKEN__";</script>
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var poller = null, state = null;
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined && text !== null) n.textContent = String(text);
+    return n;
+  }
+  function short(h, n) { return h ? h.slice(0, n || 16) : "—"; }
+
+  function setProgress(done, total, elapsed) {
+    $("progress").classList.add("on");
+    var pct = total ? Math.min(100, (done / total) * 100) : 0;
+    $("bar").style.width = pct.toFixed(1) + "%";
+    $("pCount").textContent = done + " / " + total + " 变体";
+    $("pTime").textContent = elapsed.toFixed(1) + "s";
+  }
+
+  function renderSummary(report) {
+    var c = report.counts || {};
+    var props = report.properties || [];
+    var pass = props.filter(function (p) { return p.status === "PASS"; }).length;
+    var total = props.length || 7;
+
+    $("cTotal").textContent = c.variants != null ? c.variants : "–";
+    $("cDecided").textContent = c.decided != null ? c.decided : "–";
+    $("cRejected").textContent = c.rejected != null ? c.rejected : "–";
+    $("cCodes").textContent = Object.keys(c.reason_codes || {}).length;
+    $("cProps").textContent = pass;
+    $("cPropsSub").textContent = "/ " + total + " PASS" + (report.result === "PASS" ? "" : " · " + report.result);
+    $("cTotalSub").textContent = report.mode === "all" ? "全量回归基线" : "演示主线";
+    var cov = report.coverage || {};
+    $("cDistinct").textContent = cov.distinct_inputs != null ? cov.distinct_inputs : "–";
+    $("cDistinctSub").textContent = cov.duplicate_rows
+      ? (cov.duplicate_rows + " 行是基线重复")
+      : "全部互不相同";
+
+    var dist = $("dist"); dist.innerHTML = "";
+    var dec = cov.distinct_decisions || c.decisions || {};
+    var keys = Object.keys(dec).sort(function (a, b) { return dec[b] - dec[a]; });
+    var max = keys.length ? dec[keys[0]] : 1;
+    keys.forEach(function (k) {
+      var row = el("div", "row");
+      row.appendChild(el("div", "name", k));
+      var track = el("div", "track");
+      var fill = el("div", "fill");
+      fill.style.width = Math.max(3, (dec[k] / max) * 100) + "%";
+      track.appendChild(fill);
+      row.appendChild(track);
+      row.appendChild(el("div", "num", dec[k]));
+      dist.appendChild(row);
+    });
+
+    var box = $("props"); box.innerHTML = "";
+    props.forEach(function (p) {
+      var d = el("div", "prop");
+      var dot = el("span", "dot" + (p.status === "PASS" ? "" : p.status === "SKIP" ? " skip" : " fail"));
+      d.appendChild(dot);
+      d.appendChild(el("span", "nm", p.id + ". " + p.name));
+      d.appendChild(el("span", "ds", p.status === "PASS" ? "" : p.status));
+      d.title = p.detail || "";
+      box.appendChild(d);
+    });
+
+    $("tag1").textContent = (c.decided || 0) + " 行"
+      + (cov.duplicate_rows ? " · 真实输入 " + (cov.distinct_inputs || 0) + " 条" : "");
+    var codes = Object.keys(c.reason_codes || {}).length;
+    $("tag2").textContent = (c.rejected || 0) + " 行 / " + codes + " 类";
+    $("summary").classList.add("on");
+  }
+
+  function renderDecided(rows) {
+    var body = $("tbodyDecided"); body.innerHTML = "";
+    rows.filter(function (r) { return r.kind === "DECIDED"; }).forEach(function (r) {
+      var tr = el("tr");
+      tr.appendChild(el("td", "mono", r.key));
+      var td = el("td"); td.appendChild(el("span", "dec " + r.decision, r.decision || r.value));
+      tr.appendChild(td);
+
+      var codes = el("td");
+      var list = (r.reason_codes || []).slice(0, 3);
+      if (!list.length) codes.appendChild(el("span", "muted", "—"));
+      list.forEach(function (c2) { codes.appendChild(el("span", "chip", c2)); });
+      if ((r.reason_codes || []).length > 3) {
+        codes.appendChild(el("span", "chip", "+" + (r.reason_codes.length - 3)));
+      }
+      tr.appendChild(codes);
+
+      tr.appendChild(el("td", "mono", r.native_calls == null ? "—" : r.native_calls));
+      var sem = el("td", "mono muted", short(r.semantic_sha256, 20));
+      sem.title = r.semantic_sha256 || "";
+      tr.appendChild(sem);
+
+      var act = el("td");
+      var a = el("span", "link", "证据");
+      a.onclick = function () { showEvidence(r.key); };
+      act.appendChild(a);
+      tr.appendChild(act);
+      body.appendChild(tr);
+    });
+  }
+
+  function renderRejected(rows) {
+    var rej = rows.filter(function (r) { return r.kind === "REJECTED"; });
+    var groups = {};
+    rej.forEach(function (r) { (groups[r.value] = groups[r.value] || []).push(r); });
+
+    $("rejNote").textContent =
+      rej.length + " 条 REJECTED 不是失败，而是拒斥路径工作：引擎在准入 / 来源 / 时序等关口主动停下，"
+      + "返回 STOPPED 与原因码，且不写出任何评估记录 —— 无法拒斥的资格引擎才是坏的。"
+      + "共 " + Object.keys(groups).length + " 类原因码。";
+
+    var box = $("rejGroups"); box.innerHTML = "";
+    Object.keys(groups).sort().forEach(function (code) {
+      var list = groups[code];
+      var g = el("div", "rej-group");
+      var head = el("div", "rej-head");
+      head.appendChild(el("span", "code", code));
+      head.appendChild(el("span", "cnt", list.length + " 条"));
+
+      var stages = {};
+      list.forEach(function (r) { stages[r.stop_stage || "?"] = 1; });
+      head.appendChild(el("span", "stage", "停止于 " + Object.keys(stages).join(" / ")));
+
+      var ex = list[0];
+      head.appendChild(el("span", "stage", "· 退出码 " + ex.exit + " · " + ex.stop_status));
+
+      g.appendChild(head);
+      var body = el("div", "rej-body");
+      list.forEach(function (r) {
+        var c = el("span", "rej-case", r.key);
+        c.title = "查看该案件的输入与停止点";
+        c.onclick = function () { showEvidence(r.key); };
+        body.appendChild(c);
+      });
+      g.appendChild(body);
+      box.appendChild(g);
+    });
+  }
+
+  function fillCasePicker(rows) {
+    var sel = $("casePick"); sel.innerHTML = "";
+    rows.forEach(function (r) {
+      var o = el("option");
+      o.value = r.key;
+      o.textContent = r.key + "  ·  " + r.kind + " / " + r.value;
+      sel.appendChild(o);
+    });
+    sel.onchange = function () { renderEvidence(sel.value); };
+  }
+
+  function caseRow(key) {
+    var rows = (state && state.report && state.report.rows) || [];
+    for (var i = 0; i < rows.length; i++) if (rows[i].key === key) return rows[i];
+    return null;
+  }
+
+  function renderEvidence(key) {
+    var r = caseRow(key);
+    var list = $("evList"), meta = $("evMeta");
+    list.innerHTML = "";
+    if (!r) return;
+    meta.innerHTML = "";
+    meta.appendChild(el("div", "", "评估：" + (r.session || "")));
+    meta.appendChild(el("div", "mono", "decision_id " + short(r.decision_id, 18)));
+    meta.appendChild(el("div", "mono", "assessment_id " + short(r.assessment_id, 18)));
+    meta.appendChild(el("div", "", r.parent_decision_ref ? "父引用：SET" : "父引用：无"));
+
+    if (!r.evidence || !r.evidence.length) {
+      var empty = el("div", "ev-row");
+      empty.appendChild(el("div", "nm muted", "该案件在写出记录前被拒斥 —— 没有 artifact"));
+      empty.appendChild(el("div", "sz", "—"));
+      empty.appendChild(el("div", "", ""));
+      list.appendChild(empty);
+      $("evRaw").textContent = "拒绝路径不落记录：引擎在关口 STOPPED，返回原因码后即退出。\n"
+        + "原因码：" + r.value + "\n停止阶段：" + (r.stop_stage || "—")
+        + "\n退出码：" + r.exit + "（0 表示拒绝也是受控结局，不是崩溃）";
+      return;
+    }
+    r.evidence.forEach(function (f) {
+      var row = el("div", "ev-row");
+      var nm = el("div", "nm", f.rel.split("/").slice(-1)[0]);
+      nm.title = f.rel;
+      row.appendChild(nm);
+      row.appendChild(el("div", "sz", f.bytes.toLocaleString() + " B"));
+      var act = el("div", "");
+      var a = el("span", "link", "查看");
+      a.onclick = function () { loadRaw(f.rel, f.sha256); };
+      act.appendChild(a);
+      row.appendChild(act);
+      list.appendChild(row);
+    });
+    $("evRaw").textContent = "点「查看」加载原始 JSON（sha256 已在列表里，可自行核对）。";
+  }
+
+  function loadRaw(rel, sha) {
+    $("evRaw").textContent = "加载中…";
+    fetch("/api/evidence?rel=" + encodeURIComponent(rel))
+      .then(function (r) { return r.text(); })
+      .then(function (txt) {
+        var pretty = txt;
+        try { pretty = JSON.stringify(JSON.parse(txt), null, 2); } catch (e) { /* 原样展示 */ }
+        if (pretty.length > 24000) {
+          pretty = pretty.slice(0, 24000) + "\n\n…（已截断，完整文件见运行目录）";
+        }
+        $("evRaw").textContent = "// " + rel + "\n// sha256 " + sha + "\n\n" + pretty;
+      })
+      .catch(function (e) { $("evRaw").textContent = "加载失败：" + e; });
+  }
+
+  function showEvidence(key) {
+    $("p3").open = true;
+    $("casePick").value = key;
+    renderEvidence(key);
+    $("p3").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function renderMeta(st) {
+    var kv = $("runMeta"); kv.innerHTML = "";
+    function add(k, v) { kv.appendChild(el("span", "", k)); kv.appendChild(el("span", "", v)); }
+    add("状态", st.status);
+    if (st.report) {
+      add("产品根", st.report.product_root || "—");
+      add("解释器", (st.report.interpreter && st.report.interpreter.version) || "—");
+      if (st.report.compare_interpreter) {
+        add("对比解释器", st.report.compare_interpreter.version);
+      }
+      add("清单成员", (st.report.manifest_members || 0) + " 条 runtime_required");
+      add("开始 / 结束", (st.report.started_at || "—") + "  →  " + (st.report.finished_at || "—"));
+      add("耗时", (st.report.counts && st.report.counts.elapsed_seconds) + " s");
+    }
+    if (st.work_dir) add("运行目录", st.work_dir);
+    if (st.error) add("错误", st.error);
+  }
+
+  function apply(st) {
+    state = st;
+    if (st.report) {
+      var total = (st.report.progress && st.report.progress.total) || 56;
+      var done = (st.report.progress && st.report.progress.done) || 0;
+      setProgress(done, total, st.elapsed || 0);
+      if (st.log && st.log.length) $("tick").textContent = st.log[st.log.length - 1];
+    }
+    if (st.status === "running") {
+      $("progress").classList.add("on");
+      $("run").disabled = true;
+      $("run").textContent = "正在执行真实评估…";
+      return;
+    }
+    $("progress").classList.remove("on");
+    $("run").disabled = false;
+    $("run").textContent = st.status === "idle" ? "跑完整演示" : "重跑一次";
+    if (st.report && st.report.rows && st.report.rows.length) {
+      renderSummary(st.report);
+      renderDecided(st.report.rows);
+      renderRejected(st.report.rows);
+      fillCasePicker(st.report.rows);
+      $("panels").classList.add("on");
+      var first = st.report.rows.filter(function (r) { return r.kind === "DECIDED"; })[0]
+               || st.report.rows[0];
+      $("casePick").value = first.key;
+      renderEvidence(first.key);
+    }
+    renderMeta(st);
+  }
+
+  function poll() {
+    fetch("/api/state").then(function (r) { return r.json(); }).then(function (st) {
+      apply(st);
+      if (st.status === "running") {
+        if (!poller) poller = setInterval(poll, 700);
+      } else if (poller) {
+        clearInterval(poller); poller = null;
+      }
+    }).catch(function () { /* 服务已停 */ });
+  }
+
+  $("run").onclick = function () {
+    $("run").disabled = true;
+    $("run").textContent = "正在启动…";
+    $("progress").classList.add("on");
+    $("bar").style.width = "0%";
+    $("pCount").textContent = "0 / 56 变体";
+    fetch("/api/run", { method: "POST", headers: { "Content-Type": "application/json",
+      "X-H56-Run-Token": window.H56_RUN_TOKEN }, body: "{}" })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        if (!res.started) {
+          $("tick").textContent = res.detail || "无法启动";
+        }
+        poll();
+        if (!poller) poller = setInterval(poll, 700);
+      });
+  };
+
+  // ?open=1 让三个面板默认展开（录像 / 截图用）
+  if (new URLSearchParams(location.search).get("open")) {
+    ["p1", "p2", "p3"].forEach(function (id) { $(id).open = true; });
+  }
+
+  poll();
+})();
+</script>
+</body>
+</html>

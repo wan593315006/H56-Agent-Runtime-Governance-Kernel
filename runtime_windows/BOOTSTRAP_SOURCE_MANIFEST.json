@@ -1,0 +1,48 @@
+{
+  "baseline_package_sha256": "6e7133a066fbd02e434c8a04029328e74e871f01d6486f162e93d4b3462eec45",
+  "candidate_runtime_manifest_sha256": "4f3606f53cb1007889e077aefe4141da8b4a383e59cc95e2d8d3bc8132d5fd11",
+  "files": [
+    {
+      "path": "runtime_windows/bootstrap_cli.py",
+      "sha256": "aa60c4bb86d23279b38431106e64ed6af59f3e8a7efb59af917e0b371610a610",
+      "size": 8458
+    },
+    {
+      "path": "runtime_windows/bootstrap_contract.py",
+      "sha256": "71c4afcf2949243dd606caeaa0e3bbd06dce7659e64f5b34656ccc5523f6e722",
+      "size": 7604
+    },
+    {
+      "path": "runtime_windows/preflight.py",
+      "sha256": "f1c9cd6509c37f9e06edbf46ef9c2b5723d866c7441c76dfdf96b2eebd8456b6",
+      "size": 18852
+    },
+    {
+      "path": "runtime_windows/preflight_authority.py",
+      "sha256": "b87231fd0b073a7ea67d36ca2ee2888239febf7eefe6fcd8f3ab6d8ff5384c2c",
+      "size": 17122
+    },
+    {
+      "path": "runtime_windows/probe_backend.py",
+      "sha256": "8a46a6b85bd5f1f8d3c15d195d7e0830f4ecbf58e6815d6eeea3de12b46a2988",
+      "size": 34457
+    },
+    {
+      "path": "runtime_windows/probe_cli.py",
+      "sha256": "615fe1bccb72ed9e57941469f8236429d594af0688ab51fd20476e273b3e4b5a",
+      "size": 11027
+    },
+    {
+      "path": "runtime_windows/resource_prepare.py",
+      "sha256": "6a1fdf484a2f5d311748e500ff2cef1100e9931f030adbbd600cdd36b756c40e",
+      "size": 27416
+    },
+    {
+      "path": "runtime_windows/run_projection.py",
+      "sha256": "5cd413c7027891607c794516722e1a211151284744bb8523dd7fec1d9b61c5a9",
+      "size": 41079
+    }
+  ],
+  "member_count": 8,
+  "schema": "h56.windows-bootstrap-source.v1"
+}

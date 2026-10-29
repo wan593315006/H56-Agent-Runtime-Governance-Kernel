@@ -1,0 +1,315 @@
+{
+  "actual_runtime_and_OS": "NOT_RUN",
+  "evidence_scope": "Exact bytes and selected AST equality; not Runtime behavior or whole OS equivalence",
+  "explicit_contract_changes": [
+    "Concrete candidate host source and externally pinned seven-file control bundle; no actual bootstrap supplied",
+    "Static PREPARED_NOT_RUNTIME_ACCEPTED separate from external accepted resource/preflight/host identities",
+    "Ten exact candidate environment names and V2 worker controls",
+    "Fixed shared Win32 transport; observation and candidate permits cannot be interchanged",
+    "Host creates each fresh Job/process; restricted workers cannot spawn",
+    "Replay source receipt comes from preprovisioned read-only input root; actual ACL denial not tested",
+    "Task lifecycle/control store is not K0 History, K1 state or execution authority",
+    "Original pipeline/mapping/NativeCalls/rules and complete-result comparison preserved",
+    "Only static source lineage enters deterministic Fact semantics; dynamic transport identity stays outside"
+  ],
+  "not_claimed": [
+    "actual two-domain computation",
+    "actual isolation",
+    "complete OS",
+    "public release"
+  ],
+  "original_core_files_changed": 0,
+  "original_registered_component_files_changed": 0,
+  "schema": "h56.windows-perimeter-static-diff.v2",
+  "source_pairs": [
+    {
+      "functions": [
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "AssemblyError",
+          "original_ast_sha256": "ba3ee7655b66ce081cac98b80b02167dc24531cbbd41a2309e33dc4bba7d419a",
+          "successor_ast_sha256": "ba3ee7655b66ce081cac98b80b02167dc24531cbbd41a2309e33dc4bba7d419a"
+        },
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "AssemblyPlan",
+          "original_ast_sha256": "e8fe7c169671d0692e8dda3049951d9d555b4f4763f549e9ae47523786e89874",
+          "successor_ast_sha256": "e8fe7c169671d0692e8dda3049951d9d555b4f4763f549e9ae47523786e89874"
+        },
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "_pairs",
+          "original_ast_sha256": "aaf4be87d998680f4b22c18285d69aafcb98fe69274004eb798fafec122edf19",
+          "successor_ast_sha256": "aaf4be87d998680f4b22c18285d69aafcb98fe69274004eb798fafec122edf19"
+        },
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "canonical",
+          "original_ast_sha256": "638bfffbc7de8310ff5e8c965afbbb5d7ae34b40650461fd7eb2143089035a58",
+          "successor_ast_sha256": "638bfffbc7de8310ff5e8c965afbbb5d7ae34b40650461fd7eb2143089035a58"
+        },
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "digest",
+          "original_ast_sha256": "32ff65a70e73969aa30a9be6bb555f62455a4e3ab850b32cab6c3bb8159ee647",
+          "successor_ast_sha256": "32ff65a70e73969aa30a9be6bb555f62455a4e3ab850b32cab6c3bb8159ee647"
+        },
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "exact",
+          "original_ast_sha256": "d5272296cc4446ac3be95e421182424da97dda6a478e443df1089e05a13225ec",
+          "successor_ast_sha256": "d5272296cc4446ac3be95e421182424da97dda6a478e443df1089e05a13225ec"
+        },
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "raw_hash",
+          "original_ast_sha256": "cf6466b6cfb439066d53354020e1ace4de12a479d76b5356bba8a6cb434469d0",
+          "successor_ast_sha256": "cf6466b6cfb439066d53354020e1ace4de12a479d76b5356bba8a6cb434469d0"
+        },
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "read_json",
+          "original_ast_sha256": "645feb73805b865a8782e5c9f3b1cf6361a55690d5223d8b0283be321b304d7a",
+          "successor_ast_sha256": "645feb73805b865a8782e5c9f3b1cf6361a55690d5223d8b0283be321b304d7a"
+        },
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "safe_path",
+          "original_ast_sha256": "e87bc5e9fda9e4eff26222ccf7efae6224409458751bb8518c68e4ea9b2236dc",
+          "successor_ast_sha256": "e87bc5e9fda9e4eff26222ccf7efae6224409458751bb8518c68e4ea9b2236dc"
+        },
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "schema_check",
+          "original_ast_sha256": "8926f9f9511724d339d76548fce7e290add1f25f89ec8604f39c96e20120d716",
+          "successor_ast_sha256": "8926f9f9511724d339d76548fce7e290add1f25f89ec8604f39c96e20120d716"
+        },
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "strict_int",
+          "original_ast_sha256": "d09100e79c4754049e0665cd72682def8f142352687db50daf2b1b45837a930d",
+          "successor_ast_sha256": "d09100e79c4754049e0665cd72682def8f142352687db50daf2b1b45837a930d"
+        }
+      ],
+      "original": "engineering/assembly/contracts.py",
+      "original_sha256": "1d599b55b294babf1c75c09eada85ad7e6b1ded497389df1cdac6dcf54c3786e",
+      "successor": "runtime_windows/assembly/contracts.py",
+      "successor_sha256": "fa25ef91428db560914c8e3cfb7fbd81f72bb66f26646a3016c4d42df396913c"
+    },
+    {
+      "functions": [
+        {
+          "ast_equal": false,
+          "equal_after_gate_name_only": false,
+          "name": "admit",
+          "original_ast_sha256": "542179d5d8bf0907f676aecf41b3e403f86bfc9c25f740aabab85136e7ac643a",
+          "successor_ast_sha256": "6a2b290e34897febcb3f5b94f27a540bacd65669a12033ab1dd1b1144989ad12"
+        }
+      ],
+      "original": "engineering/assembly/admission.py",
+      "original_sha256": "5bfa0fc6c9173ac9c80127d10f9e984840c3ed256bf67263305eb2d68df043ed",
+      "successor": "runtime_windows/assembly/admission.py",
+      "successor_sha256": "4aefc8cbf8e0ee2a6d09d3cfd3fa4316de06d88f91bae74d5c5fea6c0282c7db"
+    },
+    {
+      "functions": [
+        {
+          "ast_equal": false,
+          "equal_after_gate_name_only": true,
+          "name": "load_core",
+          "original_ast_sha256": "594c0c37a8a3aea9369bdbc1de4b779bf989e05f861d3da39abe874dff26abb5",
+          "successor_ast_sha256": "aa99565edc4acdea1ee9567fa2425fa1e4a47ed157fa89aeb2aa4161f2a07076"
+        },
+        {
+          "ast_equal": false,
+          "equal_after_gate_name_only": false,
+          "name": "verify_core",
+          "original_ast_sha256": "8d300183a21a86abff096d7bda45981bfb6342c3dcf19028a5bb7efca6dde27f",
+          "successor_ast_sha256": "2b022e237bc1dad2d8e4330a0c1d8de26bb7f0237357f803e312e5a7600b5bcb"
+        }
+      ],
+      "original": "engineering/assembly/loader.py",
+      "original_sha256": "4f0635d3a8636e74c8ce8d79deba1f1caca7a8455d6329181bd3e185a6f5021b",
+      "successor": "runtime_windows/assembly/loader.py",
+      "successor_sha256": "a303913c4632fea0e9ddda3ddb055717625f91aa52c8e8e826e61a7fd5d7ea38"
+    },
+    {
+      "functions": [
+        {
+          "ast_equal": false,
+          "equal_after_gate_name_only": false,
+          "name": "registered_contract",
+          "original_ast_sha256": "598bf547cfd94e531fa15808195d065e27f3ca9a6c2081886d1de92bf252a992",
+          "successor_ast_sha256": "4694d280360a024ac40ba41c97bbd8e6a69767c9548f606bebea7f558997cecc"
+        },
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "reject",
+          "original_ast_sha256": "d01a56b0153d7994c8f19759d2a17640d70963125f4c9fbab7c713b8896248a6",
+          "successor_ast_sha256": "d01a56b0153d7994c8f19759d2a17640d70963125f4c9fbab7c713b8896248a6"
+        },
+        {
+          "ast_equal": false,
+          "equal_after_gate_name_only": false,
+          "name": "validate_units",
+          "original_ast_sha256": "3957f88996fe3edf51e78f23bb0bb3bf4e644b6553876eec5b5f4529134379b6",
+          "successor_ast_sha256": "e9b9fe41b18cf65eb51bee65736e7ec5234b17bc6e1d55a7a4d41567da02a1a5"
+        }
+      ],
+      "original": "engineering/assembly/unit_admission.py",
+      "original_sha256": "9e3d0258c2b8626e79793af1e58d8dbc1d8ee16d8f62fcd76874d25fe2e86fcb",
+      "successor": "runtime_windows/assembly/unit_admission.py",
+      "successor_sha256": "edc8c78591220d361cd24d2b81290dd022aab292779519dfa5f440dc311ec284"
+    },
+    {
+      "functions": [
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "NativeCalls",
+          "original_ast_sha256": "cbe8a60e2249b28d4959ca1567ea0f3ed006c0cb5133e6c4d0fc11584d58149c",
+          "successor_ast_sha256": "cbe8a60e2249b28d4959ca1567ea0f3ed006c0cb5133e6c4d0fc11584d58149c"
+        },
+        {
+          "ast_equal": false,
+          "equal_after_gate_name_only": true,
+          "name": "compute",
+          "original_ast_sha256": "10c49053a04e1f01cfffc3133dfad7e9fa2ea2b12b86df99138ffba7e0e90b7f",
+          "successor_ast_sha256": "90da0edf743d56b587a2867a9355a9959e2a92a7400d4a3586537a42b234d736"
+        },
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "plain",
+          "original_ast_sha256": "3278563f0dcf795353a36741ed3e1ffcf560839cd22a922a023ee1a92e059c75",
+          "successor_ast_sha256": "3278563f0dcf795353a36741ed3e1ffcf560839cd22a922a023ee1a92e059c75"
+        }
+      ],
+      "original": "engineering/assembly/pipeline.py",
+      "original_sha256": "3ac986afc7e482461e4d03b426a93a157442eafbefe6b61e4e4564bd5d4c0a22",
+      "successor": "runtime_windows/assembly/pipeline.py",
+      "successor_sha256": "003de36243a7493884f84cd37e892ce96347ee02aa24767683974e3be4516fef"
+    },
+    {
+      "functions": [
+        {
+          "ast_equal": false,
+          "equal_after_gate_name_only": false,
+          "name": "archive",
+          "original_ast_sha256": "db4ed93cdc8c8781f178240f75ba6e81294834f81fcf70c162bb97b4b6087dbf",
+          "successor_ast_sha256": "76ab9b9a40eac87111351c456a3df0c6a9ca948683ed9ce7120c1c95d6a9e6a5"
+        },
+        {
+          "ast_equal": false,
+          "equal_after_gate_name_only": false,
+          "name": "lineage",
+          "original_ast_sha256": "8a84b524a93c9822f166d3926ce3551a48a826f8b474aef933b5e4dec565f2dd",
+          "successor_ast_sha256": "3c655fd1ae839fa4aa26f7e4e88103e5dc8cccfb5d3534f06ab0eb2d1568199f"
+        },
+        {
+          "ast_equal": false,
+          "equal_after_gate_name_only": false,
+          "name": "read_archive",
+          "original_ast_sha256": "51e24591363719664e509364ca3d7e5af808589290b33ba222445ffe7c15b121",
+          "successor_ast_sha256": "af05ad223fbf9cfc2b27a1db062c44d5f67a80f1eac436b7a8d3abb278dbac8f"
+        },
+        {
+          "ast_equal": false,
+          "equal_after_gate_name_only": false,
+          "name": "run_path",
+          "original_ast_sha256": "14d85cae39a4bf653d7f9cf3fd18beccf5d5cfa458e7a2cd37588422d7597262",
+          "successor_ast_sha256": "bd1ed6c087fa5064103728324899648d590ba74d365c51ebdccffcd41d58095c"
+        },
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "verify_record_hash",
+          "original_ast_sha256": "b267d1b59351084f8574fbbb1cb24f03b019095e97b1b67e2aa81162e3e08860",
+          "successor_ast_sha256": "b267d1b59351084f8574fbbb1cb24f03b019095e97b1b67e2aa81162e3e08860"
+        }
+      ],
+      "original": "engineering/assembly/evidence.py",
+      "original_sha256": "1c0f8b128b00fda7e198549b7eda51a8d025c1042acb9827e316f63765ef3ba8",
+      "successor": "runtime_windows/assembly/evidence.py",
+      "successor_sha256": "541bf320417516c64a4613febfe9ec1a7bcbd648c84c71a95e882b983a766352"
+    },
+    {
+      "functions": [
+        {
+          "ast_equal": false,
+          "equal_after_gate_name_only": false,
+          "name": "reconstruct",
+          "original_ast_sha256": "99bc0efa86e00b74dfcda82cf2cbdc4eb704fe238621c39beac21de1f66818ba",
+          "successor_ast_sha256": "96439718bb8bcaf0b103403a8a770c9fea9746b3c77ef03f47f179841368b51a"
+        },
+        {
+          "ast_equal": false,
+          "equal_after_gate_name_only": false,
+          "name": "replay_fresh",
+          "original_ast_sha256": "d095c269def0d22a556cb2f95cf20b9144bfea1ab5781f760cf9045cf48bd903",
+          "successor_ast_sha256": "3306e247af7a78f1076ed528afaf7da8020dfd53f829558769b9b98559ac521a"
+        },
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "verify_recomputed",
+          "original_ast_sha256": "1207eac5d3ee3ce53c72f83cb4f00922f56334c0f4d080d3b4715c520e2fa7e0",
+          "successor_ast_sha256": "1207eac5d3ee3ce53c72f83cb4f00922f56334c0f4d080d3b4715c520e2fa7e0"
+        }
+      ],
+      "original": "engineering/assembly/replay.py",
+      "original_sha256": "6e9cf1b0458f6331b37bdb4513e81392f4e3c9fba3a2bd6c06915194ab321577",
+      "successor": "runtime_windows/assembly/replay.py",
+      "successor_sha256": "1c3ccc4c45bdb41e137bfa8aa67d4bbfce35d5c903145aa48550db4b2a3b0f5b"
+    },
+    {
+      "functions": [
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "evaluate",
+          "original_ast_sha256": "7bdca4aed856d171a6d04a8d2d823e45eebd1de02985209ce56a7b070c70dac4",
+          "successor_ast_sha256": "7bdca4aed856d171a6d04a8d2d823e45eebd1de02985209ce56a7b070c70dac4"
+        }
+      ],
+      "original": "engineering/adapters/bounded_rules.py",
+      "original_sha256": "e0927dfc620a8561dad0f7d1e7abd0e966920d9ac96e4a9f75d58046997902a6",
+      "successor": "runtime_windows/adapters/bounded_rules.py",
+      "successor_sha256": "dae3ace5ce2b1bce1049efd8fa91b6d2dc92e1c1464cde18b2a22dadb31ddbf1"
+    },
+    {
+      "functions": [
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "mapping_inputs",
+          "original_ast_sha256": "e93cbb840127256b3f681c8294374fb16c6834e6f4155e56a148c8c0cd488999",
+          "successor_ast_sha256": "e93cbb840127256b3f681c8294374fb16c6834e6f4155e56a148c8c0cd488999"
+        },
+        {
+          "ast_equal": true,
+          "equal_after_gate_name_only": true,
+          "name": "native_c2_inputs",
+          "original_ast_sha256": "4e77df00a46cb98779f7179473e95e3f8ff58865d9e6d9a1bec17fb525e79526",
+          "successor_ast_sha256": "4e77df00a46cb98779f7179473e95e3f8ff58865d9e6d9a1bec17fb525e79526"
+        }
+      ],
+      "original": "engineering/adapters/core_context.py",
+      "original_sha256": "af0ed95eb99895865469d7578a542643ec08fce44f53506aacced60edb1074f9",
+      "successor": "runtime_windows/adapters/core_context.py",
+      "successor_sha256": "fc1b210216aa2ce76b5a96d5497aac58c6b32710889f32e9842d1f6fe65f59c9"
+    }
+  ]
+}

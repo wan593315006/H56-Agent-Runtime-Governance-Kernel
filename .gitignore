@@ -1,0 +1,7 @@
+**/.local/
+**/__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+/runtime_binding_v1_20261024/offline/source-lock.json

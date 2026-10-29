@@ -1,0 +1,152 @@
+{
+  "adapter_ref": {
+    "id": "ASSET:DEVSECOPS:ADAPTER_DESCRIPTOR:V1",
+    "path": "domain_assets.json",
+    "pointer": "adapter_descriptor",
+    "sha256": "6ebed950846a7c5f17dfca26a6954f2a6d389ed577947b775330bd6105c39fed",
+    "version": "1.0.0"
+  },
+  "asset_set_id": "ASSETS:DEVSECOPS:V1",
+  "asset_version": "1.0.0",
+  "availability_assertion_refs": [
+    {
+      "id": "ASSET:DEVSECOPS:AVAILABILITY_ASSERTIONS:V1",
+      "path": "domain_assets.json",
+      "pointer": "availability_assertions",
+      "sha256": "a922d29ca2443f34b67256a4c613d295b0a733e6944b9876854474ca9834c8cc",
+      "version": "1.0.0"
+    }
+  ],
+  "budget_contract_ref": {
+    "id": "ASSET:DEVSECOPS:BUDGET_CONTRACT:V1",
+    "path": "domain_assets.json",
+    "pointer": "budget_contract",
+    "sha256": "1851681c1d6d58a51715af1f7ee52ee38720172cfe7308bb5151c41bf1af188d",
+    "version": "1.0.0"
+  },
+  "candidate_evaluation_declaration_ref": {
+    "id": "ASSET:DEVSECOPS:EVALUATION_DECLARATIONS:V1",
+    "path": "domain_assets.json",
+    "pointer": "evaluation_declarations",
+    "sha256": "10e92a2d2d84980d9a52ad365904fc3bc6c503b72bbabc336ec8093d44e95b71",
+    "version": "1.0.0"
+  },
+  "capability_catalog_ref": {
+    "id": "ASSET:DEVSECOPS:CATALOG:V1",
+    "path": "domain_assets.json",
+    "pointer": "catalog",
+    "sha256": "48461acba3604163fde89a082d1fac56a5b7300ba2309c74a6eea03d7902ddbb",
+    "version": "1.0.0"
+  },
+  "content_hash": "d006b38a732583dea81de9967b121bd3a10e50db67a6fc138c5618045030ce50",
+  "core_lock": {
+    "c1_artifact_commit": "b01fa57f22c108e60ab26b1b285417d50f62b10c",
+    "c1_manifest_sha256": "9ed5f996152a4de096206a54f09e9d6b8b2866a5ef2593cd1a9c619ea2e0c723",
+    "source_commit": "9221e16460258bc81e1176d69f63a09f81159b73",
+    "vendor_fingerprint": "6b2e942c7e542f874cee00a7930ad173c9856bcb4454699be6cc86fb55ea6b4b"
+  },
+  "dependency_lock": {
+    "external_dependencies": [],
+    "source_commit": "9221e16460258bc81e1176d69f63a09f81159b73",
+    "vendor_fingerprint": "6b2e942c7e542f874cee00a7930ad173c9856bcb4454699be6cc86fb55ea6b4b"
+  },
+  "domain_id": "DEVSECOPS",
+  "domain_profile_ref": {
+    "id": "ASSET:DEVSECOPS:DOMAIN_PROFILE:V1",
+    "path": "domain_assets.json",
+    "pointer": "domain_profile",
+    "sha256": "675b81cc1cbfcb330c66a99525c3bd7abe2391ef1a67aa4ddf0888f99622e2a4",
+    "version": "1.0.0"
+  },
+  "evidence_requirements": {
+    "id": "ASSET:DEVSECOPS:EVIDENCE_REQUIREMENTS:V1",
+    "path": "domain_assets.json",
+    "pointer": "evidence_requirements",
+    "sha256": "37785de90daa7f51281be5ff7e8a0e571609d82c519ba558c81c6c17e1c3d725",
+    "version": "1.0.0"
+  },
+  "fact_input_contract_ref": {
+    "id": "ASSET:DEVSECOPS:FACT_CONTRACT:V1",
+    "path": "domain_assets.json",
+    "pointer": "fact_contract",
+    "sha256": "aa70d9d8337fa09ec3e9ee1c4e17374f594a3c5d43c93c94463bdb6bcbfa1db5",
+    "version": "1.0.0"
+  },
+  "manifest_id": "MANIFEST:DEVSECOPS:V1",
+  "method_pack_refs": [
+    {
+      "id": "ASSET:DEVSECOPS:METHOD_PACK:V1",
+      "path": "domain_assets.json",
+      "pointer": "method_pack",
+      "sha256": "4d9d78f41a98cde0eb8a66741eb1af4fda8b9f30e2cdb0c41b9ec232e7efc404",
+      "version": "1.0.0"
+    }
+  ],
+  "object_schema_ref": {
+    "id": "ASSET:DEVSECOPS:OBJECT_SCHEMA:V1",
+    "path": "domain_assets.json",
+    "pointer": "object_schema",
+    "sha256": "f595396e015b34631811546f2bfcb1a793b3233e9efe029df319d984fd27adc6",
+    "version": "1.0.0"
+  },
+  "policy_refs": [
+    {
+      "id": "ASSET:DEVSECOPS:POLICY:V1",
+      "path": "domain_assets.json",
+      "pointer": "policy",
+      "sha256": "6ea04b87a75af14b18b6a7905cdf8089bd428d0db6ab65a863fbee1f71cc16a0",
+      "version": "1.0.0"
+    }
+  ],
+  "project_profile_ref": {
+    "id": "ASSET:DEVSECOPS:PROJECT_PROFILE:V1",
+    "path": "domain_assets.json",
+    "pointer": "project_profile",
+    "sha256": "21595cee48849c551848a0f17606750944828b4acf57413305779b4c77dde983",
+    "version": "1.0.0"
+  },
+  "replay_contract_ref": {
+    "id": "ASSET:DEVSECOPS:REPLAY_CONTRACT:V1",
+    "path": "domain_assets.json",
+    "pointer": "replay_contract",
+    "sha256": "c2d098e30d60cffa8b9bbbd3b5eaee3ee440c0ba5ae423ebef078af21adccff4",
+    "version": "1.0.0"
+  },
+  "runtime_ontology_profile_ref": {
+    "id": "ASSET:DEVSECOPS:RUNTIME_ONTOLOGY_BINDING:V1",
+    "path": "domain_assets.json",
+    "pointer": "runtime_ontology_binding",
+    "sha256": "5ee33949d1158d69399b05ea0c0b290a080305c42fddeee7e52b431723f7e5e3",
+    "version": "1.0.0"
+  },
+  "schema_id": "H56OS:DOMAIN_MANIFEST:V1",
+  "schema_version": "1.0.0",
+  "source_bindings": [
+    {
+      "git_blob": "8fc0806773a935e490c46ff22cf9baeabfcb4cba",
+      "origin": "G1_SYNTHETIC_ASSET_AUTHORING",
+      "path": "domain_assets.json",
+      "sha256": "24cefb5a47bf4a49198be07e89e1abd1648746de2bdabd8e271d9cebcf6da4ea"
+    },
+    {
+      "git_blob": "d0d262e1cbac8010d467a109eac8b14a258bfc3b",
+      "origin": "G1_SYNTHETIC_ASSET_AUTHORING",
+      "path": "inputs.json",
+      "sha256": "b6951e630cb37a783df27b8fa0730a2d16f17383732df485eb603284cd13a814"
+    }
+  ],
+  "state_pattern_mapping_ref": {
+    "id": "ASSET:DEVSECOPS:MAPPING:V1",
+    "path": "domain_assets.json",
+    "pointer": "mapping",
+    "sha256": "3ec4a1025e084d319fa48e9c6ee7f7492565b2da7091544eef5b0d96ad6112cd",
+    "version": "1.0.0"
+  },
+  "synthetic_source_ref": {
+    "id": "ASSET:DEVSECOPS:SYNTHETIC_SOURCE:V1",
+    "path": "domain_assets.json",
+    "pointer": "synthetic_source",
+    "sha256": "dab48d975c7b22215207fb389092d3fc59c131ef19154240ad53a3416b65c4b5",
+    "version": "1.0.0"
+  }
+}

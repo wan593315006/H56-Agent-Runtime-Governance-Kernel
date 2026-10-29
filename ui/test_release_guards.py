@@ -1,0 +1,155 @@
+"""Pure regression checks for demo/UI release guards; no product evaluation runs."""
+import hashlib
+import io
+import json
+import tempfile
+import unittest
+from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
+
+import demo
+from ui import serve
+
+
+class DemoWorkdirGuardTests(unittest.TestCase):
+    def test_existing_directory_is_never_deleted(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            existing = Path(tmp) / "existing"
+            existing.mkdir()
+            sentinel = existing / "sentinel.txt"
+            sentinel.write_text("preserve", encoding="utf-8")
+
+            with self.assertRaisesRegex(ValueError, "尚不存在"):
+                demo.create_owned_workdir(existing)
+
+            self.assertEqual(sentinel.read_text(encoding="utf-8"), "preserve")
+
+    def test_product_root_is_rejected_before_creation(self):
+        candidate = demo.PRODUCT / ".release-guard-must-not-exist"
+        self.assertFalse(candidate.exists())
+        with self.assertRaisesRegex(ValueError, "产品根内"):
+            demo.create_owned_workdir(candidate)
+        self.assertFalse(candidate.exists())
+
+    def test_only_owned_directory_is_cleaned(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            work, marker, owner = demo.create_owned_workdir(Path(tmp) / "owned")
+            self.assertTrue(marker.is_file())
+            self.assertTrue(demo.cleanup_owned_workdir(work, marker, owner))
+            self.assertFalse(work.exists())
+
+    def test_missing_or_mismatched_owner_marker_preserves_directory(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            missing, marker, owner = demo.create_owned_workdir(Path(tmp) / "missing-marker")
+            marker.unlink()
+            self.assertFalse(demo.cleanup_owned_workdir(missing, marker, owner))
+            self.assertTrue(missing.is_dir())
+
+            mismatched, marker, owner = demo.create_owned_workdir(Path(tmp) / "wrong-marker")
+            marker.write_text("different-owner", encoding="ascii")
+            self.assertFalse(demo.cleanup_owned_workdir(mismatched, marker, owner))
+            self.assertTrue(mismatched.is_dir())
+
+    def test_report_path_must_stay_inside_new_workdir(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            work = Path(tmp) / "work"
+            work.mkdir()
+            with self.assertRaisesRegex(ValueError, "运行目录内"):
+                demo.validate_report_path(Path(tmp) / "outside.json", work)
+            self.assertFalse((Path(tmp) / "outside.json").exists())
+            inside = demo.validate_report_path(work / "report.json", work)
+            self.assertEqual(inside, (work / "report.json").resolve())
+
+
+class ServeGuardTests(unittest.TestCase):
+    def test_only_registered_contained_evidence_is_eligible(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "run"
+            evidence = root / "C01_v0" / "op" / "out" / "oq_C01_0" / "artifacts" / "record.json"
+            evidence.parent.mkdir(parents=True)
+            raw = b'{"record":"fixture"}'
+            evidence.write_bytes(raw)
+            rel = evidence.relative_to(root).as_posix()
+            report = {"rows": [{"evidence": [{
+                "rel": rel, "bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest(),
+            }]}]}
+
+            target, observed = serve.read_registered_evidence(root, report, rel)
+            self.assertEqual(target, evidence.resolve())
+            self.assertEqual(observed, raw)
+            self.assertFalse(serve.is_within(Path(tmp) / "run-sibling" / "secret.json", root))
+
+            bad_report = {"rows": [{"evidence": [{
+                "rel": "../run-sibling/secret.json", "bytes": 1, "sha256": "0" * 64,
+            }]}]}
+            with self.assertRaisesRegex(ValueError, "EVIDENCE_PATH_OUTSIDE_RUN"):
+                serve.read_registered_evidence(root, bad_report, "../run-sibling/secret.json")
+
+    def test_tampered_registered_evidence_is_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "run"
+            evidence = root / "artifacts" / "record.json"
+            evidence.parent.mkdir(parents=True)
+            original = b'{"record":"original"}'
+            evidence.write_bytes(original)
+            rel = evidence.relative_to(root).as_posix()
+            report = {"rows": [{"evidence": [{
+                "rel": rel, "bytes": len(original), "sha256": hashlib.sha256(original).hexdigest(),
+            }]}]}
+            evidence.write_bytes(b'{"record":"tampered"}')
+
+            with self.assertRaisesRegex(ValueError, "EVIDENCE_IDENTITY_MISMATCH"):
+                serve.read_registered_evidence(root, report, rel)
+
+            evidence.write_bytes(b'{"record":"short"}')
+            with self.assertRaisesRegex(ValueError, "EVIDENCE_IDENTITY_MISMATCH"):
+                serve.read_registered_evidence(root, report, rel)
+
+    def test_run_endpoint_has_no_request_config_surface(self):
+        self.assertTrue(serve.is_valid_run_request_body({}))
+        self.assertFalse(serve.is_valid_run_request_body({"compare_python": r"C:\\untrusted.exe"}))
+        self.assertFalse(serve.is_valid_run_request_body(["not-an-object"]))
+        self.assertTrue(serve.is_valid_run_token(serve.RUN_TOKEN))
+        self.assertFalse(serve.is_valid_run_token("wrong-token"))
+        self.assertTrue(serve.is_allowed_run_origin("http://127.0.0.1:8765", 8765))
+        self.assertFalse(serve.is_allowed_run_origin("http://localhost:8765", 8765))
+        self.assertFalse(serve.is_allowed_run_origin("https://untrusted.example", 8765))
+
+    def test_handler_rejections_do_not_start_demo(self):
+        def handler_for(origin, token, body):
+            handler = serve.Handler.__new__(serve.Handler)
+            handler.path = "/api/run"
+            handler.headers = {
+                "Origin": origin,
+                "X-H56-Run-Token": token,
+                "Content-Length": str(len(body)),
+            }
+            handler.rfile = io.BytesIO(body)
+            handler.server = SimpleNamespace(server_port=8765)
+            replies = []
+            handler._json = lambda payload, code=200: replies.append((code, payload))
+            return handler, replies
+
+        rejected = [
+            ("https://untrusted.example", serve.RUN_TOKEN, b"{}", 403),
+            ("http://127.0.0.1:8765", "wrong-token", b"{}", 403),
+            ("http://127.0.0.1:8765", serve.RUN_TOKEN,
+             json.dumps({"compare_python": r"C:\\untrusted.exe"}).encode("utf-8"), 400),
+        ]
+        for origin, token, body, expected_status in rejected:
+            with self.subTest(status=expected_status, body=body), patch.object(serve, "start_run") as start:
+                handler, replies = handler_for(origin, token, body)
+                handler.do_POST()
+                start.assert_not_called()
+                self.assertEqual(replies[0][0], expected_status)
+
+        with patch.object(serve, "start_run", return_value=(True, "fixture-run")) as start:
+            handler, replies = handler_for("http://127.0.0.1:8765", serve.RUN_TOKEN, b"{}")
+            handler.do_POST()
+            start.assert_called_once_with()
+            self.assertEqual(replies[0], (202, {"started": True, "detail": "fixture-run"}))
+
+
+if __name__ == "__main__":
+    unittest.main()

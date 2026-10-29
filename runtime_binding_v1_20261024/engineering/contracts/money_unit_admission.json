@@ -1,0 +1,118 @@
+{
+  "schema_id": "H56OS:MONEY_UNIT_ADMISSION_REGISTRY:V1",
+  "contract_id": "H56OS:MONEY_UNIT_ADMISSION:V1",
+  "contract_version": "1.0.0",
+  "scope": "INTERNAL_ASSET_UNIT_CONSISTENCY_ONLY",
+  "external_fact_trust": false,
+  "authority_granted": false,
+  "execution_permitted": false,
+  "compute_budget_unit": "C2_COMPUTE_UNIT",
+  "parent_source_manifest_sha256": "d41e758e4567d956d3d80f6213589298df2e438b142480a1dea719b6110a4e67",
+  "parent_g2_delivery_manifest_sha256": "6b46b4ce25dad018e6edf24deb658c0565029c725cdb6290c7205ea0296375e0",
+  "units": {
+    "INTEGER_CNY_MINOR_UNITS": {
+      "monetary": true,
+      "currency": "CNY",
+      "decimal_scale": 2,
+      "minor_per_major": 100,
+      "amount_fields": [
+        "requested_amount_minor",
+        "remaining_balance_minor"
+      ],
+      "currency_fields": [
+        "currency",
+        "original_currency"
+      ],
+      "candidate_argument_bindings": {
+        "amount_minor": "requested_amount_minor",
+        "currency": "currency"
+      },
+      "meaning": "Nonnegative strict JSON/Python integers of CNY fen. 100 fen per yuan. No bool, float, alias, rounding, default, conversion or FX."
+    },
+    "NOT_APPLICABLE": {
+      "monetary": false,
+      "currency": "",
+      "decimal_scale": 0,
+      "minor_per_major": 0,
+      "amount_fields": [],
+      "currency_fields": [],
+      "candidate_argument_bindings": {},
+      "meaning": "The registered nonmonetary object contains no monetary fields. Not a fallback for unknown units."
+    }
+  },
+  "domain_bindings": {
+    "DEVSECOPS": {
+      "binding_id": "H56OS:UNIT_BINDING:DEVSECOPS:V1",
+      "directory": "devsecops",
+      "money_unit": "NOT_APPLICABLE",
+      "object_component": {
+        "id": "ASSET:DEVSECOPS:OBJECT_SCHEMA:V1",
+        "version": "1.0.0",
+        "domain_id": "DEVSECOPS"
+      },
+      "object_component_sha256": "f595396e015b34631811546f2bfcb1a793b3233e9efe029df319d984fd27adc6",
+      "object_schema_ref": {
+        "id": "ASSET:DEVSECOPS:OBJECT_SCHEMA:V1",
+        "path": "domain_assets.json",
+        "pointer": "object_schema",
+        "sha256": "f595396e015b34631811546f2bfcb1a793b3233e9efe029df319d984fd27adc6",
+        "version": "1.0.0"
+      },
+      "c1_input_contract_reference": {
+        "schema_hash": "f595396e015b34631811546f2bfcb1a793b3233e9efe029df319d984fd27adc6",
+        "schema_id": "SCHEMA:DEVSECOPS:INPUT:V1",
+        "schema_version": "1.0.0"
+      },
+      "field_names": [
+        "change_version",
+        "compute_budget_units",
+        "critical_findings",
+        "evidence_quality",
+        "record_status",
+        "review_status",
+        "tests_passed"
+      ],
+      "candidate_argument_bindings": {
+        "change_version": "change_version"
+      }
+    },
+    "FINANCE_REFUND": {
+      "binding_id": "H56OS:UNIT_BINDING:FINANCE_REFUND:V1",
+      "directory": "finance_refund",
+      "money_unit": "INTEGER_CNY_MINOR_UNITS",
+      "object_component": {
+        "id": "ASSET:FINANCE_REFUND:OBJECT_SCHEMA:V1",
+        "version": "1.0.0",
+        "domain_id": "FINANCE_REFUND"
+      },
+      "object_component_sha256": "a558f2bad152862aa4a3ae05f016d857337bac55e7b0ef91c510e9e062d33e6c",
+      "object_schema_ref": {
+        "id": "ASSET:FINANCE_REFUND:OBJECT_SCHEMA:V1",
+        "path": "domain_assets.json",
+        "pointer": "object_schema",
+        "sha256": "a558f2bad152862aa4a3ae05f016d857337bac55e7b0ef91c510e9e062d33e6c",
+        "version": "1.0.0"
+      },
+      "c1_input_contract_reference": {
+        "schema_hash": "a558f2bad152862aa4a3ae05f016d857337bac55e7b0ef91c510e9e062d33e6c",
+        "schema_id": "SCHEMA:FINANCE_REFUND:INPUT:V1",
+        "schema_version": "1.0.0"
+      },
+      "field_names": [
+        "compute_budget_units",
+        "currency",
+        "evidence_quality",
+        "original_currency",
+        "payment_state",
+        "record_status",
+        "refund_status",
+        "remaining_balance_minor",
+        "requested_amount_minor"
+      ],
+      "candidate_argument_bindings": {
+        "amount_minor": "requested_amount_minor",
+        "currency": "currency"
+      }
+    }
+  }
+}

@@ -1,0 +1,405 @@
+{
+  "adapter_descriptor": {
+    "domain_id": "FINANCE_REFUND",
+    "id": "ASSET:FINANCE_REFUND:ADAPTER_DESCRIPTOR:V1",
+    "value": {
+      "adapter_id": "H56OS:SHARED_BOUNDED_ADAPTER:V1",
+      "operators": [
+        "FIELD",
+        "CONST",
+        "EQUALS",
+        "IN_SET",
+        "EXISTS",
+        "STRICT_INT_LE",
+        "ALL",
+        "ANY",
+        "NOT"
+      ],
+      "qualification_owner": "ORIGINAL_C2_ONLY",
+      "version": "1.0.0"
+    },
+    "version": "1.0.0"
+  },
+  "availability_assertions": {
+    "domain_id": "FINANCE_REFUND",
+    "id": "ASSET:FINANCE_REFUND:AVAILABILITY_ASSERTIONS:V1",
+    "value": {
+      "AVAILABLE": {
+        "allowed_method_ids": [
+          "METHOD:FINANCE_REFUND:QUALIFY:V1"
+        ],
+        "allowed_state_patterns": [
+          "STATE:FINANCE_REFUND:READY:V1",
+          "STATE:FINANCE_REFUND:PENDING:V1"
+        ],
+        "allowed_task_kinds": [
+          "TASK:FINANCE_REFUND:QUALIFY:V1"
+        ],
+        "assertion_hash": "7a11dd1753eee615f45e86a14a66ad98797bf17ab809653721be03b80f1f718a",
+        "availability_state": "DECLARED_AVAILABLE",
+        "capability_id": "CAP:FINANCE_REFUND:QUALIFY:V1",
+        "definition_hash": "ff9b73b30a1b89985822a4aa3898664789b0c459c5bec09c959e21cc6da404b5",
+        "minimum_budget_units": 3,
+        "required_evidence_state": "SUFFICIENT"
+      },
+      "UNKNOWN": {
+        "allowed_method_ids": [
+          "METHOD:FINANCE_REFUND:QUALIFY:V1"
+        ],
+        "allowed_state_patterns": [
+          "STATE:FINANCE_REFUND:READY:V1",
+          "STATE:FINANCE_REFUND:PENDING:V1"
+        ],
+        "allowed_task_kinds": [
+          "TASK:FINANCE_REFUND:QUALIFY:V1"
+        ],
+        "assertion_hash": "2682cd5215e43ec6ad9a37c296fb3043e0cb743284f28a4ebe382d10623639ba",
+        "availability_state": "DECLARED_UNKNOWN",
+        "capability_id": "CAP:FINANCE_REFUND:QUALIFY:V1",
+        "definition_hash": "ff9b73b30a1b89985822a4aa3898664789b0c459c5bec09c959e21cc6da404b5",
+        "minimum_budget_units": 3,
+        "required_evidence_state": "SUFFICIENT"
+      }
+    },
+    "version": "1.0.0"
+  },
+  "budget_contract": {
+    "domain_id": "FINANCE_REFUND",
+    "id": "ASSET:FINANCE_REFUND:BUDGET_CONTRACT:V1",
+    "value": {
+      "available_field": "compute_budget_units",
+      "money_is_budget": false,
+      "unit": "C2_COMPUTE_UNIT"
+    },
+    "version": "1.0.0"
+  },
+  "catalog": {
+    "domain_id": "FINANCE_REFUND",
+    "id": "ASSET:FINANCE_REFUND:CATALOG:V1",
+    "value": {
+      "catalog_hash": "b8ec3598d7701edb0532104e6e561e59493de081fa05118e82d1ef3c43a502dd",
+      "catalog_id": "CATALOG:FINANCE_REFUND:CANDIDATE:V1",
+      "catalog_version": "1.0.0",
+      "definitions": [
+        {
+          "capability_id": "CAP:FINANCE_REFUND:QUALIFY:V1",
+          "definition_hash": "ff9b73b30a1b89985822a4aa3898664789b0c459c5bec09c959e21cc6da404b5",
+          "extension_profile": "CORE",
+          "failure_boundary_hash": "c1d815bd066e13d2566356a442111e494f7e018a34e0ab74dc074131a5c8d013",
+          "input_contract": {
+            "schema_hash": "a558f2bad152862aa4a3ae05f016d857337bac55e7b0ef91c510e9e062d33e6c",
+            "schema_id": "SCHEMA:FINANCE_REFUND:INPUT:V1",
+            "schema_version": "1.0.0"
+          },
+          "observation_requirement_hash": "d5c2fec4a6e7834550429cea6047e131c73b3bf1148b6fe65bc65aa9dfe11c4a",
+          "output_contract": {
+            "schema_hash": "914a526406c64450c2a80409c3779072871ccf705c06305db2ba548244f305a9",
+            "schema_id": "SCHEMA:CANDIDATE_QUALIFICATION:V1",
+            "schema_version": "1.0.0"
+          },
+          "precondition_hash": "7ce6710d237db84fb51394b8baba58ec991ce2ed292a7ced5b103575f61df9d7",
+          "resource_requirement_hash": "6e78906d944a944216aa28d2363508eccc471ecb6fb69f08cf965ecd8871d4c3",
+          "risk_class": "LOW",
+          "scope_hash": "8f3d56c2526b908e9dc4272b4dd2930fe4860e865c2c38760cb2c362b94f0783",
+          "source_hash": "284e3c921155b8ee69a0414f40ed2384cf944b16a43befcc0551cbe36933a3e7",
+          "source_id": "SOURCE:FINANCE_REFUND:SYNTHETIC:V1",
+          "source_version": "1.0.0",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    "version": "1.0.0"
+  },
+  "domain_profile": {
+    "domain_id": "FINANCE_REFUND",
+    "id": "ASSET:FINANCE_REFUND:DOMAIN_PROFILE:V1",
+    "value": {
+      "kind": "CANDIDATE_DOMAIN_BINDINGS_NOT_NEW_ONTOLOGY",
+      "namespace": "FINANCE_REFUND",
+      "semantic_bindings": {
+        "candidate": "uro:Candidate",
+        "capability": "uro:Capability",
+        "method": "uro:Method",
+        "object": "uro:Observation"
+      }
+    },
+    "version": "1.0.0"
+  },
+  "evaluation_declarations": {
+    "domain_id": "FINANCE_REFUND",
+    "id": "ASSET:FINANCE_REFUND:EVALUATION_DECLARATIONS:V1",
+    "value": {
+      "NORMAL": {
+        "authority_state": "DECLARED_SUFFICIENT",
+        "execution_permission": false,
+        "scope": "SYNTHETIC_CANDIDATE_ASSUMPTION_ONLY"
+      },
+      "UNKNOWN": {
+        "authority_state": "DECLARED_UNKNOWN",
+        "execution_permission": false,
+        "scope": "SYNTHETIC_CANDIDATE_ASSUMPTION_ONLY"
+      }
+    },
+    "version": "1.0.0"
+  },
+  "evidence_requirements": {
+    "domain_id": "FINANCE_REFUND",
+    "id": "ASSET:FINANCE_REFUND:EVIDENCE_REQUIREMENTS:V1",
+    "value": {
+      "quality_field": "evidence_quality",
+      "required_ids": [
+        "EVIDENCE:FINANCE_REFUND:REPORT:V1"
+      ],
+      "truth_scope": "SYNTHETIC_CONTENT_HASH_ONLY"
+    },
+    "version": "1.0.0"
+  },
+  "fact_contract": {
+    "domain_id": "FINANCE_REFUND",
+    "id": "ASSET:FINANCE_REFUND:FACT_CONTRACT:V1",
+    "value": {
+      "authority": "NONE",
+      "contract_id": "K0:CANONICAL_FACT:V1",
+      "fact_type": "assertion",
+      "projection_key": "state_projection",
+      "source_kind": "ISOLATED_SYNTHETIC_TEST_ONLY"
+    },
+    "version": "1.0.0"
+  },
+  "mapping": {
+    "domain_id": "FINANCE_REFUND",
+    "id": "ASSET:FINANCE_REFUND:MAPPING:V1",
+    "value": {
+      "identity_binding": "Snapshot+History+VersionTuple+Profile+Method+Policy+Catalog",
+      "input_contract": "K1:STATE_COMPILER:V1",
+      "patterns": [
+        {
+          "id": "STATE:FINANCE_REFUND:READY:V1",
+          "when": {
+            "EQUALS": [
+              {
+                "FIELD": "record_status"
+              },
+              {
+                "CONST": "READY"
+              }
+            ]
+          }
+        },
+        {
+          "id": "STATE:FINANCE_REFUND:PENDING:V1",
+          "when": {
+            "EQUALS": [
+              {
+                "FIELD": "record_status"
+              },
+              {
+                "CONST": "PENDING"
+              }
+            ]
+          }
+        }
+      ],
+      "unknown": "REJECT_BEFORE_C2"
+    },
+    "version": "1.0.0"
+  },
+  "method_pack": {
+    "domain_id": "FINANCE_REFUND",
+    "id": "ASSET:FINANCE_REFUND:METHOD_PACK:V1",
+    "value": {
+      "atoms": [
+        {
+          "id": "ATOM:FINANCE_REFUND:TYPED_REQUEST:V1",
+          "kind": "READ_SYNTHETIC_DESCRIPTION"
+        },
+        {
+          "id": "ATOM:FINANCE_REFUND:SNAPSHOT_MAPPING:V1",
+          "kind": "DECLARED_MAPPING_DESCRIPTION"
+        }
+      ],
+      "capability_id": "CAP:FINANCE_REFUND:QUALIFY:V1",
+      "execution_enabled": false,
+      "formal_mlm_asset": false,
+      "kind": "DECLARATIVE_CANDIDATE_METHOD_DESCRIPTION",
+      "method_id": "METHOD:FINANCE_REFUND:QUALIFY:V1",
+      "task_kind": "TASK:FINANCE_REFUND:QUALIFY:V1"
+    },
+    "version": "1.0.0"
+  },
+  "object_schema": {
+    "domain_id": "FINANCE_REFUND",
+    "id": "ASSET:FINANCE_REFUND:OBJECT_SCHEMA:V1",
+    "value": {
+      "candidate_argument_bindings": {
+        "amount_minor": "requested_amount_minor",
+        "currency": "currency"
+      },
+      "fields": {
+        "compute_budget_units": {
+          "type": "strict_integer"
+        },
+        "currency": {
+          "enum": [
+            "CNY"
+          ],
+          "type": "string"
+        },
+        "evidence_quality": {
+          "enum": [
+            "SUFFICIENT",
+            "INSUFFICIENT",
+            "UNKNOWN"
+          ],
+          "nullable": true,
+          "type": "string"
+        },
+        "original_currency": {
+          "enum": [
+            "CNY"
+          ],
+          "type": "string"
+        },
+        "payment_state": {
+          "enum": [
+            "SETTLED",
+            "UNSETTLED"
+          ],
+          "nullable": true,
+          "type": "string"
+        },
+        "record_status": {
+          "enum": [
+            "READY",
+            "PENDING"
+          ],
+          "type": "string"
+        },
+        "refund_status": {
+          "enum": [
+            "REQUESTED",
+            "ALREADY_REFUNDED"
+          ],
+          "nullable": true,
+          "type": "string"
+        },
+        "remaining_balance_minor": {
+          "type": "strict_integer"
+        },
+        "requested_amount_minor": {
+          "type": "strict_integer"
+        }
+      },
+      "money_unit": "INTEGER_CNY_MINOR_UNITS",
+      "object_id": "OBJECT:FINANCE_REFUND:SYNTHETIC_001",
+      "object_version": "1.0.0"
+    },
+    "version": "1.0.0"
+  },
+  "policy": {
+    "domain_id": "FINANCE_REFUND",
+    "id": "ASSET:FINANCE_REFUND:POLICY:V1",
+    "value": {
+      "effect": "C2_CONTEXT_INPUT_ONLY",
+      "rule": {
+        "ALL": [
+          {
+            "EQUALS": [
+              {
+                "FIELD": "payment_state"
+              },
+              {
+                "CONST": "SETTLED"
+              }
+            ]
+          },
+          {
+            "EQUALS": [
+              {
+                "FIELD": "refund_status"
+              },
+              {
+                "CONST": "REQUESTED"
+              }
+            ]
+          },
+          {
+            "STRICT_INT_LE": [
+              {
+                "FIELD": "requested_amount_minor"
+              },
+              {
+                "FIELD": "remaining_balance_minor"
+              }
+            ]
+          },
+          {
+            "EQUALS": [
+              {
+                "FIELD": "currency"
+              },
+              {
+                "FIELD": "original_currency"
+              }
+            ]
+          }
+        ]
+      },
+      "unknown": "DECLARED_UNKNOWN"
+    },
+    "version": "1.0.0"
+  },
+  "project_profile": {
+    "domain_id": "FINANCE_REFUND",
+    "id": "ASSET:FINANCE_REFUND:PROJECT_PROFILE:V1",
+    "value": {
+      "historical_profile_registration": false,
+      "project_id": "PROJECT:H56OS:FINANCE_REFUND:V1",
+      "scope": "ISOLATED_SYNTHETIC_CANDIDATE_ONLY"
+    },
+    "version": "1.0.0"
+  },
+  "replay_contract": {
+    "domain_id": "FINANCE_REFUND",
+    "id": "ASSET:FINANCE_REFUND:REPLAY_CONTRACT:V1",
+    "value": {
+      "compare": "FULL_SEMANTIC_OBJECTS",
+      "contract_id": "H56OS:FRESH_RECOMPUTE:V1",
+      "source": "APPROVED_FROZEN_INPUTS",
+      "stored_projection_is_authority": false
+    },
+    "version": "1.0.0"
+  },
+  "runtime_ontology_binding": {
+    "domain_id": "FINANCE_REFUND",
+    "id": "ASSET:FINANCE_REFUND:RUNTIME_ONTOLOGY_BINDING:V1",
+    "value": {
+      "profile_hash": "5234e7badaf43dbe56e5aedaf47e0b540f72401aeb3f7227900d75586ca85008",
+      "profile_id": "URO:PROFILE:V1_1",
+      "profile_version": "1.1.0",
+      "source_commit": "9221e16460258bc81e1176d69f63a09f81159b73"
+    },
+    "version": "1.0.0"
+  },
+  "synthetic_source": {
+    "domain_id": "FINANCE_REFUND",
+    "id": "ASSET:FINANCE_REFUND:SYNTHETIC_SOURCE:V1",
+    "value": {
+      "external_fact_truth": false,
+      "source_id": "SOURCE:FINANCE_REFUND:SYNTHETIC:V1",
+      "trust_level": "ISOLATED_SYNTHETIC_TEST_ONLY"
+    },
+    "version": "1.0.0"
+  },
+  "version_tuple": {
+    "domain_id": "FINANCE_REFUND",
+    "id": "ASSET:FINANCE_REFUND:VERSION_TUPLE:V1",
+    "value": {
+      "compiler_version": "K1:STATE_COMPILER:V1",
+      "evidence_policy_version": "1.0.0",
+      "policy_version": "1.0.0",
+      "schema_version": "1.0.0"
+    },
+    "version": "1.0.0"
+  }
+}

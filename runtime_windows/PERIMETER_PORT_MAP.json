@@ -1,0 +1,288 @@
+{
+  "base_component_manifest_sha256": "28dc4c86addcc0de18bdfa5e1256a173080f205f65ffdca88ed1c3081bf86974",
+  "future_frontdoor_targets": [
+    "windows_frontdoor_v1_20261024/frontdoor/kernel_port.py",
+    "windows_frontdoor_v1_20261024/frontdoor/service.py",
+    "windows_frontdoor_v1_20261024/frontdoor/catalog.py"
+  ],
+  "future_frontdoor_targets_status": "Original205 and original BLOCKED entry preserved;new task_catalog/task_store/tasks/task_cli source consumes CandidateHost;actual native behavior not run",
+  "future_launcher_targets": [
+    "runtime_windows/candidate_host.py",
+    "runtime_windows/host_contract.py",
+    "runtime_windows/host_authority.py",
+    "runtime_windows/host_resources.py",
+    "runtime_windows/win32_backend.py",
+    "runtime_windows/runtime_admission.py"
+  ],
+  "important": "Original-to-successor selected source map with explicit candidate host/task increment;not complete OS equivalence,resource acceptance or executable permission",
+  "protected_unchanged": [
+    "mother38",
+    "native_core110",
+    "original domain assets/contracts/receipts",
+    "old Linux admission"
+  ],
+  "requirements": [
+    "No dynamic monkeypatch of old require_g2",
+    "Do not remove original provenance/unit/catalog/version/authority checks",
+    "Both domains share exact same core code and perimeter version",
+    "Native source import requires applicable runtime release and actual OS preflight",
+    "No private lock/SOURCE_MANIFEST fallback in public runtime consumption",
+    "Internal unit validation does not grant external fact trust"
+  ],
+  "schema_id": "H56_WINDOWS_PERIMETER_PORT_MAP_V1",
+  "source_versions": [
+    {
+      "proposed_target_relative_to_product": "runtime_windows/assembly/contracts.py",
+      "purpose": "Replace platform entry with explicit Windows runtime admission in successor;do not impersonate old G2 approval",
+      "source_declarations": [
+        {
+          "line": 16,
+          "name": "AssemblyError"
+        },
+        {
+          "line": 22,
+          "name": "canonical"
+        },
+        {
+          "line": 26,
+          "name": "digest"
+        },
+        {
+          "line": 30,
+          "name": "raw_hash"
+        },
+        {
+          "line": 34,
+          "name": "exact"
+        },
+        {
+          "line": 39,
+          "name": "strict_int"
+        },
+        {
+          "line": 45,
+          "name": "safe_path"
+        },
+        {
+          "line": 67,
+          "name": "_pairs"
+        },
+        {
+          "line": 76,
+          "name": "read_json"
+        },
+        {
+          "line": 83,
+          "name": "schema_check"
+        },
+        {
+          "line": 112,
+          "name": "human_message_text"
+        },
+        {
+          "line": 127,
+          "name": "require_g2"
+        },
+        {
+          "line": 134,
+          "name": "AssemblyPlan"
+        },
+        {
+          "line": 17,
+          "name": "__init__"
+        },
+        {
+          "line": 142,
+          "name": "decoded"
+        }
+      ],
+      "source_relative_to_component": "engineering/assembly/contracts.py",
+      "source_sha256": "1d599b55b294babf1c75c09eada85ad7e6b1ded497389df1cdac6dcf54c3786e",
+      "status": "SUCCESSOR_SOURCE_PRESENT_NOT_RUNTIME_VERIFIED",
+      "successor_sha256": "fa25ef91428db560914c8e3cfb7fbd81f72bb66f26646a3016c4d42df396913c"
+    },
+    {
+      "proposed_target_relative_to_product": "runtime_windows/assembly/admission.py",
+      "purpose": "Reuse source/schema/domain/method/object binding and frozen asset admission;do not accept arbitrary unregistered JSON",
+      "source_declarations": [
+        {
+          "line": 15,
+          "name": "admit"
+        }
+      ],
+      "source_relative_to_component": "engineering/assembly/admission.py",
+      "source_sha256": "5bfa0fc6c9173ac9c80127d10f9e984840c3ed256bf67263305eb2d68df043ed",
+      "status": "SUCCESSOR_SOURCE_PRESENT_NOT_RUNTIME_VERIFIED",
+      "successor_sha256": "4aefc8cbf8e0ee2a6d09d3cfd3fa4316de06d88f91bae74d5c5fea6c0282c7db"
+    },
+    {
+      "proposed_target_relative_to_product": "runtime_windows/assembly/loader.py",
+      "purpose": "Consume verified public lock and same110 native files after actual Windows admission;preserve trusted-import origin/cache defenses",
+      "source_declarations": [
+        {
+          "line": 20,
+          "name": "verify_core"
+        },
+        {
+          "line": 45,
+          "name": "load_core"
+        },
+        {
+          "line": 50,
+          "name": "expected_origin"
+        },
+        {
+          "line": 57,
+          "name": "check_modules"
+        }
+      ],
+      "source_relative_to_component": "engineering/assembly/loader.py",
+      "source_sha256": "4f0635d3a8636e74c8ce8d79deba1f1caca7a8455d6329181bd3e185a6f5021b",
+      "status": "SUCCESSOR_SOURCE_PRESENT_NOT_RUNTIME_VERIFIED",
+      "successor_sha256": "a303913c4632fea0e9ddda3ddb055717625f91aa52c8e8e826e61a7fd5d7ea38"
+    },
+    {
+      "proposed_target_relative_to_product": "runtime_windows/assembly/unit_admission.py",
+      "purpose": "Preserve unit semantics and own validator identity;adapt current runtime registry/proof lineage without external-trust promotion",
+      "source_declarations": [
+        {
+          "line": 18,
+          "name": "reject"
+        },
+        {
+          "line": 22,
+          "name": "registered_contract"
+        },
+        {
+          "line": 36,
+          "name": "validate_units"
+        }
+      ],
+      "source_relative_to_component": "engineering/assembly/unit_admission.py",
+      "source_sha256": "9e3d0258c2b8626e79793af1e58d8dbc1d8ee16d8f62fcd76874d25fe2e86fcb",
+      "status": "SUCCESSOR_SOURCE_PRESENT_NOT_RUNTIME_VERIFIED",
+      "successor_sha256": "edc8c78591220d361cd24d2b81290dd022aab292779519dfa5f440dc311ec284"
+    },
+    {
+      "proposed_target_relative_to_product": "runtime_windows/assembly/pipeline.py",
+      "purpose": "Preserve shared K0-K1-Mapping-C1-C2 order and native call provenance;both domains use this one successor entry",
+      "source_declarations": [
+        {
+          "line": 10,
+          "name": "plain"
+        },
+        {
+          "line": 22,
+          "name": "NativeCalls"
+        },
+        {
+          "line": 46,
+          "name": "compute"
+        },
+        {
+          "line": 23,
+          "name": "__init__"
+        },
+        {
+          "line": 27,
+          "name": "invoke"
+        }
+      ],
+      "source_relative_to_component": "engineering/assembly/pipeline.py",
+      "source_sha256": "3ac986afc7e482461e4d03b426a93a157442eafbefe6b61e4e4564bd5d4c0a22",
+      "status": "SUCCESSOR_SOURCE_PRESENT_NOT_RUNTIME_VERIFIED",
+      "successor_sha256": "003de36243a7493884f84cd37e892ce96347ee02aa24767683974e3be4516fef"
+    },
+    {
+      "proposed_target_relative_to_product": "runtime_windows/assembly/evidence.py",
+      "purpose": "Replace Linux scratch location with approved private Windows output;retain full result/lineage and candidate-only receipt boundary",
+      "source_declarations": [
+        {
+          "line": 12,
+          "name": "verify_record_hash"
+        },
+        {
+          "line": 18,
+          "name": "lineage"
+        },
+        {
+          "line": 41,
+          "name": "run_path"
+        },
+        {
+          "line": 47,
+          "name": "archive"
+        },
+        {
+          "line": 69,
+          "name": "read_archive"
+        }
+      ],
+      "source_relative_to_component": "engineering/assembly/evidence.py",
+      "source_sha256": "1c0f8b128b00fda7e198549b7eda51a8d025c1042acb9827e316f63765ef3ba8",
+      "status": "SUCCESSOR_SOURCE_PRESENT_NOT_RUNTIME_VERIFIED",
+      "successor_sha256": "6fc962f61c061c627521b5d2eb2f0f75604c215f10fdcb85264f17acaad1a59f"
+    },
+    {
+      "proposed_target_relative_to_product": "runtime_windows/assembly/replay.py",
+      "purpose": "Use registered Windows fresh child process,full native recomputation and current identity validation;no receipt-hash-only acceptance",
+      "source_declarations": [
+        {
+          "line": 9,
+          "name": "verify_recomputed"
+        },
+        {
+          "line": 17,
+          "name": "reconstruct"
+        },
+        {
+          "line": 26,
+          "name": "replay_fresh"
+        }
+      ],
+      "source_relative_to_component": "engineering/assembly/replay.py",
+      "source_sha256": "6e9cf1b0458f6331b37bdb4513e81392f4e3c9fba3a2bd6c06915194ab321577",
+      "status": "SUCCESSOR_SOURCE_PRESENT_NOT_RUNTIME_VERIFIED",
+      "successor_sha256": "6311b20e93f0048aedc19fa111d9300727031590a9781e53b0c3269e6eb2e005"
+    },
+    {
+      "proposed_target_relative_to_product": "runtime_windows/adapters/bounded_rules.py",
+      "purpose": "Reuse bounded declarative rules;only necessary successor namespace wiring changes",
+      "source_declarations": [
+        {
+          "line": 7,
+          "name": "evaluate"
+        }
+      ],
+      "source_relative_to_component": "engineering/adapters/bounded_rules.py",
+      "source_sha256": "e0927dfc620a8561dad0f7d1e7abd0e966920d9ac96e4a9f75d58046997902a6",
+      "status": "SUCCESSOR_SOURCE_PRESENT_NOT_RUNTIME_VERIFIED",
+      "successor_sha256": "dae3ace5ce2b1bce1049efd8fa91b6d2dc92e1c1464cde18b2a22dadb31ddbf1"
+    },
+    {
+      "proposed_target_relative_to_product": "runtime_windows/adapters/core_context.py",
+      "purpose": "Preserve real Snapshot/Mapping/Catalog/Assertion/Context relationship and candidate assumption boundary",
+      "source_declarations": [
+        {
+          "line": 6,
+          "name": "mapping_inputs"
+        },
+        {
+          "line": 45,
+          "name": "native_c2_inputs"
+        }
+      ],
+      "source_relative_to_component": "engineering/adapters/core_context.py",
+      "source_sha256": "af0ed95eb99895865469d7578a542643ec08fce44f53506aacced60edb1074f9",
+      "status": "SUCCESSOR_SOURCE_PRESENT_NOT_RUNTIME_VERIFIED",
+      "successor_sha256": "fc1b210216aa2ce76b5a96d5497aac58c6b32710889f32e9842d1f6fe65f59c9"
+    }
+  ],
+  "status": "D_SUCCESSOR_SOURCE_PRESENT_SELECTED_AST_VERIFIED_RUNTIME_NOT_RUN",
+  "candidate_frontdoor_targets": [
+    "runtime_windows/task_catalog.py",
+    "runtime_windows/task_store.py",
+    "runtime_windows/tasks.py",
+    "runtime_windows/task_cli.py"
+  ]
+}

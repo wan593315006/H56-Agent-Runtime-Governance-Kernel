@@ -1,0 +1,152 @@
+{
+  "adapter_ref": {
+    "id": "ASSET:FINANCE_REFUND:ADAPTER_DESCRIPTOR:V1",
+    "path": "domain_assets.json",
+    "pointer": "adapter_descriptor",
+    "sha256": "261e987d3e4460ea154a0d1f15e2095f3e5af658eab3e2fe393643056d1b2f84",
+    "version": "1.0.0"
+  },
+  "asset_set_id": "ASSETS:FINANCE_REFUND:V1",
+  "asset_version": "1.0.0",
+  "availability_assertion_refs": [
+    {
+      "id": "ASSET:FINANCE_REFUND:AVAILABILITY_ASSERTIONS:V1",
+      "path": "domain_assets.json",
+      "pointer": "availability_assertions",
+      "sha256": "c5033f8b3b5285c924dad3f7254f830be60d9dea9d2056ad5bee5f4007a9c444",
+      "version": "1.0.0"
+    }
+  ],
+  "budget_contract_ref": {
+    "id": "ASSET:FINANCE_REFUND:BUDGET_CONTRACT:V1",
+    "path": "domain_assets.json",
+    "pointer": "budget_contract",
+    "sha256": "6e78906d944a944216aa28d2363508eccc471ecb6fb69f08cf965ecd8871d4c3",
+    "version": "1.0.0"
+  },
+  "candidate_evaluation_declaration_ref": {
+    "id": "ASSET:FINANCE_REFUND:EVALUATION_DECLARATIONS:V1",
+    "path": "domain_assets.json",
+    "pointer": "evaluation_declarations",
+    "sha256": "bc10dc8a711b8ea5267b56ad510a20d88ed43f08b226f12d2f1ced2a710c14e9",
+    "version": "1.0.0"
+  },
+  "capability_catalog_ref": {
+    "id": "ASSET:FINANCE_REFUND:CATALOG:V1",
+    "path": "domain_assets.json",
+    "pointer": "catalog",
+    "sha256": "793b1c6064b0bd900021f62d5ce7614950beb042b1686803e389a298470e8da6",
+    "version": "1.0.0"
+  },
+  "content_hash": "23e0fb383a3d4e72c7b5d8aa2b3748f5d598df5071e3a72d6a69cfccb49bb07f",
+  "core_lock": {
+    "c1_artifact_commit": "b01fa57f22c108e60ab26b1b285417d50f62b10c",
+    "c1_manifest_sha256": "9ed5f996152a4de096206a54f09e9d6b8b2866a5ef2593cd1a9c619ea2e0c723",
+    "source_commit": "9221e16460258bc81e1176d69f63a09f81159b73",
+    "vendor_fingerprint": "6b2e942c7e542f874cee00a7930ad173c9856bcb4454699be6cc86fb55ea6b4b"
+  },
+  "dependency_lock": {
+    "external_dependencies": [],
+    "source_commit": "9221e16460258bc81e1176d69f63a09f81159b73",
+    "vendor_fingerprint": "6b2e942c7e542f874cee00a7930ad173c9856bcb4454699be6cc86fb55ea6b4b"
+  },
+  "domain_id": "FINANCE_REFUND",
+  "domain_profile_ref": {
+    "id": "ASSET:FINANCE_REFUND:DOMAIN_PROFILE:V1",
+    "path": "domain_assets.json",
+    "pointer": "domain_profile",
+    "sha256": "0ad71436f30e71a4df8705dc3a9c4881c0c240004a5fde7e819061ea412229f0",
+    "version": "1.0.0"
+  },
+  "evidence_requirements": {
+    "id": "ASSET:FINANCE_REFUND:EVIDENCE_REQUIREMENTS:V1",
+    "path": "domain_assets.json",
+    "pointer": "evidence_requirements",
+    "sha256": "d5c2fec4a6e7834550429cea6047e131c73b3bf1148b6fe65bc65aa9dfe11c4a",
+    "version": "1.0.0"
+  },
+  "fact_input_contract_ref": {
+    "id": "ASSET:FINANCE_REFUND:FACT_CONTRACT:V1",
+    "path": "domain_assets.json",
+    "pointer": "fact_contract",
+    "sha256": "867fdc07ab3570f073bed554189b611c8c6d66f33b2293089ea83a88269b4fea",
+    "version": "1.0.0"
+  },
+  "manifest_id": "MANIFEST:FINANCE_REFUND:V1",
+  "method_pack_refs": [
+    {
+      "id": "ASSET:FINANCE_REFUND:METHOD_PACK:V1",
+      "path": "domain_assets.json",
+      "pointer": "method_pack",
+      "sha256": "284e3c921155b8ee69a0414f40ed2384cf944b16a43befcc0551cbe36933a3e7",
+      "version": "1.0.0"
+    }
+  ],
+  "object_schema_ref": {
+    "id": "ASSET:FINANCE_REFUND:OBJECT_SCHEMA:V1",
+    "path": "domain_assets.json",
+    "pointer": "object_schema",
+    "sha256": "a558f2bad152862aa4a3ae05f016d857337bac55e7b0ef91c510e9e062d33e6c",
+    "version": "1.0.0"
+  },
+  "policy_refs": [
+    {
+      "id": "ASSET:FINANCE_REFUND:POLICY:V1",
+      "path": "domain_assets.json",
+      "pointer": "policy",
+      "sha256": "7ce6710d237db84fb51394b8baba58ec991ce2ed292a7ced5b103575f61df9d7",
+      "version": "1.0.0"
+    }
+  ],
+  "project_profile_ref": {
+    "id": "ASSET:FINANCE_REFUND:PROJECT_PROFILE:V1",
+    "path": "domain_assets.json",
+    "pointer": "project_profile",
+    "sha256": "8f3d56c2526b908e9dc4272b4dd2930fe4860e865c2c38760cb2c362b94f0783",
+    "version": "1.0.0"
+  },
+  "replay_contract_ref": {
+    "id": "ASSET:FINANCE_REFUND:REPLAY_CONTRACT:V1",
+    "path": "domain_assets.json",
+    "pointer": "replay_contract",
+    "sha256": "34f0e7ecda30284fd87e61700311e4f468dd9a0ccbd5c24147cfbcdbb058d43e",
+    "version": "1.0.0"
+  },
+  "runtime_ontology_profile_ref": {
+    "id": "ASSET:FINANCE_REFUND:RUNTIME_ONTOLOGY_BINDING:V1",
+    "path": "domain_assets.json",
+    "pointer": "runtime_ontology_binding",
+    "sha256": "f0637c209e5f7caa84d02ca890f219c34808f11daf29ce2a20e548d931baba07",
+    "version": "1.0.0"
+  },
+  "schema_id": "H56OS:DOMAIN_MANIFEST:V1",
+  "schema_version": "1.0.0",
+  "source_bindings": [
+    {
+      "git_blob": "33f323c99d0c37603009b930a1ad771b19aa67ef",
+      "origin": "G1_SYNTHETIC_ASSET_AUTHORING",
+      "path": "domain_assets.json",
+      "sha256": "278fe7cdad1f06b4d42b42d7d29bc482b68fa9bf926cce5d445e3fd719cbeede"
+    },
+    {
+      "git_blob": "9f0b61a7edcdfcc7806425d4880ac0d29e2425a5",
+      "origin": "G1_SYNTHETIC_ASSET_AUTHORING",
+      "path": "inputs.json",
+      "sha256": "85f60adf18553ffcdad4e09877decc984dc0e521efdb62b0df9ff2dd3aa65267"
+    }
+  ],
+  "state_pattern_mapping_ref": {
+    "id": "ASSET:FINANCE_REFUND:MAPPING:V1",
+    "path": "domain_assets.json",
+    "pointer": "mapping",
+    "sha256": "814691ef0dc94a19012fe04c67ac86865149244eae1dbbac1f4714233c85f1fc",
+    "version": "1.0.0"
+  },
+  "synthetic_source_ref": {
+    "id": "ASSET:FINANCE_REFUND:SYNTHETIC_SOURCE:V1",
+    "path": "domain_assets.json",
+    "pointer": "synthetic_source",
+    "sha256": "d61385128fc8dcf667135c20845e2f4e7adb47fab4d192317f044abd11ca6baf",
+    "version": "1.0.0"
+  }
+}
