@@ -1,6 +1,6 @@
 {
   "schema_id": "H56_ASSEMBLED_CANDIDATE_STATUS_V2",
-  "candidate_id": "H56-CANDIDATE-20261030-V3.1",
+  "candidate_id": "H56-CANDIDATE-20261030-V3.2",
   "role": "PRIVATE_REVIEW_AND_DEMONSTRATION_CANDIDATE",
   "current_entry": "demo.py",
   "ui_entry": "ui/serve.py",
@@ -25,7 +25,8 @@
     "Owner-selected LICENSE, asset distribution scope and explicit publication decision"
   ],
   "business_execution_authorized": false,
-  "documentation_update": "Product introduction, capabilities, Mermaid architecture, recorded screenshots, origins/updates and roadmap.",
+  "documentation_update": "Public YouTube demo link, action/result/capability/evidence map, and read-only trace/reassessment inspection steps.",
   "runtime_source_reference_commit": "a2facd8c5316e19a41fddc2a74c46d7f1d646d94",
-  "python_source_comparison": "metadata/SOURCE_COMPARISON.json"
+  "python_source_comparison": "metadata/SOURCE_COMPARISON.json",
+  "demo_video_url": "https://youtu.be/Gxr5SzG3OMg"
 }

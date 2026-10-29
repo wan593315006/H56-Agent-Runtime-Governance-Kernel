@@ -4,7 +4,7 @@ H56 brings **facts, evolving state, capability contracts, and candidate assessme
 
 The OS governance kernel is the product's foundation. Environment qualification and controlled task admission are the representative applications selected for this demonstration. Versioned domain assets and adapters connect that reusable foundation to a concrete task workflow.
 
-[Quickstart](#quickstart) · [Architecture](#architecture) · [Nebius + NVIDIA](#nebius-and-nvidia-in-practice) · [Project evolution](#project-origins-and-hackathon-updates) · [Roadmap](#roadmap)
+[Watch the demo on YouTube](https://youtu.be/Gxr5SzG3OMg) · [Quickstart](#quickstart) · [Architecture](#architecture) · [Nebius + NVIDIA](#nebius-and-nvidia-in-practice) · [Project evolution](#project-origins-and-hackathon-updates) · [Roadmap](#roadmap)
 
 ## Why H56
 
@@ -19,6 +19,8 @@ Three technical ideas shape the product:
 Candidate feasibility and permission to execute remain separate. This keeps qualification useful to planners, operators, and other agent systems without treating a model response as execution authority.
 
 ## See it work
+
+**[Watch the public demonstration on YouTube](https://youtu.be/Gxr5SzG3OMg).** It combines the recorded local UI, real Nebius/NVIDIA examples, reassessment, and native-call evidence, with English narration and captions.
 
 The local UI runs the actual evaluation processes and exposes their outcomes and registered evidence.
 

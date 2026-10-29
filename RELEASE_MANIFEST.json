@@ -1,6 +1,6 @@
 {
   "schema": "H56_ASSEMBLED_CANDIDATE_MANIFEST_V1",
-  "candidate_id": "H56-CANDIDATE-20261030-V3.1",
+  "candidate_id": "H56-CANDIDATE-20261030-V3.2",
   "source_head": "9a480ad1c0d89143ede35f6bc2b4057c68bc4f93",
   "source_state": "WORKING_TREE_SNAPSHOT_WITH_RECORDED_CANDIDATE_CHANGES",
   "distribution_status": "PRIVATE_CANDIDATE_LICENSE_AND_PUBLICATION_SEPARATE",
@@ -41,26 +41,26 @@
     },
     {
       "path": "DEMO_GUIDE.md",
-      "bytes": 5874,
-      "sha256": "9bc3a450ee601d2d8b5cac6b1ad23dd03443a68f8ee16c2c51251823df1a05de",
+      "bytes": 12267,
+      "sha256": "23f2a00f06916d02f7763680ef35d704f8927be1940d9ead5dfd8e8aa2e7db6f",
       "computation_closure": false
     },
     {
       "path": "PACKAGE_MANIFEST.json",
-      "bytes": 54171,
-      "sha256": "5f4cf4b0659d62c493f75d02198c1d8a0e80d3090596de89123c489447fae9ee",
+      "bytes": 54172,
+      "sha256": "d18134d4d58b4993c1dfd6e3e5f45b18e8d80afb0164aff6463ce46b06471ca6",
       "computation_closure": false
     },
     {
       "path": "PACKAGE_STATUS.json",
-      "bytes": 1478,
-      "sha256": "7dc51d858edd332999de801b891b72a9bf2e8ab95d9996308238493d1ccd493f",
+      "bytes": 1537,
+      "sha256": "a81e03909c8dbb1a8bf0a712a0bb01855536f7610290093c1550d89f7821be64",
       "computation_closure": false
     },
     {
       "path": "README.md",
-      "bytes": 13882,
-      "sha256": "69dfa7c007fc789c9ce3778c714a7b658ebec49a7f78d37db003876af43e5677",
+      "bytes": 14164,
+      "sha256": "6d69ad8dcccd1c1e30b0c3a8acf4e4a3dffbf44d2b47ce198cb2743deb6f2117",
       "computation_closure": false
     },
     {
@@ -1463,5 +1463,5 @@
     }
   ],
   "self_exclusion": "This file and .git are excluded from their own content inventory; the candidate Git commit binds this file.",
-  "supersedes_candidate_commit": "89dcae2cba26126de0d320522d20b93d26996d9f"
+  "supersedes_candidate_commit": "e2c394aaac60dc2d886e253182e9142d1c54c940"
 }

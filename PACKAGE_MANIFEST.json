@@ -1,6 +1,6 @@
 {
   "schema_id": "H56_ASSEMBLED_PACKAGE_MANIFEST_V2",
-  "candidate_id": "H56-CANDIDATE-20261030-V3.1",
+  "candidate_id": "H56-CANDIDATE-20261030-V3.2",
   "member_count": 239,
   "candidate_file_count": 241,
   "files": [
@@ -21,18 +21,18 @@
     },
     {
       "path": "DEMO_GUIDE.md",
-      "size": 5874,
-      "sha256": "9bc3a450ee601d2d8b5cac6b1ad23dd03443a68f8ee16c2c51251823df1a05de"
+      "size": 12267,
+      "sha256": "23f2a00f06916d02f7763680ef35d704f8927be1940d9ead5dfd8e8aa2e7db6f"
     },
     {
       "path": "PACKAGE_STATUS.json",
-      "size": 1478,
-      "sha256": "7dc51d858edd332999de801b891b72a9bf2e8ab95d9996308238493d1ccd493f"
+      "size": 1537,
+      "sha256": "a81e03909c8dbb1a8bf0a712a0bb01855536f7610290093c1550d89f7821be64"
     },
     {
       "path": "README.md",
-      "size": 13882,
-      "sha256": "69dfa7c007fc789c9ce3778c714a7b658ebec49a7f78d37db003876af43e5677"
+      "size": 14164,
+      "sha256": "6d69ad8dcccd1c1e30b0c3a8acf4e4a3dffbf44d2b47ce198cb2743deb6f2117"
     },
     {
       "path": "README.zh-CN.md",

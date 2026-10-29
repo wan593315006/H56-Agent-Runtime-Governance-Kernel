@@ -1,5 +1,23 @@
 # H56 Demo Guide
 
+**[Watch the public demonstration on YouTube](https://youtu.be/Gxr5SzG3OMg).** The recorded walkthrough includes the offline UI, real Nebius/NVIDIA examples, linked reassessment, and four-core traces, with English narration and captions. Use the steps below to inspect or reproduce the corresponding product behavior.
+
+## Demonstration map
+
+For local inspection, retain the six-case run using section 2; its `$run` variable is used in the read-only examples below. The offline cases use controlled synthetic inputs and the real original cores. Recorded cloud-model examples are identified separately.
+
+| Action or example | Expected result | Capability demonstrated | Evidence to inspect |
+| --- | --- | --- | --- |
+| Run C01v0 and B07v1 in the six-case demonstration | `FEASIBLE` | Candidate qualification when the supplied evidence satisfies the applicable constraints. | Matching rows in `report.json`; their input digests and registered assessment artifacts. |
+| Inspect A01v0 | `INFEASIBLE` | Container and integrity constraints affect the calculated candidate result and produce specific reasons. | The A01v0 row, input change, and assessment `reason_codes`. |
+| Inspect B01v0 | `DEFER` | An unknown external prerequisite is represented explicitly in the result. | The B01v0 row and its assessment. |
+| Inspect B05v0 | `NEED_MORE_EVIDENCE` | Missing supporting evidence leads to an explicit request for more evidence. | The B05v0 row and its evidence/requirement fields. |
+| Inspect B06v0 | `REJECTED / ENV_INPUT_REJECTED` | The input gate rejects inconsistent evidence and produces no assessment artifact. | `stop_stage=INPUT`, the rejection row, and its empty assessment-evidence list. |
+| Follow the parent/child exercise in section 4 | Parent `DEFER`, child `FEASIBLE`; separate assessment IDs | New evidence supports a linked new assessment while the original record is preserved. | `chain/op/out/oq_chain/artifacts/`, `parent_decision_ref`, and properties 4 and 5. |
+| Open a primary assessment's trace as shown in section 2 | 22 named entries: K0 6 / K1 4 / C1 6 / C2 6 | The selected assessment records the original four-core computation path with source and digest fields. | `mapping_trace.native_calls` inside that case's registered artifact. |
+| Inspect a stored result and property 6 | `integrity_checked=True`, `native_recomputed=False` in the view-check detail | A stored assessment can be verified and presented through the read-only view. | Property 6 in `report.json`; the UI's registered-evidence view. |
+| Watch the recorded Nebius R1/R5/R7 examples, or follow section 6 | R1 feasible, R5 infeasible, R7 not applicable without a kernel launch | A real cloud model proposes scenarios while the original cores compute the selected qualification results. | The video's model receipts, primary result cards, and labeled out-of-scope response. |
+
 ## 1. Run the six-case demonstration
 
 From the cloned repository root:
@@ -36,6 +54,26 @@ Inspect `report.json`, each selected case's `in/evidence.json`, assessment artif
 
 Without `--keep`, the driver normally removes its own temporary work directory after the run.
 
+### Inspect the native-call trace
+
+After the retained run above, keep the same PowerShell session and use its `$run` value. These commands read the stored C01v0 primary assessment; they do not launch a new evaluation.
+
+```powershell
+$report = Get-Content -LiteralPath (Join-Path $run 'report.json') -Raw | ConvertFrom-Json
+$row = @($report.rows | Where-Object { $_.key -eq 'C01v0' })[0]
+$artifact = @($row.evidence | Where-Object { $_.rel -match '/artifacts/' })[0]
+$assessmentPath = Join-Path $run $artifact.rel
+$assessment = Get-Content -LiteralPath $assessmentPath -Raw | ConvertFrom-Json
+$calls = @($assessment.mapping_trace.native_calls)
+
+$calls.Count
+$calls | Group-Object { ($_.call -split '\.')[0] } | Select-Object Name, Count
+$calls | Select-Object ordinal, call, status | Format-Table -AutoSize
+$calls[0] | Format-List source, input_sha256, output_sha256
+```
+
+Expect 22 entries, grouped as K0 6, K1 4, C1 6 and C2 6. The artifact's top-level `mapping_trace.native_calls` contains the trace; `source_validation.recorded_native_calls` is its numeric summary. Inspect the call names, source paths and digests together. See [The four cores](ARCHITECTURE.md#the-four-cores) for interpretation of digest scope.
+
 ## 3. Use the UI
 
 ```powershell
@@ -60,6 +98,44 @@ The driver's property exercises include a parent assessment with a deferred resu
 
 This is a separate deterministic reassessment exercise. It should be presented separately from a model-selected scenario's primary assessment or a live R6 business request.
 
+### Inspect the parent and child records
+
+The retained run puts this exercise under `chain/op/out/oq_chain`. It uses `parent_req` and `child_req`, so these assessment IDs are distinct from the main B01v0/C01v0 row IDs. Compare the two chain records to each other.
+
+```powershell
+$chain = Join-Path $run 'chain/op/out/oq_chain'
+$items = @(Get-ChildItem -LiteralPath (Join-Path $chain 'artifacts') -Filter '*.json' |
+    ForEach-Object {
+        [pscustomobject]@{
+            Path = $_.FullName
+            Record = (Get-Content -LiteralPath $_.FullName -Raw | ConvertFrom-Json)
+        }
+    })
+$childItem = @($items | Where-Object { $null -ne $_.Record.parent_decision_ref })[0]
+$child = $childItem.Record
+$reference = $child.parent_decision_ref
+$parentItem = @($items | Where-Object { $_.Record.assessment_id -eq $reference.assessment_id })[0]
+$parent = $parentItem.Record
+
+@(
+    [pscustomobject]@{ Role = 'Parent'; Assessment = $parent.assessment_id; Decision = $parent.c2_projection.decision }
+    [pscustomobject]@{ Role = 'Child'; Assessment = $child.assessment_id; Decision = $child.c2_projection.decision }
+) | Format-Table -AutoSize
+
+[pscustomobject]@{
+    NewAssessment = ($child.assessment_id -ne $parent.assessment_id)
+    ParentAssessmentMatches = ($reference.assessment_id -eq $parent.assessment_id)
+    ParentDecisionMatches = ($reference.decision_id -eq $parent.decision_id)
+    ParentSemanticMatches = ($reference.semantic_sha256 -eq $parent.semantic_sha256)
+    ParentArtifactMatches = ($reference.artifact_sha256 -eq
+        (Get-FileHash -LiteralPath $parentItem.Path -Algorithm SHA256).Hash.ToLowerInvariant())
+} | Format-List
+
+$report.properties | Where-Object { $_.id -in 4, 5, 6 } | Select-Object id, status, detail
+```
+
+Expect the parent to show `DEFER`, the child `FEASIBLE`, and all five reference checks to be `True`. Property 4 records the new-assessment/parent-link check. Property 5 records the driver's before/after byte comparison of the two previously sealed artifact/claim files. Property 6 records its read-only view check. These report properties complement the inspection of the records currently on disk.
+
 ## 5. Fixed-response adapter integration
 
 ```powershell
@@ -82,6 +158,8 @@ Real Nebius records include R1/S-C01 (`FEASIBLE`), R5/S-A01 (`INFEASIBLE`) and R
 To make a new paid request, follow [Optional live model integration](RECOVERY_GUIDE.md#optional-live-model-integration). Installation and the offline demonstration do not silently call any model.
 
 ## 7. Video presentation
+
+The published walkthrough is available at **[YouTube: H56 demonstration](https://youtu.be/Gxr5SzG3OMg)**. Use this same URL in the submission form's video field.
 
 Use existing application footage to show an actual run. Evidence cards can make model responses, reason codes and parent references legible; label rendered evidence as a replay rather than live screen capture. Identify separate model providers, source versions and execution batches where they are combined.
 
