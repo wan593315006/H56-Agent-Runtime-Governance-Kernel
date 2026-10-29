@@ -1,0 +1,36 @@
+{
+  "schema": "H56_SELECTED_PYTHON_SOURCE_COMPARISON_V1",
+  "scope": "Only the 131 Python files distributed in this candidate; not the entire development workspace.",
+  "development_baseline": {
+    "type": "working-tree snapshot",
+    "git_head": "9a480ad1c0d89143ede35f6bc2b4057c68bc4f93",
+    "note": "HEAD is provenance; the selected working-tree file digests, including uncommitted changes, are the comparison basis.",
+    "selected_file_digest": "e279213da742e681039951e8e2a7cc0e0357a540ce69f7a508f564295f0f0cd5"
+  },
+  "candidate_python_files": 131,
+  "byte_identical_to_development": 129,
+  "candidate_specific_test_helpers": 2,
+  "adjustments": [
+    {
+      "path": "model_ingress_v1/tests/a2_integration.py",
+      "development_sha256": "c1f290af20f9d45e833910e5abd8e0a54b6aa2a913c290fbf4c3a7ca68a73850",
+      "candidate_sha256": "9657ea082b7011607230f92ec8b2346dc1bed8c23fe8a079f7689fefd4be8647",
+      "purpose": "Use the frozen in-tree input-digest baseline and temporary default output instead of the private A0 report and workstation output root. Frozen digests and expected outcomes retained."
+    },
+    {
+      "path": "model_ingress_v1/tests/identity.py",
+      "development_sha256": "5553f2afa54611ec7e3c6c587a2d25957087cf8c19e79d7071d934bd768ee46c",
+      "candidate_sha256": "7b9d477d7202caae63fb3760ecb042329089657e1087efe579f44902e5bc7f96",
+      "purpose": "Inventory roots match the delivered candidate: UI and four English guides included; two absent historical directories removed."
+    }
+  ],
+  "accepted_candidate_comparison": {
+    "commit": "a2facd8c5316e19a41fddc2a74c46d7f1d646d94",
+    "python_files_byte_identical": 131
+  },
+  "computation_closure": {
+    "members": 139,
+    "byte_identical_to_development": 139,
+    "manifest_sha256": "adeca462c152a7ee34c4bdee0f1f9b3833adab6b1aa5ae6e110d2ae58a42c6cb"
+  }
+}

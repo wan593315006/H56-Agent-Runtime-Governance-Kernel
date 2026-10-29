@@ -1,6 +1,6 @@
 {
   "schema": "H56_ASSEMBLED_CANDIDATE_MANIFEST_V1",
-  "candidate_id": "H56-CANDIDATE-20261030-V3",
+  "candidate_id": "H56-CANDIDATE-20261030-V3.1",
   "source_head": "9a480ad1c0d89143ede35f6bc2b4057c68bc4f93",
   "source_state": "WORKING_TREE_SNAPSHOT_WITH_RECORDED_CANDIDATE_CHANGES",
   "distribution_status": "PRIVATE_CANDIDATE_LICENSE_AND_PUBLICATION_SEPARATE",
@@ -35,32 +35,32 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 8912,
-      "sha256": "cf30fc1a928cb7dade0d142f5a26b75c1d2f5dcdf6a21c85230895bb87c9d68b",
+      "bytes": 9721,
+      "sha256": "733882427bf5fee11e0f5570f1d07d5d18804f7eb450bb70be422121dbd4ab1c",
       "computation_closure": false
     },
     {
       "path": "DEMO_GUIDE.md",
-      "bytes": 5519,
-      "sha256": "dae96c1f52263936a703b222b7138e124fd8edd65390ac59bc92d4945c507268",
+      "bytes": 5874,
+      "sha256": "9bc3a450ee601d2d8b5cac6b1ad23dd03443a68f8ee16c2c51251823df1a05de",
       "computation_closure": false
     },
     {
       "path": "PACKAGE_MANIFEST.json",
-      "bytes": 54004,
-      "sha256": "99b488cb31392e86abd3740868b1cf6c3a98a4f12a26392b7e9e533c506d0012",
+      "bytes": 54171,
+      "sha256": "5f4cf4b0659d62c493f75d02198c1d8a0e80d3090596de89123c489447fae9ee",
       "computation_closure": false
     },
     {
       "path": "PACKAGE_STATUS.json",
-      "bytes": 1411,
-      "sha256": "e2c1e7bb02865d6cb56d5b5f0c1df7448efa30ec1e28fa2a13d56c093542bbac",
+      "bytes": 1478,
+      "sha256": "7dc51d858edd332999de801b891b72a9bf2e8ab95d9996308238493d1ccd493f",
       "computation_closure": false
     },
     {
       "path": "README.md",
-      "bytes": 13442,
-      "sha256": "69723df758c4d7a2835e7e591c962324cf66759f2f4a5f725b828a09c491a3d8",
+      "bytes": 13882,
+      "sha256": "69dfa7c007fc789c9ce3778c714a7b658ebec49a7f78d37db003876af43e5677",
       "computation_closure": false
     },
     {
@@ -109,6 +109,12 @@
       "path": "metadata/BASELINE_ACCEPTANCE.json",
       "bytes": 1334,
       "sha256": "ec62dbe604b2ddc264c9c048d0513e107f273c66e05bc0c833642397a24e227c",
+      "computation_closure": false
+    },
+    {
+      "path": "metadata/SOURCE_COMPARISON.json",
+      "bytes": 1848,
+      "sha256": "dffbe45b9fca81eeb0f11edd7d1cbf375bd8439770401c02d7b164c5fcf2ea48",
       "computation_closure": false
     },
     {
@@ -1457,5 +1463,5 @@
     }
   ],
   "self_exclusion": "This file and .git are excluded from their own content inventory; the candidate Git commit binds this file.",
-  "supersedes_candidate_commit": "a2facd8c5316e19a41fddc2a74c46d7f1d646d94"
+  "supersedes_candidate_commit": "89dcae2cba26126de0d320522d20b93d26996d9f"
 }

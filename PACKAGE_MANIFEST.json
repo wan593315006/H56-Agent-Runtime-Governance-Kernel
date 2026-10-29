@@ -1,8 +1,8 @@
 {
   "schema_id": "H56_ASSEMBLED_PACKAGE_MANIFEST_V2",
-  "candidate_id": "H56-CANDIDATE-20261030-V3",
-  "member_count": 238,
-  "candidate_file_count": 240,
+  "candidate_id": "H56-CANDIDATE-20261030-V3.1",
+  "member_count": 239,
+  "candidate_file_count": 241,
   "files": [
     {
       "path": ".gitattributes",
@@ -16,23 +16,23 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "size": 8912,
-      "sha256": "cf30fc1a928cb7dade0d142f5a26b75c1d2f5dcdf6a21c85230895bb87c9d68b"
+      "size": 9721,
+      "sha256": "733882427bf5fee11e0f5570f1d07d5d18804f7eb450bb70be422121dbd4ab1c"
     },
     {
       "path": "DEMO_GUIDE.md",
-      "size": 5519,
-      "sha256": "dae96c1f52263936a703b222b7138e124fd8edd65390ac59bc92d4945c507268"
+      "size": 5874,
+      "sha256": "9bc3a450ee601d2d8b5cac6b1ad23dd03443a68f8ee16c2c51251823df1a05de"
     },
     {
       "path": "PACKAGE_STATUS.json",
-      "size": 1411,
-      "sha256": "e2c1e7bb02865d6cb56d5b5f0c1df7448efa30ec1e28fa2a13d56c093542bbac"
+      "size": 1478,
+      "sha256": "7dc51d858edd332999de801b891b72a9bf2e8ab95d9996308238493d1ccd493f"
     },
     {
       "path": "README.md",
-      "size": 13442,
-      "sha256": "69723df758c4d7a2835e7e591c962324cf66759f2f4a5f725b828a09c491a3d8"
+      "size": 13882,
+      "sha256": "69dfa7c007fc789c9ce3778c714a7b658ebec49a7f78d37db003876af43e5677"
     },
     {
       "path": "README.zh-CN.md",
@@ -73,6 +73,11 @@
       "path": "metadata/BASELINE_ACCEPTANCE.json",
       "size": 1334,
       "sha256": "ec62dbe604b2ddc264c9c048d0513e107f273c66e05bc0c833642397a24e227c"
+    },
+    {
+      "path": "metadata/SOURCE_COMPARISON.json",
+      "size": 1848,
+      "sha256": "dffbe45b9fca81eeb0f11edd7d1cbf375bd8439770401c02d7b164c5fcf2ea48"
     },
     {
       "path": "metadata/SOURCE_DELIVERY_HISTORY.json",

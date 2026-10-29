@@ -70,7 +70,14 @@ The 139-member computation manifest remains byte-identical to the development so
 
 Fourteen retained engineering files are AST comparison sources and data fixtures. Inactive historical Windows front doors, private archives, credentials and private provenance locks are outside this candidate. The normal offline and model-to-core demonstration consumes the public source lock and does not restore the private lock.
 
-Candidate-only portability edits affect the integration driver's baseline lookup and its existing identity-root list. They remove private-workstation lookups and include the delivered UI and guides. They do not change core calculations, the registry, model request construction or expected outcomes.
+Among the 131 Python files distributed in this candidate, **129 match the corresponding development working-tree files byte for byte**. Two test helpers contain candidate-specific portability adjustments:
+
+| File | Candidate adjustment |
+| --- | --- |
+| `model_ingress_v1/tests/identity.py` | Inventory the delivered roots, including UI and four English guides, and omit two absent historical directories. |
+| `model_ingress_v1/tests/a2_integration.py` | Use the frozen in-tree input-digest baseline and temporary output instead of a private A0 report and workstation output root. |
+
+The frozen input digests and expected outcomes are retained. Core calculations, the registry and model request construction are unchanged. All 139 computation-closure members match the development source. Relative to the accepted V2 candidate (`a2facd8c5316e19a41fddc2a74c46d7f1d646d94`), all 131 candidate Python files are byte-identical; that is a different comparison baseline from the development working tree. [Source Comparison](metadata/SOURCE_COMPARISON.json) records the two changed file identities and both scopes.
 
 ## Development timeline
 

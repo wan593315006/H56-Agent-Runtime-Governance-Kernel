@@ -169,7 +169,9 @@ For the model-to-core route, use the six-scenario A2 command in [Demo Guide](DEM
 
 The extended regression contains **56 rows and 26 byte-distinct inputs**. The baseline input occurs 31 times; the other 25 inputs occur once each. The 30 repeated rows are retained regression cases, rather than additional independent scenarios. The default demonstration uses six distinct inputs.
 
-`offline_qualification_v1/SOURCE_MANIFEST.json` binds the **139-member computation closure**. `RELEASE_MANIFEST.json` inventories the broader candidate, including interfaces, documentation, and image assets; the Git commit identifies the assembled version. Preserve `.gitattributes` and registered source bytes.
+Of the **131 Python files distributed in this candidate, 129 are byte-identical to the corresponding development working-tree files; two test helpers contain candidate portability adjustments**. Their paths, purposes, and before/after digests are listed in [Source Comparison](metadata/SOURCE_COMPARISON.json). The accepted prior candidate has the same 131 Python file bytes.
+
+`offline_qualification_v1/SOURCE_MANIFEST.json` binds the **139-member computation closure**, whose members remain byte-identical to the development source. `RELEASE_MANIFEST.json` inventories the broader candidate, including interfaces, documentation, and image assets; the Git commit identifies the assembled version. Preserve `.gitattributes` and registered source bytes.
 
 ## Documentation and distribution
 

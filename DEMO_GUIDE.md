@@ -69,6 +69,8 @@ python -B -m model_ingress_v1.tests.a2_integration --all-six --root $a2
 
 The provider supplies fixed model responses, while the adapter, input construction, CLI, original cores and assessment storage execute real code. The driver checks all six scenarios, exact exit codes, input digests and source stability before and after execution. It compares actual generated input digests with the frozen in-tree baseline constants. This is one packaged baseline, rather than a second independently supplied A0 report, and does not need a private evidence directory.
 
+The candidate adapts `tests/identity.py` and `tests/a2_integration.py` for delivered inventory roots, packaged baseline lookup, and portable output. These are the two candidate-specific test-helper adjustments among 131 distributed Python files; the other 129 match the development working tree. See [Source Comparison](metadata/SOURCE_COMPARISON.json).
+
 This check is labeled as fixed-response integration. It is distinct from the previously recorded real Nebius inference runs.
 
 ## 6. Model collaboration
