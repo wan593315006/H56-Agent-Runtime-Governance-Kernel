@@ -72,7 +72,7 @@ $a2 = Join-Path $env:TEMP ('h56-a2-' + [guid]::NewGuid().ToString('N'))
 python -B -m model_ingress_v1.tests.a2_integration --all-six --root $a2
 ```
 
-This uses a fixed-response model provider, with real CLI/core calculations and stored records. Its baseline is included in the test driver. It requires neither the developer's historical evidence directory nor an external project checkout. Leave identity checking enabled.
+This uses a fixed-response model provider, with real CLI/core calculations and stored records. Its baseline is included in the test driver. It requires neither the developer's historical evidence directory nor an external project checkout. The driver compares the produced inputs against frozen in-tree digest constants; a separate private A0 report is not a runtime dependency. Leave identity checking enabled.
 
 ## Run the browser demonstration
 
@@ -91,6 +91,10 @@ python -B demo.py --compare-python 'C:\path\to\second\python.exe'
 ```
 
 The second interpreter is supplied by the operator. Without this option, the cross-interpreter property remains SKIP; the other properties are evaluated normally.
+
+## Output-root defaults
+
+Always supply an absolute external `--root` for catalog, adapter, smoke or stage-B commands. Their retained defaults use `C:/h56_release_evidence` and can create that path on a different workstation. The A2 driver defaults to a unique directory under the system temporary directory. Explicit output roots avoid dependence on the developer's drive layout.
 
 ## Optional live model integration
 

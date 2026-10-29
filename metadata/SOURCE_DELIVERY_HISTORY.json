@@ -1,0 +1,33 @@
+{
+  "schema": "H56_SOURCE_DELIVERY_HISTORY_EXTRACT_V1",
+  "source_head": "9a480ad1c0d89143ede35f6bc2b4057c68bc4f93",
+  "commits": [
+    {
+      "commit": "257a1da84b4a8276cee26719340ee5ab65ccab74",
+      "tree": "e3eb8283990de65c2c3b26bab6fdea2c8ff8e390",
+      "parents": [],
+      "authored_at": "2026-10-26T21:17:10+08:00",
+      "committed_at": "2026-10-26T21:17:10+08:00"
+    },
+    {
+      "commit": "27574194bb59eb8a476a0f1c3aae3059df8c8cd5",
+      "tree": "7b1321e465c86cf147a2570826dd32e2d4ef49d7",
+      "parents": [
+        "257a1da84b4a8276cee26719340ee5ab65ccab74"
+      ],
+      "authored_at": "2026-10-26T21:24:47+08:00",
+      "committed_at": "2026-10-26T21:24:47+08:00"
+    },
+    {
+      "commit": "9a480ad1c0d89143ede35f6bc2b4057c68bc4f93",
+      "tree": "71e6267ec6b914f9196129651ad0536dec266397",
+      "parents": [
+        "27574194bb59eb8a476a0f1c3aae3059df8c8cd5"
+      ],
+      "authored_at": "2026-10-26T22:02:10+08:00",
+      "committed_at": "2026-10-26T22:02:10+08:00"
+    }
+  ],
+  "scope": "Read-only extraction of H56 source delivery commit headers. The earlier private Git object database and its historical asset contents are not distributed.",
+  "prior_research_milestones": "September/early-October dates in the architecture timeline refer to earlier source histories, not commits in this assembled candidate."
+}

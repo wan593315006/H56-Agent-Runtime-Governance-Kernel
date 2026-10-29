@@ -1,0 +1,39 @@
+{
+  "schema": "H56_BASELINE_ACCEPTANCE_REFERENCE_V1",
+  "candidate_commit": "08654f039ceb6ac845cd2231ad8a022d660f6fc4",
+  "original_record_sha256": "8e59b1ea59fb8982f031d11f6cc424d2828490312d9c766fd7d8b82c6870a5aa",
+  "scope": "Same-host clean Git clone, Python 3.9.13; offline fixtures and real CLI/core/loopback UI execution.",
+  "test_suites": {
+    "01_product_tests": 30,
+    "02_release_guards": 9,
+    "03_ingress_suite": 27,
+    "04_stage_b_suite": 91,
+    "05_smoke_suite": 19,
+    "06_perimeter_static": 15
+  },
+  "a2": {
+    "provider": "fixed-response fixture",
+    "real_cli_and_cores": true,
+    "scenarios": 6,
+    "boolean_assertions": 198,
+    "exit_code_comparisons": 6,
+    "failed": 0
+  },
+  "ui": {
+    "rows": 56,
+    "decided": 42,
+    "rejected": 14,
+    "distinct_inputs": 26,
+    "duplicate_rows": 30
+  },
+  "coverage_composition": {
+    "baseline_input_occurrences": 31,
+    "other_distinct_inputs": 25,
+    "occurrences_per_other_input": 1,
+    "duplicate_rows": 30
+  },
+  "cross_interpreter": "SKIPPED",
+  "live_cloud_calls_in_this_acceptance": 0,
+  "evidence_type": "Summary extract from retained original receipts; not a second independent execution.",
+  "successor_scope": "Application, test implementation, UI and 139 core member bytes are unchanged; successor changes metadata/documentation only."
+}

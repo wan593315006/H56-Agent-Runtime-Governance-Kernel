@@ -78,20 +78,22 @@ H56 builds on earlier Wuti general-purpose OS and multi-agent runtime engineerin
 
 | Date | Recorded milestone | Source-history reference |
 | --- | --- | --- |
-| Before the submission period | Existing tools, method access, health checks, state memory and change history. | Platform reference `0e58c20`, 4 August 2026. |
-| 25 September 2026 | K0/K1 independent core projects entered the source history. | `11ace18`. |
-| 4 October 2026 | C1 capability contracts, C2 feasibility projection and feasible capability set. | `b01fa57`, `d2e45df`, `8dcc149`. |
-| 22–23 October 2026 | H56 isolated source assembly and admission integration. | `ee5114a`, `0ecc811`, `aec45d4`. |
+| Before the submission period | Existing tools, method access, health checks, state memory and change history. | Earlier platform research, recorded in August 2026. |
+| 25 September 2026 | K0/K1 independent core projects entered their original source history. | Earlier core source-history milestone. |
+| 4 October 2026 | C1 capability contracts, C2 feasibility projection and feasible capability set. | Earlier core source-history milestones. |
+| 22–23 October 2026 | H56 isolated source assembly and admission integration. | Earlier engineering source-history milestones. |
 | 26 October 2026 | Delivery baseline, one-command demo, test entry point, structured output and UI. | `257a1da`, `2757419`, `9a480ad`. |
 | 27–29 October 2026 | Controlled model adapter and provider integration. | Development snapshots and integration records. |
 | 29 October 2026 | Nebius/NVIDIA R1 followed by a separate R5/R7 run. | Recorded model responses and core assessments. |
 
-These are recorded commit or execution dates in their respective source histories. The October 26 delivery baseline imports earlier work. The new candidate commit identifies the assembled release source, rather than replacing that development history.
+Earlier research/core dates describe milestones in their respective source histories, rather than Git objects shipped in this candidate. The October 26 delivery history is supplied as a header extract in `metadata/SOURCE_DELIVERY_HISTORY.json`; its private historical trees are kept outside the distribution. The candidate Git history identifies the assembled release and its metadata successor. These recorded dates are development milestones, not claims about the earliest invention date.
 
 ## Runtime evidence scope
 
 The six offline inputs are distinct synthetic fixtures. The extended run contains 56 regression rows and 26 distinct inputs. Fixed-response model tests exercise the actual adapter/CLI/core path; recorded cloud integration uses real inference. These levels are labeled separately.
 
 Recorded Nebius runs used `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B`: R1 selected S-C01 and returned FEASIBLE; R5 selected S-A01 and returned INFEASIBLE; R7 returned NOT_APPLICABLE without launching the kernel. For the same R5 input, the primary assessment artifact is byte-identical across the Nebius and earlier DeepSeek runs.
+
+The A2 identity helper inventories its selected delivered roots, including the UI and English guides. Its digest is distinct from the full release manifest and is comparable with an older helper digest only when the member set is identical.
 
 The local UI exposes results through loopback HTTP with an exact-origin check, per-service token and restricted run body. Evidence reads require registered paths, containment and matching bytes/digests. API keys are excluded from kernel-child environments by the adapter; no key is part of the source candidate.

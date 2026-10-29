@@ -55,7 +55,7 @@ No API call is needed for installation, the offline UI, or the fixed-response ad
 
 H56 builds on earlier Wuti general-purpose OS and multi-agent runtime research. During the submission period, the work added independent fact/history and state-derivation cores, capability contracts and feasibility projection, H56-specific engineering assembly, CLI/UI productization, evidence-driven reassessment and a controlled model adapter with real Nebius/NVIDIA integration.
 
-The source histories first record K0/K1 on 25 September 2026 and C1/C2 on 4 October. H56 engineering assembly followed on 22–23 October, the delivery and UI commits on 26 October, and real model integration on 29 October. See the [architecture and development timeline](ARCHITECTURE.md#development-timeline).
+The source histories first record K0/K1 on 25 September 2026 and C1/C2 on 4 October. H56 engineering assembly followed on 22–23 October, the delivery and UI commits on 26 October, and real model integration on 29 October. See the [architecture and development timeline](ARCHITECTURE.md#development-timeline). Earlier core milestones refer to their original source histories; the delivery-history header extract is included as `metadata/SOURCE_DELIVERY_HISTORY.json`.
 
 ## Documentation
 
@@ -65,7 +65,7 @@ The source histories first record K0/K1 on 25 September 2026 and C1/C2 on 4 Octo
 | [RECOVERY_GUIDE.md](RECOVERY_GUIDE.md) | Clone, verify identities, install prerequisites, run and troubleshoot. |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Understand the four cores, contracts, source provenance and evidence scope. |
 
-The intended public documentation set is these four guides plus the owner's selected `LICENSE`. License selection remains a separate release decision; this local candidate is not a public-release approval.
+The four English entry guides are listed above. An [earlier Chinese overview](README.zh-CN.md) is retained with an edition note. The intended public documentation set is the four English guides plus the owner's selected `LICENSE`. License selection remains a separate release decision; this local candidate is not a public-release approval.
 
 ## Verification and coverage
 
@@ -79,12 +79,12 @@ python -B -m unittest model_ingress_v1.tests.test_smoke -v
 
 For a complete fixed-response model-to-core check, use the A2 command in the recovery guide. Its model provider is a fixture, while its CLI and core evaluations execute the real product code.
 
-`demo.py --all` runs **56 regression rows representing 26 byte-distinct inputs**; 30 rows repeat existing inputs. They are not 56 independent capabilities. The default demonstration uses six distinct inputs.
+`demo.py --all` runs **56 regression rows representing 26 byte-distinct inputs**; 30 rows repeat existing inputs. They are not 56 independent capabilities. All 30 repeated rows come from the same baseline input, which appears 31 times; the other 25 inputs appear once each. The default demonstration uses six distinct inputs.
 
 ## Source identity and candidate layout
 
 `offline_qualification_v1/SOURCE_MANIFEST.json` binds the 139-member offline computation closure, including the original core source. `RELEASE_MANIFEST.json` describes this candidate's broader file set, including the adapter, UI and documentation. The Git commit identifies the assembled candidate.
 
-Keep `.gitattributes` and its `* -text` rule. Preserve the registered source bytes and relative paths. The historical component/package registries retain earlier source-delivery metadata; the current user entry points are `demo.py` and `ui/serve.py`.
+Keep `.gitattributes` and its `* -text` rule. Preserve the registered source bytes and relative paths. The root package metadata describes this assembled candidate; historical component registries retain their earlier source-delivery scope. The current user entry points are `demo.py` and `ui/serve.py`.
 
 The public-facing candidate excludes private provenance locks, credentials, private run directories and inactive historical front doors. Those source archives remain in the private development records. The 139-member computation closure is retained unchanged.

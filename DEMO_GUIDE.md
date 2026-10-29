@@ -44,7 +44,7 @@ python -B ui/serve.py --no-browser
 
 Open **http://127.0.0.1:8765** and use the page's run button. This invokes `demo.py --all` in a real subprocess. Inspect the decision, rejection and evidence panels after completion.
 
-The full run contains 56 rows: 42 DECIDED and 14 REJECTED. It covers 26 distinct input byte strings, with 30 repeated rows. The UI displays those measures separately.
+The full run contains 56 rows: 42 DECIDED and 14 REJECTED. It covers 26 distinct input byte strings, with 30 repeated rows. All 30 repeated rows are repeats of the baseline input: 31 occurrences of that input and one occurrence each of the other 25. The UI displays row count and distinct-input coverage separately.
 
 The service listens only on loopback. Its run endpoint checks the exact origin, a per-service token and an empty JSON request body. Evidence access checks path containment, registration and file integrity. Use the page itself; manually typing an un-tokened POST is not the normal workflow.
 
@@ -67,7 +67,7 @@ $a2 = Join-Path $env:TEMP ('h56-a2-' + [guid]::NewGuid().ToString('N'))
 python -B -m model_ingress_v1.tests.a2_integration --all-six --root $a2
 ```
 
-The provider supplies fixed model responses, while the adapter, input construction, CLI, original cores and assessment storage execute real code. The driver checks all six scenarios, exact exit codes, input digests and source stability before and after execution. It uses the in-tree frozen input-digest baseline and does not need a private evidence directory.
+The provider supplies fixed model responses, while the adapter, input construction, CLI, original cores and assessment storage execute real code. The driver checks all six scenarios, exact exit codes, input digests and source stability before and after execution. It compares actual generated input digests with the frozen in-tree baseline constants. This is one packaged baseline, rather than a second independently supplied A0 report, and does not need a private evidence directory.
 
 This check is labeled as fixed-response integration. It is distinct from the previously recorded real Nebius inference runs.
 

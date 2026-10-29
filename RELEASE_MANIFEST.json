@@ -1,6 +1,6 @@
 {
   "schema": "H56_ASSEMBLED_CANDIDATE_MANIFEST_V1",
-  "candidate_id": "H56-CANDIDATE-20261030-V1",
+  "candidate_id": "H56-CANDIDATE-20261030-V2",
   "source_head": "9a480ad1c0d89143ede35f6bc2b4057c68bc4f93",
   "source_state": "WORKING_TREE_SNAPSHOT_WITH_RECORDED_CANDIDATE_CHANGES",
   "distribution_status": "PRIVATE_CANDIDATE_LICENSE_AND_PUBLICATION_SEPARATE",
@@ -35,8 +35,44 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 8364,
-      "sha256": "a299f1337b000b968b5bc35dd0d7ea4d30601b04585740ceaed408e107811ff4",
+      "bytes": 8912,
+      "sha256": "cf30fc1a928cb7dade0d142f5a26b75c1d2f5dcdf6a21c85230895bb87c9d68b",
+      "computation_closure": false
+    },
+    {
+      "path": "DEMO_GUIDE.md",
+      "bytes": 5519,
+      "sha256": "dae96c1f52263936a703b222b7138e124fd8edd65390ac59bc92d4945c507268",
+      "computation_closure": false
+    },
+    {
+      "path": "PACKAGE_MANIFEST.json",
+      "bytes": 53341,
+      "sha256": "f99e42afeb747a8fb5b69568f9d2fa0baccb7da3d58b1cdef7afd570a46b9d6b",
+      "computation_closure": false
+    },
+    {
+      "path": "PACKAGE_STATUS.json",
+      "bytes": 1170,
+      "sha256": "c45e7fc60ff4dd5d14f7ecaaadda57ecc3e4f70ceb67169fb4fd01065cdfbc2d",
+      "computation_closure": false
+    },
+    {
+      "path": "README.md",
+      "bytes": 6364,
+      "sha256": "5781f589a9c80bc80917b6a96c7fc4af207aeb8a1e6afb46ab5df52830ec73a7",
+      "computation_closure": false
+    },
+    {
+      "path": "README.zh-CN.md",
+      "bytes": 11958,
+      "sha256": "f4fe57d34070d7edef38714aaa5e7342c850319c7bb87eba83693c883f29d37b",
+      "computation_closure": false
+    },
+    {
+      "path": "RECOVERY_GUIDE.md",
+      "bytes": 9813,
+      "sha256": "b990b1a5e6e41bc33138a63c3051545bd93c47016cd4aa2867220844dd3e966f",
       "computation_closure": false
     },
     {
@@ -46,9 +82,21 @@
       "computation_closure": false
     },
     {
-      "path": "DEMO_GUIDE.md",
-      "bytes": 5246,
-      "sha256": "6666274a9dea05df8eedbeb7386069c3a4b05ab5ecfac6d6cb17f9e5f09ceaa5",
+      "path": "metadata/BASELINE_ACCEPTANCE.json",
+      "bytes": 1334,
+      "sha256": "ec62dbe604b2ddc264c9c048d0513e107f273c66e05bc0c833642397a24e227c",
+      "computation_closure": false
+    },
+    {
+      "path": "metadata/SOURCE_DELIVERY_HISTORY.json",
+      "bytes": 1347,
+      "sha256": "fb30c042684828fe43287e3cbb713368770badbc12c206f949fdcdc91f268667",
+      "computation_closure": false
+    },
+    {
+      "path": "model_ingress_v1/README.md",
+      "bytes": 3915,
+      "sha256": "656a8206f2c0df398c01a366836b7b89b6a0a6b60560c0208eef3836a55514c2",
       "computation_closure": false
     },
     {
@@ -67,12 +115,6 @@
       "path": "model_ingress_v1/provider.py",
       "bytes": 20122,
       "sha256": "5b85a42db4b6ef5050f5025a2e74e025daa731e5d708e9fa3adf024ba3100e73",
-      "computation_closure": false
-    },
-    {
-      "path": "model_ingress_v1/README.md",
-      "bytes": 3915,
-      "sha256": "656a8206f2c0df398c01a366836b7b89b6a0a6b60560c0208eef3836a55514c2",
       "computation_closure": false
     },
     {
@@ -154,6 +196,18 @@
       "computation_closure": false
     },
     {
+      "path": "offline_qualification_v1/README.md",
+      "bytes": 7385,
+      "sha256": "659e91c730ea1d6887219c6d68460870c3ed17efdf2ad7d3aeb999818828cc4f",
+      "computation_closure": true
+    },
+    {
+      "path": "offline_qualification_v1/SOURCE_MANIFEST.json",
+      "bytes": 42347,
+      "sha256": "adeca462c152a7ee34c4bdee0f1f9b3833adab6b1aa5ae6e110d2ae58a42c6cb",
+      "computation_closure": false
+    },
+    {
       "path": "offline_qualification_v1/__init__.py",
       "bytes": 98,
       "sha256": "6ee5252b6fbfae56cdddd08de41c08f09ba18a291e2b576aea53bc1246ae9c14",
@@ -163,6 +217,12 @@
       "path": "offline_qualification_v1/assessment.py",
       "bytes": 4745,
       "sha256": "b133468c295f1053050023582b0fd046957131c3bb8c248d527d926a46d98259",
+      "computation_closure": true
+    },
+    {
+      "path": "offline_qualification_v1/assets.py",
+      "bytes": 7853,
+      "sha256": "5f9d9a1bb3bcec34554ce07d540952e1b1b2d364ffa9865159fa3e5764177a4d",
       "computation_closure": true
     },
     {
@@ -187,12 +247,6 @@
       "path": "offline_qualification_v1/assets/state_mapping.json",
       "bytes": 2207,
       "sha256": "375957a1882842c99ef4a1cba0f0e4b18142045e86effddef142070b688b4de9",
-      "computation_closure": true
-    },
-    {
-      "path": "offline_qualification_v1/assets.py",
-      "bytes": 7853,
-      "sha256": "5f9d9a1bb3bcec34554ce07d540952e1b1b2d364ffa9865159fa3e5764177a4d",
       "computation_closure": true
     },
     {
@@ -226,22 +280,10 @@
       "computation_closure": true
     },
     {
-      "path": "offline_qualification_v1/README.md",
-      "bytes": 7385,
-      "sha256": "659e91c730ea1d6887219c6d68460870c3ed17efdf2ad7d3aeb999818828cc4f",
-      "computation_closure": true
-    },
-    {
       "path": "offline_qualification_v1/records.py",
       "bytes": 8548,
       "sha256": "1225fae7a5d14a4109a88882ebc25e62d04df7a9193735d3d85198c1e7d12c62",
       "computation_closure": true
-    },
-    {
-      "path": "offline_qualification_v1/SOURCE_MANIFEST.json",
-      "bytes": 42347,
-      "sha256": "adeca462c152a7ee34c4bdee0f1f9b3833adab6b1aa5ae6e110d2ae58a42c6cb",
-      "computation_closure": false
     },
     {
       "path": "offline_qualification_v1/tests/test_boundary.py",
@@ -268,39 +310,15 @@
       "computation_closure": true
     },
     {
-      "path": "PACKAGE_MANIFEST.json",
-      "bytes": 87369,
-      "sha256": "6837459c8139715c9c9528b3bf9ae3b93bda3b887cfba44bfa8321edbe465a1d",
-      "computation_closure": false
-    },
-    {
-      "path": "PACKAGE_STATUS.json",
-      "bytes": 24530,
-      "sha256": "640302d7ca5c2e65b5f838da741bc2ec7647c61e65d08e01ec2fa8cea7d88274",
-      "computation_closure": false
-    },
-    {
-      "path": "README.md",
-      "bytes": 5900,
-      "sha256": "1d084953476114e7cddd6da4ada86282ccdc470b6e49377aea575df17c470ffb",
-      "computation_closure": false
-    },
-    {
-      "path": "README.zh-CN.md",
-      "bytes": 11958,
-      "sha256": "f4fe57d34070d7edef38714aaa5e7342c850319c7bb87eba83693c883f29d37b",
-      "computation_closure": false
-    },
-    {
-      "path": "RECOVERY_GUIDE.md",
-      "bytes": 9293,
-      "sha256": "6af42f06f8f40b339fd687809d37764d80fc734dd74510ec03d5ff2e66c616cb",
-      "computation_closure": false
-    },
-    {
       "path": "run_tests.py",
       "bytes": 1873,
       "sha256": "3eabbf2e44abf3633f0d202fed2e69f24901578a910c0e59f6a4f9692e58533d",
+      "computation_closure": false
+    },
+    {
+      "path": "runtime_binding_v1_20261024/SOURCE_MANIFEST.json",
+      "bytes": 43169,
+      "sha256": "28dc4c86addcc0de18bdfa5e1256a173080f205f65ffdca88ed1c3081bf86974",
       "computation_closure": false
     },
     {
@@ -424,15 +442,15 @@
       "computation_closure": true
     },
     {
-      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/candidate_canonical_capability_contract_v0_1/pyproject.toml",
-      "bytes": 427,
-      "sha256": "860e3f6b532a838a248bc42165c45278b0f1304bde7cb995ed01383c81cd9a8f",
-      "computation_closure": true
-    },
-    {
       "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/candidate_canonical_capability_contract_v0_1/README.md",
       "bytes": 1736,
       "sha256": "d3e6dd0e9740d50bb151596e0d90a339f3191bc7fe960d29f589c53aecbba78f",
+      "computation_closure": true
+    },
+    {
+      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/candidate_canonical_capability_contract_v0_1/pyproject.toml",
+      "bytes": 427,
+      "sha256": "860e3f6b532a838a248bc42165c45278b0f1304bde7cb995ed01383c81cd9a8f",
       "computation_closure": true
     },
     {
@@ -532,15 +550,15 @@
       "computation_closure": true
     },
     {
-      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/candidate_capability_feasibility_projection_v0_1/pyproject.toml",
-      "bytes": 424,
-      "sha256": "0b6beb30b31f22cf6b319cdbb2c7e219d924e5049cdeefe3b43c6350d9ee9671",
-      "computation_closure": true
-    },
-    {
       "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/candidate_capability_feasibility_projection_v0_1/README.md",
       "bytes": 1647,
       "sha256": "b5bd2b2f0bde71b7015d899c206eae8e9b70f89990d7c86750283431eb181d69",
+      "computation_closure": true
+    },
+    {
+      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/candidate_capability_feasibility_projection_v0_1/pyproject.toml",
+      "bytes": 424,
+      "sha256": "0b6beb30b31f22cf6b319cdbb2c7e219d924e5049cdeefe3b43c6350d9ee9671",
       "computation_closure": true
     },
     {
@@ -610,36 +628,6 @@
       "computation_closure": true
     },
     {
-      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k0_canonical_fact_foundation_v1/evidence/five_body_candidate_software_world_quality_review_py313.json",
-      "bytes": 19105,
-      "sha256": "505d54ec4d0925ff13977964b65a9581c71a9f44ae0d360421087e7aac9560bc",
-      "computation_closure": true
-    },
-    {
-      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k0_canonical_fact_foundation_v1/evidence/five_body_candidate_software_world_quality_review_py39.json",
-      "bytes": 19105,
-      "sha256": "505d54ec4d0925ff13977964b65a9581c71a9f44ae0d360421087e7aac9560bc",
-      "computation_closure": true
-    },
-    {
-      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k0_canonical_fact_foundation_v1/evidence/five_body_candidate_software_world_review.json",
-      "bytes": 20014,
-      "sha256": "dd02061f1e87376b60ff25fc98b3308c9e201e9a2bc4c6f3fa6422fcdec3fa25",
-      "computation_closure": true
-    },
-    {
-      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k0_canonical_fact_foundation_v1/evidence/k0_contract_validation_py313.json",
-      "bytes": 1378,
-      "sha256": "97a34b0a67d025087ca5bc9d80506d67de09f9e1d4a81cdca610a8a56bd3eb8a",
-      "computation_closure": true
-    },
-    {
-      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k0_canonical_fact_foundation_v1/evidence/k0_contract_validation_py39.json",
-      "bytes": 1377,
-      "sha256": "7e4529baec77df451e277a601bbcdf43d3193d7589d2b7ae129f1e3fdc62ee4a",
-      "computation_closure": true
-    },
-    {
       "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k0_canonical_fact_foundation_v1/K0_CANDIDATE_REVIEW_INPUT.md",
       "bytes": 850,
       "sha256": "b6a455317b958132de7c5333df3601814262043c595c21bacbbc09b1d6eea445",
@@ -673,6 +661,36 @@
       "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k0_canonical_fact_foundation_v1/README.md",
       "bytes": 1862,
       "sha256": "a8855d75c4ade21bc144e2227447842eec08ca9274b14ee06a640be5a89c6cca",
+      "computation_closure": true
+    },
+    {
+      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k0_canonical_fact_foundation_v1/evidence/five_body_candidate_software_world_quality_review_py313.json",
+      "bytes": 19105,
+      "sha256": "505d54ec4d0925ff13977964b65a9581c71a9f44ae0d360421087e7aac9560bc",
+      "computation_closure": true
+    },
+    {
+      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k0_canonical_fact_foundation_v1/evidence/five_body_candidate_software_world_quality_review_py39.json",
+      "bytes": 19105,
+      "sha256": "505d54ec4d0925ff13977964b65a9581c71a9f44ae0d360421087e7aac9560bc",
+      "computation_closure": true
+    },
+    {
+      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k0_canonical_fact_foundation_v1/evidence/five_body_candidate_software_world_review.json",
+      "bytes": 20014,
+      "sha256": "dd02061f1e87376b60ff25fc98b3308c9e201e9a2bc4c6f3fa6422fcdec3fa25",
+      "computation_closure": true
+    },
+    {
+      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k0_canonical_fact_foundation_v1/evidence/k0_contract_validation_py313.json",
+      "bytes": 1378,
+      "sha256": "97a34b0a67d025087ca5bc9d80506d67de09f9e1d4a81cdca610a8a56bd3eb8a",
+      "computation_closure": true
+    },
+    {
+      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k0_canonical_fact_foundation_v1/evidence/k0_contract_validation_py39.json",
+      "bytes": 1377,
+      "sha256": "7e4529baec77df451e277a601bbcdf43d3193d7589d2b7ae129f1e3fdc62ee4a",
       "computation_closure": true
     },
     {
@@ -724,36 +742,6 @@
       "computation_closure": true
     },
     {
-      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k1_state_derivation_foundation_v1/evidence/five_body_candidate_software_world_quality_review_py313.json",
-      "bytes": 19062,
-      "sha256": "e52634153832c86854ed7fb5648746524ebf2f377fa206c566383bd1070dccf7",
-      "computation_closure": true
-    },
-    {
-      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k1_state_derivation_foundation_v1/evidence/five_body_candidate_software_world_quality_review_py39.json",
-      "bytes": 19062,
-      "sha256": "e52634153832c86854ed7fb5648746524ebf2f377fa206c566383bd1070dccf7",
-      "computation_closure": true
-    },
-    {
-      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k1_state_derivation_foundation_v1/evidence/five_body_candidate_software_world_review.json",
-      "bytes": 18592,
-      "sha256": "5147e008a4a8f19532201289ec7a3d132874b235fa272bcd68323fdb7ab88f68",
-      "computation_closure": true
-    },
-    {
-      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k1_state_derivation_foundation_v1/evidence/k1_contract_validation_py313.json",
-      "bytes": 1774,
-      "sha256": "4bdea9f431ce443a149447ea26d0e38bb24b426d7d0efd7416923e5bf5ba2bd1",
-      "computation_closure": true
-    },
-    {
-      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k1_state_derivation_foundation_v1/evidence/k1_contract_validation_py39.json",
-      "bytes": 1773,
-      "sha256": "e2c892d2903ea0619de279ebb13fe04521301c38cf2e2fb139a823a72994b207",
-      "computation_closure": true
-    },
-    {
       "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k1_state_derivation_foundation_v1/K1_CANDIDATE_REVIEW_INPUT.md",
       "bytes": 864,
       "sha256": "47c595745255267dc2fec0ee3cd6bfd3796ce82a4b9278ffe94d80e62389a043",
@@ -787,6 +775,36 @@
       "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k1_state_derivation_foundation_v1/README.md",
       "bytes": 1287,
       "sha256": "679ff9e18871e5b0110e43f623ac6f1ddeaff3d2151d4bf79f3bbca6561ca3c5",
+      "computation_closure": true
+    },
+    {
+      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k1_state_derivation_foundation_v1/evidence/five_body_candidate_software_world_quality_review_py313.json",
+      "bytes": 19062,
+      "sha256": "e52634153832c86854ed7fb5648746524ebf2f377fa206c566383bd1070dccf7",
+      "computation_closure": true
+    },
+    {
+      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k1_state_derivation_foundation_v1/evidence/five_body_candidate_software_world_quality_review_py39.json",
+      "bytes": 19062,
+      "sha256": "e52634153832c86854ed7fb5648746524ebf2f377fa206c566383bd1070dccf7",
+      "computation_closure": true
+    },
+    {
+      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k1_state_derivation_foundation_v1/evidence/five_body_candidate_software_world_review.json",
+      "bytes": 18592,
+      "sha256": "5147e008a4a8f19532201289ec7a3d132874b235fa272bcd68323fdb7ab88f68",
+      "computation_closure": true
+    },
+    {
+      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k1_state_derivation_foundation_v1/evidence/k1_contract_validation_py313.json",
+      "bytes": 1774,
+      "sha256": "4bdea9f431ce443a149447ea26d0e38bb24b426d7d0efd7416923e5bf5ba2bd1",
+      "computation_closure": true
+    },
+    {
+      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/k1_state_derivation_foundation_v1/evidence/k1_contract_validation_py39.json",
+      "bytes": 1773,
+      "sha256": "e2c892d2903ea0619de279ebb13fe04521301c38cf2e2fb139a823a72994b207",
       "computation_closure": true
     },
     {
@@ -826,15 +844,33 @@
       "computation_closure": true
     },
     {
-      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/unified_runtime_ontology_profile_v1_1/pyproject.toml",
-      "bytes": 510,
-      "sha256": "6a281056bde9fafaf673a5621aca880dd3164ba2c63b7c5d4a61070fe2d0ed7a",
-      "computation_closure": true
-    },
-    {
       "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/unified_runtime_ontology_profile_v1_1/README.md",
       "bytes": 1996,
       "sha256": "cea6aeb48fdcba2e21938d816a75749b906968dec0ac90122aa3755ce8e526e0",
+      "computation_closure": true
+    },
+    {
+      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/unified_runtime_ontology_profile_v1_1/UNIFIED_RUNTIME_ONTOLOGY_PROFILE_V1_1_MANIFEST.json",
+      "bytes": 3399,
+      "sha256": "a99b493deac30ab134741b8d6a93137f21a543b7ee03c19ce1d8993af876e403",
+      "computation_closure": true
+    },
+    {
+      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/unified_runtime_ontology_profile_v1_1/UNIFIED_RUNTIME_ONTOLOGY_PROFILE_V1_1_REQUIREMENT.md",
+      "bytes": 1331,
+      "sha256": "36cc39ac98b1fed16602e65fd19ba8234b144b3de343eb75cad9d2ef799d9dbc",
+      "computation_closure": true
+    },
+    {
+      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/unified_runtime_ontology_profile_v1_1/UNIFIED_RUNTIME_ONTOLOGY_PROFILE_V1_1_STRUCTURED_SEMANTIC_REVIEW_INPUT_V1.json",
+      "bytes": 3001,
+      "sha256": "21d0bc9b4d1606d783d50b0153dde32f7fbc4a60b296d13485a3b77eee8e4e6c",
+      "computation_closure": true
+    },
+    {
+      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/unified_runtime_ontology_profile_v1_1/pyproject.toml",
+      "bytes": 510,
+      "sha256": "6a281056bde9fafaf673a5621aca880dd3164ba2c63b7c5d4a61070fe2d0ed7a",
       "computation_closure": true
     },
     {
@@ -850,15 +886,15 @@
       "computation_closure": true
     },
     {
-      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/unified_runtime_ontology_profile_v1_1/src/unified_runtime_ontology_profile/data/__init__.py",
-      "bytes": 51,
-      "sha256": "19cd2bca84eeb218aa44f930898b08e61756143d11c2f7a33a0dcae3f2f2b1a1",
-      "computation_closure": true
-    },
-    {
       "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/unified_runtime_ontology_profile_v1_1/src/unified_runtime_ontology_profile/data/UNIFIED_RUNTIME_ONTOLOGY_PROFILE_V1_1.json",
       "bytes": 4895,
       "sha256": "997ce3dcc07bde21365d35eb6d6a5c7d7454f6b4944d06f5a6e5aceedf399f6b",
+      "computation_closure": true
+    },
+    {
+      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/unified_runtime_ontology_profile_v1_1/src/unified_runtime_ontology_profile/data/__init__.py",
+      "bytes": 51,
+      "sha256": "19cd2bca84eeb218aa44f930898b08e61756143d11c2f7a33a0dcae3f2f2b1a1",
       "computation_closure": true
     },
     {
@@ -901,24 +937,6 @@
       "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/unified_runtime_ontology_profile_v1_1/tools/verify_unified_runtime_ontology_profile_v1_1_raw_git_identity.py",
       "bytes": 1581,
       "sha256": "7e15eb70a47919ed611d749e9fce78c2efa8244a6a4944b96eac58be32f602ca",
-      "computation_closure": true
-    },
-    {
-      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/unified_runtime_ontology_profile_v1_1/UNIFIED_RUNTIME_ONTOLOGY_PROFILE_V1_1_MANIFEST.json",
-      "bytes": 3399,
-      "sha256": "a99b493deac30ab134741b8d6a93137f21a543b7ee03c19ce1d8993af876e403",
-      "computation_closure": true
-    },
-    {
-      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/unified_runtime_ontology_profile_v1_1/UNIFIED_RUNTIME_ONTOLOGY_PROFILE_V1_1_REQUIREMENT.md",
-      "bytes": 1331,
-      "sha256": "36cc39ac98b1fed16602e65fd19ba8234b144b3de343eb75cad9d2ef799d9dbc",
-      "computation_closure": true
-    },
-    {
-      "path": "runtime_binding_v1_20261024/engineering/vendor/clean_core_projects/unified_runtime_ontology_profile_v1_1/UNIFIED_RUNTIME_ONTOLOGY_PROFILE_V1_1_STRUCTURED_SEMANTIC_REVIEW_INPUT_V1.json",
-      "bytes": 3001,
-      "sha256": "21d0bc9b4d1606d783d50b0153dde32f7fbc4a60b296d13485a3b77eee8e4e6c",
       "computation_closure": true
     },
     {
@@ -1048,9 +1066,33 @@
       "computation_closure": true
     },
     {
-      "path": "runtime_binding_v1_20261024/SOURCE_MANIFEST.json",
-      "bytes": 43169,
-      "sha256": "28dc4c86addcc0de18bdfa5e1256a173080f205f65ffdca88ed1c3081bf86974",
+      "path": "runtime_windows/BOOTSTRAP_SOURCE_MANIFEST.json",
+      "bytes": 1681,
+      "sha256": "cb9f767d32c04c867b56db4c874eef6941da2224ecf8dd355727bed346594fd5",
+      "computation_closure": false
+    },
+    {
+      "path": "runtime_windows/PERIMETER_PORT_MAP.json",
+      "bytes": 10493,
+      "sha256": "a20cc4a3d52a7746648e89d6ed12ea00e56aeb91ee85ba0224c453d269639f41",
+      "computation_closure": false
+    },
+    {
+      "path": "runtime_windows/RUNTIME_SOURCE_MANIFEST.json",
+      "bytes": 39191,
+      "sha256": "4f3606f53cb1007889e077aefe4141da8b4a383e59cc95e2d8d3bc8132d5fd11",
+      "computation_closure": false
+    },
+    {
+      "path": "runtime_windows/SUCCESSOR_DIFF.json",
+      "bytes": 15004,
+      "sha256": "cd73f54ddffa7aa7c9e8a33d0ad7964c4ce57dd7282a457b6e631324c5aa810a",
+      "computation_closure": false
+    },
+    {
+      "path": "runtime_windows/WINDOWS_CONNECTION_CONTRACT.json",
+      "bytes": 2647,
+      "sha256": "af69193656e5790b3350265e001c52c17ff968745aa264a0db32b630c38fd692",
       "computation_closure": false
     },
     {
@@ -1138,12 +1180,6 @@
       "computation_closure": false
     },
     {
-      "path": "runtime_windows/BOOTSTRAP_SOURCE_MANIFEST.json",
-      "bytes": 1681,
-      "sha256": "cb9f767d32c04c867b56db4c874eef6941da2224ecf8dd355727bed346594fd5",
-      "computation_closure": false
-    },
-    {
       "path": "runtime_windows/candidate_cli.py",
       "bytes": 2317,
       "sha256": "44a8c38d94774a2c2e11b47c8e07afbb5b1fb9b994271f3550045a133c352d42",
@@ -1204,12 +1240,6 @@
       "computation_closure": true
     },
     {
-      "path": "runtime_windows/PERIMETER_PORT_MAP.json",
-      "bytes": 10493,
-      "sha256": "a20cc4a3d52a7746648e89d6ed12ea00e56aeb91ee85ba0224c453d269639f41",
-      "computation_closure": false
-    },
-    {
       "path": "runtime_windows/preflight.py",
       "bytes": 18852,
       "sha256": "f1c9cd6509c37f9e06edbf46ef9c2b5723d866c7441c76dfdf96b2eebd8456b6",
@@ -1264,22 +1294,10 @@
       "computation_closure": true
     },
     {
-      "path": "runtime_windows/RUNTIME_SOURCE_MANIFEST.json",
-      "bytes": 39191,
-      "sha256": "4f3606f53cb1007889e077aefe4141da8b4a383e59cc95e2d8d3bc8132d5fd11",
-      "computation_closure": false
-    },
-    {
       "path": "runtime_windows/source_identity.py",
       "bytes": 11985,
       "sha256": "36a3dce890ce107995870fad4d07d6a57d4b31ba921c211a2f7acbbd52637f7c",
       "computation_closure": true
-    },
-    {
-      "path": "runtime_windows/SUCCESSOR_DIFF.json",
-      "bytes": 15004,
-      "sha256": "cd73f54ddffa7aa7c9e8a33d0ad7964c4ce57dd7282a457b6e631324c5aa810a",
-      "computation_closure": false
     },
     {
       "path": "runtime_windows/task_catalog.py",
@@ -1384,9 +1402,9 @@
       "computation_closure": false
     },
     {
-      "path": "runtime_windows/WINDOWS_CONNECTION_CONTRACT.json",
-      "bytes": 2647,
-      "sha256": "af69193656e5790b3350265e001c52c17ff968745aa264a0db32b630c38fd692",
+      "path": "ui/VIDEO_SCRIPT.md",
+      "bytes": 6948,
+      "sha256": "8f6c9a7fd4880d0a9ebc66beb4484d9fbfbac03face899f436bf88f54e11c6a3",
       "computation_closure": false
     },
     {
@@ -1408,17 +1426,12 @@
       "computation_closure": false
     },
     {
-      "path": "ui/VIDEO_SCRIPT.md",
-      "bytes": 6948,
-      "sha256": "8f6c9a7fd4880d0a9ebc66beb4484d9fbfbac03face899f436bf88f54e11c6a3",
-      "computation_closure": false
-    },
-    {
       "path": "work_packages.json",
-      "bytes": 37033,
-      "sha256": "f58b10f62548088f1c2455b6f33f735f5a2ebda4d49bceb0658c894c2d08d60a",
+      "bytes": 936,
+      "sha256": "cdb0e56fdd480844d95bed0adf382162476addd56752d76a95f27aacf7bda498",
       "computation_closure": false
     }
   ],
-  "self_exclusion": "This file and .git are excluded from their own content inventory; the candidate Git commit binds this file."
+  "self_exclusion": "This file and .git are excluded from their own content inventory; the candidate Git commit binds this file.",
+  "supersedes_candidate_commit": "08654f039ceb6ac845cd2231ad8a022d660f6fc4"
 }
