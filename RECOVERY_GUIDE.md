@@ -114,9 +114,9 @@ python -B ui/serve.py --no-browser
 
 Open **http://127.0.0.1:8765** in the same machine's browser. The page's run button launches `demo.py --all`. Expected totals are 56 rows, 42 DECIDED, 14 REJECTED, 26 distinct inputs and 30 repeated rows. Allow the run to finish before opening its registered evidence.
 
-Use `--port 8792` if the default port is occupied. Use the matching `127.0.0.1` URL; origin and token checks intentionally reject unrelated origins and hand-crafted requests missing the page token.
+Use `--port 8792` if the default port is occupied. Use the matching port in the URL. `127.0.0.1`, `localhost` and `[::1]` are all accepted as the literal loopback host, so typing the friendlier `http://localhost:8765` works; origin and token checks still reject unrelated origins and hand-crafted requests missing the page token.
 
-All routes require the listener's exact Host; a supplied foreign Origin or cross-site browser request is rejected. API reads also require the current `X-H56-Run-Token`, which the page automatically supplies when polling results and viewing evidence. Keep this service on loopback. Subprocess environments remove model-prefixed, named and credential-suffixed variables, plus the model driver's selected custom key slot; ordinary Windows process variables remain available. This is a name-based filter rather than a general-purpose OS sandbox.
+All routes require the listener's exact loopback Host; a supplied foreign Origin or cross-site browser request is rejected. API reads also require the current `X-H56-Run-Token`, which the page automatically supplies when polling results and viewing evidence. Keep this service on loopback. Subprocess environments remove model-prefixed, named and credential-suffixed variables — this covers underscore-free vendor spellings (`DASHSCOPE_APIKEY`, `SILICONFLOW_APIKEY`) and password-derived values (`MY_PASSWORD_HASH`) — plus the model driver's selected custom key slot; ordinary Windows process variables remain available. The filter matches variable names only, so an unusual credential name that matches no rule is not removed; this is a name-based filter rather than a general-purpose OS sandbox.
 
 ## Optional cross-interpreter check
 

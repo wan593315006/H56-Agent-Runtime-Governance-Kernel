@@ -59,8 +59,8 @@
     },
     {
       "path": "PACKAGE_MANIFEST.json",
-      "bytes": 54611,
-      "sha256": "f9e27a8014d408eadf13e082f058a11e340b25e4b2435e9777d177f443451d37",
+      "bytes": 54612,
+      "sha256": "b1fe5207da3f558cc3089e3d7a26d3f6e965bbeb2655fee4174cd9e314b7ba1b",
       "computation_closure": false
     },
     {
@@ -83,14 +83,14 @@
     },
     {
       "path": "RECOVERY_GUIDE.md",
-      "bytes": 14507,
-      "sha256": "230e833540482527ff1fdf2a0e1c181671165ade00f7caad94479160feab6e64",
+      "bytes": 14899,
+      "sha256": "6c9c8c30659d9e1ad6e82a787e82c35554ffc13bc5e63c33be5f747b02cfd368",
       "computation_closure": false
     },
     {
       "path": "demo.py",
-      "bytes": 32981,
-      "sha256": "5b23297bc1a62c3265029688d9f42b10a3aa3cba05b1f3f7f6cbaf910b8bfb26",
+      "bytes": 33437,
+      "sha256": "ca925c82bd88a804fba2b5d46ae125090b2db6171246125bfda9b4361c75c60a",
       "computation_closure": false
     },
     {
@@ -126,7 +126,7 @@
     {
       "path": "metadata/SOURCE_COMPARISON.json",
       "bytes": 4637,
-      "sha256": "cd44900ae5836651f6bd539412c7475156eb2ed03b7795cc6c72b97668294f59",
+      "sha256": "e9e652f257260bb0f8c1344d054349fe862a5494487778f741003ac0188f8fb9",
       "computation_closure": false
     },
     {
@@ -173,8 +173,8 @@
     },
     {
       "path": "model_ingress_v1/run.py",
-      "bytes": 32763,
-      "sha256": "afd3849ebaeb4c52a9dfd5c0827c58b313f34b379a62751ac9c6fae506c4253b",
+      "bytes": 33219,
+      "sha256": "d26e326217614ae2b1719840c96221ef9f60a1358d7950176b139e938fff6a41",
       "computation_closure": false
     },
     {
@@ -221,8 +221,8 @@
     },
     {
       "path": "model_ingress_v1/tests/test_stage_b.py",
-      "bytes": 86053,
-      "sha256": "c481ffd3715e27903cf5afb5b53c652d028aa504efea4b7f385fbab0e534888b",
+      "bytes": 86966,
+      "sha256": "6e5edc5b29b5c26503d02d87d3d9c7993d778aba220b1334dec388813f5700d8",
       "computation_closure": false
     },
     {
@@ -1457,14 +1457,14 @@
     },
     {
       "path": "ui/serve.py",
-      "bytes": 15398,
-      "sha256": "f9a4e6c3dcaa535ec6ee5bbaf35589cd16a977ab276985429545921512de77ba",
+      "bytes": 16651,
+      "sha256": "548207533b7a4baa33fc6068b2c053cd2ebccedc0c2a6b47192537fdaeead96f",
       "computation_closure": false
     },
     {
       "path": "ui/test_release_guards.py",
-      "bytes": 9074,
-      "sha256": "fa752d4732cce88ed08d8ae15bcd881fe8dc24ad1ab868b83bcb86482206dfbb",
+      "bytes": 10984,
+      "sha256": "b87644ebfd18cf2701677f8dc33e21cd0a457cacc933ed430757d763cce22129",
       "computation_closure": false
     },
     {

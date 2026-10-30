@@ -26,31 +26,31 @@
     {
       "path": "demo.py",
       "development_sha256": "abf67dc45cfb24c611cd5325cb7b9281365d8b0d73c840758ce80eb67de624aa",
-      "candidate_sha256": "5b23297bc1a62c3265029688d9f42b10a3aa3cba05b1f3f7f6cbaf910b8bfb26",
+      "candidate_sha256": "ca925c82bd88a804fba2b5d46ae125090b2db6171246125bfda9b4361c75c60a",
       "purpose": "Remove common credential-named environment variables from direct CLI child launches; retain Windows process variables."
     },
     {
       "path": "ui/serve.py",
       "development_sha256": "5c9d878b846fd38c623efb0d214f45dae8ac887e2460387fd1f0044f3d87f7f8",
-      "candidate_sha256": "f9a4e6c3dcaa535ec6ee5bbaf35589cd16a977ab276985429545921512de77ba",
+      "candidate_sha256": "548207533b7a4baa33fc6068b2c053cd2ebccedc0c2a6b47192537fdaeead96f",
       "purpose": "Match child credential filtering, validate loopback Host/source and require the current token on API reads."
     },
     {
       "path": "model_ingress_v1/run.py",
       "development_sha256": "55579056ce0992b80d524816734bcdc39ddb23ed6f46af9b9bab1c487f76f072",
-      "candidate_sha256": "afd3849ebaeb4c52a9dfd5c0827c58b313f34b379a62751ac9c6fae506c4253b",
+      "candidate_sha256": "d26e326217614ae2b1719840c96221ef9f60a1358d7950176b139e938fff6a41",
       "purpose": "Apply the same credential suffix rules while preserving explicit custom key-slot filtering."
     },
     {
       "path": "ui/test_release_guards.py",
       "development_sha256": "fe71a2c74b8ac33349cf1f84d1b3481949497855a1a17d123c1057ce2c793c6d",
-      "candidate_sha256": "fa752d4732cce88ed08d8ae15bcd881fe8dc24ad1ab868b83bcb86482206dfbb",
+      "candidate_sha256": "b87644ebfd18cf2701677f8dc33e21cd0a457cacc933ed430757d763cce22129",
       "purpose": "Regression coverage for foreign Host/origin GETs, API-read tokens and existing POST rules."
     },
     {
       "path": "model_ingress_v1/tests/test_stage_b.py",
       "development_sha256": "6e43e15e43051f98aacd0d44f9f7474041494d8c72f471a0fdac94e7f20e0182",
-      "candidate_sha256": "c481ffd3715e27903cf5afb5b53c652d028aa504efea4b7f385fbab0e534888b",
+      "candidate_sha256": "6e5edc5b29b5c26503d02d87d3d9c7993d778aba220b1334dec388813f5700d8",
       "purpose": "Regression coverage for other-provider credentials, actual child visibility and custom slot wiring."
     }
   ],

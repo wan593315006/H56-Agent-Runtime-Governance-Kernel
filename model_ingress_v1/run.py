@@ -48,8 +48,13 @@ ENV_PREFIX = "H56_MODEL_"
 
 # 前缀之外的默认具名变量；下面的后缀规则也清理其他常见凭据名称。
 ENV_EXTRA_REMOVE = ("NEBIUS_API_KEY",)
+# 后缀表只做「名称尾部」精确匹配，不做子串匹配 —— 子串匹配会误删 MONKEY_PATH
+# 这类正常变量，而误删环境变量比少删一个更隐蔽。
+#   _APIKEY / _APITOKEN ：无下划线分隔的厂商写法（DASHSCOPE_APIKEY、SILICONFLOW_APIKEY）
+#   _PASSWORD_HASH / _PASSWD ：口令派生值同样是凭据（MY_PASSWORD_HASH）
 ENV_CREDENTIAL_SUFFIXES = ("_KEY", "_TOKEN", "_SECRET", "_PASSWORD",
-                           "_CREDENTIAL", "_CREDENTIALS", "_ACCESS_KEY_ID")
+                           "_CREDENTIAL", "_CREDENTIALS", "_ACCESS_KEY_ID",
+                           "_APIKEY", "_APITOKEN", "_PASSWORD_HASH", "_PASSWD")
 # 注意这份名单只能是「已知的默认名」。密钥变量名可切（--key-env）之后，
 # 不符合名称规则的自定义槽位仍须经 key_env 显式传入，不能从名称猜出所有秘密。
 

@@ -63,8 +63,13 @@ CLI = PRODUCT / "offline_qualification_v1" / "cli.py"
 # 白名单式环境在 Windows 上会直接失败。
 ENV_PREFIX = "H56_MODEL_"
 ENV_EXTRA_REMOVE = ("NEBIUS_API_KEY", "NVIDIA_API_KEY")
+# 后缀表只做「名称尾部」精确匹配，不做子串匹配 —— 子串匹配会误删 MONKEY_PATH
+# 这类正常变量，而误删环境变量比少删一个更隐蔽。
+#   _APIKEY / _APITOKEN ：无下划线分隔的厂商写法（DASHSCOPE_APIKEY、SILICONFLOW_APIKEY）
+#   _PASSWORD_HASH / _PASSWD ：口令派生值同样是凭据（MY_PASSWORD_HASH）
 ENV_CREDENTIAL_SUFFIXES = ("_KEY", "_TOKEN", "_SECRET", "_PASSWORD",
-                           "_CREDENTIAL", "_CREDENTIALS", "_ACCESS_KEY_ID")
+                           "_CREDENTIAL", "_CREDENTIALS", "_ACCESS_KEY_ID",
+                           "_APIKEY", "_APITOKEN", "_PASSWORD_HASH", "_PASSWD")
 
 
 def _clean_env(environ=None):

@@ -1299,6 +1299,14 @@ class TestProductSpawnEnv(unittest.TestCase):
         "H56_MODEL_API_KEY": "h56-secret-must-not-leak",
         "NEBIUS_API_KEY": "nebius-secret-must-not-leak",
         "NVIDIA_API_KEY": "nvapi-secret-must-not-leak",
+        # 真实存在但不符合「_KEY 结尾」的命名形态：
+        "DASHSCOPE_APIKEY": "dashscope-secret-must-not-leak",
+        "SILICONFLOW_APIKEY": "siliconflow-secret-must-not-leak",
+        "MY_PASSWORD_HASH": "pwhash-secret-must-not-leak",
+        "PG_PASSWD": "passwd-secret-must-not-leak",
+        # 反例：名字里含 KEY 片段但不是凭据，后缀规则不得误删。
+        "MONKEY_PATH": "/do/not/remove",
+        "ACCESS_KEYBOARD": "keep-me-too",
         "UNRELATED_SETTING": "keep-me",
     }
 
@@ -1312,11 +1320,14 @@ class TestProductSpawnEnv(unittest.TestCase):
     def test_S61_demo_clean_env_removes_keys_and_keeps_the_rest(self):
         demo = self._load("demo.py", "h56_demo_s61")
         env = demo._clean_env(dict(self._FIXTURE))
-        for name in ("H56_MODEL_API_KEY", "NEBIUS_API_KEY", "NVIDIA_API_KEY"):
+        for name in ("H56_MODEL_API_KEY", "NEBIUS_API_KEY", "NVIDIA_API_KEY",
+                     "DASHSCOPE_APIKEY", "SILICONFLOW_APIKEY",
+                     "MY_PASSWORD_HASH", "PG_PASSWD"):
             self.assertNotIn(name, env, "%s 不得进入子进程环境" % name)
-        for name in ("PATH", "SYSTEMROOT", "TEMP", "UNRELATED_SETTING"):
+        for name in ("PATH", "SYSTEMROOT", "TEMP", "UNRELATED_SETTING",
+                     "MONKEY_PATH", "ACCESS_KEYBOARD"):
             self.assertEqual(env[name], self._FIXTURE[name],
-                             "%s 必须原样继承 —— 净化不是最小白名单环境" % name)
+                             "%s 必须原样继承 —— 净化不是最小白名单环境，也不能误删" % name)
         body = json.dumps(env, ensure_ascii=False)
         self.assertNotIn("must-not-leak", body, "返回值里不得出现任何密钥值")
 
@@ -1340,7 +1351,10 @@ class TestProductSpawnEnv(unittest.TestCase):
         kept_by_run, removed_by_run = run_mod._kernel_env(
             dict(self._FIXTURE), extra_names=demo.ENV_EXTRA_REMOVE)
         self.assertEqual(sorted(removed_by_run),
-                         ["H56_MODEL_API_KEY", "NEBIUS_API_KEY", "NVIDIA_API_KEY"])
+                         ["DASHSCOPE_APIKEY", "H56_MODEL_API_KEY", "MY_PASSWORD_HASH",
+                          "NEBIUS_API_KEY", "NVIDIA_API_KEY", "PG_PASSWD",
+                          "SILICONFLOW_APIKEY"],
+                         "静态实现与动态机制删掉的键集必须逐键相同（含新增命名形态）")
         self.assertEqual(demo._clean_env(dict(self._FIXTURE)), kept_by_run,
                          "静态实现与动态机制的结果必须逐键相同")
 

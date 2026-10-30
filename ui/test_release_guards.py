@@ -112,9 +112,23 @@ class ServeGuardTests(unittest.TestCase):
         self.assertFalse(serve.is_valid_run_request_body(["not-an-object"]))
         self.assertTrue(serve.is_valid_run_token(serve.RUN_TOKEN))
         self.assertFalse(serve.is_valid_run_token("wrong-token"))
-        self.assertTrue(serve.is_allowed_run_origin("http://127.0.0.1:8765", 8765))
-        self.assertFalse(serve.is_allowed_run_origin("http://localhost:8765", 8765))
-        self.assertFalse(serve.is_allowed_run_origin("https://untrusted.example", 8765))
+        # 回环三写法都放行（手输 localhost 的用户此前会 403），但必须逐个精确匹配。
+        for ok_origin in ("http://127.0.0.1:8765", "http://localhost:8765", "http://[::1]:8765"):
+            self.assertTrue(serve.is_allowed_run_origin(ok_origin, 8765), ok_origin)
+        for bad_origin in ("https://untrusted.example",
+                           "https://localhost:8765",              # 本服务只讲 http
+                           "http://localhost:8766",               # 端口不符
+                           "http://127.0.0.1.evil.example:8765",  # 后缀伪装
+                           "http://localhost@evil.example:8765",  # userinfo 伪装
+                           "http://localhost.evil.example:8765"):
+            self.assertFalse(serve.is_allowed_run_origin(bad_origin, 8765), bad_origin)
+
+        for ok_host in ("127.0.0.1:8765", "localhost:8765", "LOCALHOST:8765", "[::1]:8765"):
+            self.assertTrue(serve.is_allowed_host(ok_host, 8765), ok_host)
+        for bad_host in ("foreign.example.invalid", "127.0.0.1:8766",
+                         "127.0.0.1.evil.example:8765", "localhost.evil.example:8765",
+                         "", None, "127.0.0.1:8765.example"):
+            self.assertFalse(serve.is_allowed_host(bad_host, 8765), bad_host)
 
     def test_handler_rejections_do_not_start_demo(self):
         def handler_for(origin, token, body):
@@ -166,6 +180,21 @@ class ServeGuardTests(unittest.TestCase):
                     handler._json = lambda payload, code=200: replies.append((code, payload))
                     handler.do_GET()
                     self.assertEqual(replies[0][0], 403)
+
+    def test_loopback_aliases_reach_the_page(self):
+        # 反面用例（外站 Host 一律 403）之外，必须有正面用例：手输 localhost 的用户
+        # 也要能拿到首页，且首页里嵌的是本次进程的令牌，不是上一轮的。
+        for host in ("127.0.0.1:8765", "localhost:8765", "[::1]:8765"):
+            with self.subTest(host=host):
+                handler = serve.Handler.__new__(serve.Handler)
+                handler.path = "/"
+                handler.headers = {"Host": host}
+                handler.server = SimpleNamespace(server_port=8765)
+                replies = []
+                handler._send = lambda code, body, ctype=None: replies.append((code, body))
+                handler.do_GET()
+                self.assertEqual(replies[0][0], 200)
+                self.assertIn(serve.RUN_TOKEN, replies[0][1])
 
     def test_api_reads_require_the_current_token(self):
         for path in ("/api/health", "/api/state", "/api/evidence?rel=x"):

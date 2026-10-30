@@ -46,8 +46,13 @@ RUN_TOKEN = secrets.token_urlsafe(32)
 # 等价性由 model_ingress_v1/tests/test_stage_b.py 的 S61–S63 断言。
 ENV_PREFIX = "H56_MODEL_"
 ENV_EXTRA_REMOVE = ("NEBIUS_API_KEY", "NVIDIA_API_KEY")
+# 后缀表只做「名称尾部」精确匹配，不做子串匹配 —— 子串匹配会误删 MONKEY_PATH
+# 这类正常变量，而误删环境变量比少删一个更隐蔽。
+#   _APIKEY / _APITOKEN ：无下划线分隔的厂商写法（DASHSCOPE_APIKEY、SILICONFLOW_APIKEY）
+#   _PASSWORD_HASH / _PASSWD ：口令派生值同样是凭据（MY_PASSWORD_HASH）
 ENV_CREDENTIAL_SUFFIXES = ("_KEY", "_TOKEN", "_SECRET", "_PASSWORD",
-                           "_CREDENTIAL", "_CREDENTIALS", "_ACCESS_KEY_ID")
+                           "_CREDENTIAL", "_CREDENTIALS", "_ACCESS_KEY_ID",
+                           "_APIKEY", "_APITOKEN", "_PASSWORD_HASH", "_PASSWD")
 
 
 def _clean_env(environ=None):
@@ -199,14 +204,32 @@ def is_valid_run_token(provided_token):
     return isinstance(provided_token, str) and secrets.compare_digest(provided_token, RUN_TOKEN)
 
 
+# 只接受本机回环的三种主机名写法，且**逐个精确匹配**。
+# DNS rebinding 要求 Host 是攻击者可控的域名，而这三种名字既无法注册，
+# 也不会成为外站页面的 Host，所以精确放行它们是安全的；反过来，
+# 绝不能退化成后缀/包含匹配 —— 那样 127.0.0.1.evil.example 会被放过。
+LOOPBACK_HOSTNAMES = ("127.0.0.1", "localhost", "[::1]")
+
+
 def is_allowed_run_origin(origin, port):
     """Only the page served by this loopback listener may initiate a run."""
-    return origin == f"http://127.0.0.1:{port}"
+    if not isinstance(origin, str):
+        return False
+    allowed = {f"http://{name}:{port}".lower() for name in LOOPBACK_HOSTNAMES}
+    if port == 80:
+        allowed |= {f"http://{name}".lower() for name in LOOPBACK_HOSTNAMES}
+    return origin.strip().lower() in allowed
 
 
 def is_allowed_host(host, port):
     """Reject foreign Host headers on every route, including page bootstrap."""
-    return host == f"127.0.0.1:{port}" or (port == 80 and host == "127.0.0.1")
+    if not isinstance(host, str):
+        return False
+    host = host.strip().lower()
+    for name in LOOPBACK_HOSTNAMES:
+        if host == f"{name}:{port}" or (port == 80 and host == name):
+            return True
+    return False
 
 
 class Handler(BaseHTTPRequestHandler):
