@@ -20,7 +20,7 @@
 ```bash
 git clone <本仓库> h56
 cd h56
-python demo.py
+python -B demo.py
 ```
 
 预期结尾：
@@ -54,14 +54,14 @@ python demo.py
 跑全量并对比第二个解释器：
 
 ```bash
-python demo.py --all --compare-python /另一个/python
-python run_tests.py          # 单元测试 30 项
+python -B demo.py --all --compare-python /另一个/python
+python -B run_tests.py       # 单元测试 30 项
 ```
 
 或者用浏览器驱动同一套演示（单页、零依赖、只监听 `127.0.0.1`）：
 
 ```bash
-python ui/serve.py --compare-python /另一个/python
+python -B ui/serve.py --compare-python /另一个/python
 # → http://127.0.0.1:8765
 ```
 
@@ -106,7 +106,7 @@ python ui/serve.py --compare-python /另一个/python
 
 ## 实测结果
 
-用 `python demo.py --all --compare-python <py>` 可复算全部性质，包括可选的跨版本性质；未提供第二
+用 `python -B demo.py --all --compare-python <py>` 可复算全部性质，包括可选的跨版本性质；未提供第二
 解释器时，性质 3 必须报告为 `SKIP`，而不是跨版本通过。
 
 | 衡量项 | 结果 |
@@ -117,10 +117,10 @@ python ui/serve.py --compare-python /另一个/python
 | **有效覆盖：互不相同的输入** | **56 行中 26 条**；其余 **30 行重复同一信封** |
 | **有效覆盖：去重后的结局分布** | FEASIBLE **2**、INFEASIBLE **5**、DEFER **4**、NEED_MORE_EVIDENCE **1**、REJECTED **14** |
 | 每次已记录评估的原生调用 | **22**；拒绝路径不是 22 次调用 |
-| `semantic_sha256` 跨 3.9.13 与 3.13.14 | **仅 C01；提供第二解释器时逐字节相同** |
+| `semantic_sha256` 跨 3.9.13 与 3.13.12 | **仅 C01；提供第二解释器时逐字节相同** |
 | 单元测试 | **30 项双解释器全通过** |
 | 导入前钉住哈希的来源成员 | **139** |
-| 仓库规模 | 295 文件、0 语法错误 |
+| 仓库规模 | 244 文件、0 语法错误 |
 
 **42 / 14 要按回归行数读，不能读成 56 项独立能力。** 56 行里有 30 行的证据字节与 `C01v0`
 完全相同——它们的变体键没有被 fixture 构造器消费，实际施加的输入就是基准信封，相同的
@@ -187,10 +187,10 @@ runtime_binding_v1_20261024/       母体副本、原版四核、双领域资产
 ## 必须知道的约束
 
 - **克隆路径要短。** 最深相对路径 217 字符，绝对路径须留在 Windows 传统 260 字符上限内。
-  `C:\h56` 安全；深层 `~/Documents/GitHub/...` 克隆会**静默丢文件**。必要时开
-  `git config core.longpaths true`。如果 `python demo.py` 报无法导入
+  `C:\h56demo` 安全；深层 `~/Documents/GitHub/...` 克隆会**静默丢文件**。必要时开
+  `git config core.longpaths true`。如果 `python -B demo.py` 报无法导入
   `offline_qualification_v1`，先怀疑克隆路径而不是包本身，并用
-  `git ls-files | wc -l` 核对——必须是 **295**。
+  `git ls-files | wc -l` 核对——必须是 **244**。
 - **`.gitattributes` 钉住 `* -text`。** 任何换行符转换都会改变文件字节，让 139 条清单哈希
   全部失效。不要移除。
 - **按仓库字节策略检查 CRLF 差异。** 使用

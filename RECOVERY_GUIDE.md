@@ -95,7 +95,7 @@ python -B -m unittest model_ingress_v1.tests.test_stage_b -v
 python -B -m unittest model_ingress_v1.tests.test_smoke -v
 ```
 
-The product suite currently defines 30 tests and the release-guard suite eleven. Use `run_tests.py` for the product suite: it supplies the explicit temporary test root required by the record tests. The adapter suites use fixed responses and local fixtures rather than paid model requests.
+The product suite currently defines 30 tests and the release-guard suite twelve. Use `run_tests.py` for the product suite: it supplies the explicit temporary test root required by the record tests. The adapter suites use fixed responses and local fixtures rather than paid model requests.
 
 For the six-scenario model-to-core integration exercise:
 

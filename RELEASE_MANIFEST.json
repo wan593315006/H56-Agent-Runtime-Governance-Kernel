@@ -47,8 +47,8 @@
     },
     {
       "path": "IP_NOTICE.md",
-      "bytes": 340,
-      "sha256": "1ba33af6f1cccb311dd4a5145ada74cdb6fc29e51a1fda100df4b60989eb7d4c",
+      "bytes": 560,
+      "sha256": "e8b008e7e8875f28a8e798af7221597bd399f4ef422415c6449ebe4fe457b78f",
       "computation_closure": false
     },
     {
@@ -60,7 +60,7 @@
     {
       "path": "PACKAGE_MANIFEST.json",
       "bytes": 54612,
-      "sha256": "b1fe5207da3f558cc3089e3d7a26d3f6e965bbeb2655fee4174cd9e314b7ba1b",
+      "sha256": "f097c6c337c752a377d853ad7cd8e805b7ec232622bedeb2afa696143f8368e2",
       "computation_closure": false
     },
     {
@@ -77,14 +77,14 @@
     },
     {
       "path": "README.zh-CN.md",
-      "bytes": 11958,
-      "sha256": "f4fe57d34070d7edef38714aaa5e7342c850319c7bb87eba83693c883f29d37b",
+      "bytes": 11977,
+      "sha256": "1244c9b034043309af3de2b26cc80d4a65d70f6345ece3610474d097ff8e1e7f",
       "computation_closure": false
     },
     {
       "path": "RECOVERY_GUIDE.md",
       "bytes": 14899,
-      "sha256": "6c9c8c30659d9e1ad6e82a787e82c35554ffc13bc5e63c33be5f747b02cfd368",
+      "sha256": "a489ea52aee59a7387c3213c2338a932edb3331c8d9441c39c98fc7e8425d741",
       "computation_closure": false
     },
     {
@@ -1445,14 +1445,14 @@
     },
     {
       "path": "ui/VIDEO_SCRIPT.md",
-      "bytes": 6948,
-      "sha256": "8f6c9a7fd4880d0a9ebc66beb4484d9fbfbac03face899f436bf88f54e11c6a3",
+      "bytes": 7351,
+      "sha256": "116e36892c8511809eedb98dfcd277d7e3c7350ab7c6c6e541885a21710a860c",
       "computation_closure": false
     },
     {
       "path": "ui/index.html",
-      "bytes": 28240,
-      "sha256": "8f50d432c19dc48ac75ec490892b2233ffad1b35a61a94c862175dde538f5372",
+      "bytes": 28243,
+      "sha256": "62dbad6c463deea067a3b81451080c3240d5da11c615a1a0e789ea276e4030bd",
       "computation_closure": false
     },
     {

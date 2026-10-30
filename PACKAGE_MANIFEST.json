@@ -26,8 +26,8 @@
     },
     {
       "path": "IP_NOTICE.md",
-      "size": 340,
-      "sha256": "1ba33af6f1cccb311dd4a5145ada74cdb6fc29e51a1fda100df4b60989eb7d4c"
+      "size": 560,
+      "sha256": "e8b008e7e8875f28a8e798af7221597bd399f4ef422415c6449ebe4fe457b78f"
     },
     {
       "path": "LICENSE",
@@ -46,13 +46,13 @@
     },
     {
       "path": "README.zh-CN.md",
-      "size": 11958,
-      "sha256": "f4fe57d34070d7edef38714aaa5e7342c850319c7bb87eba83693c883f29d37b"
+      "size": 11977,
+      "sha256": "1244c9b034043309af3de2b26cc80d4a65d70f6345ece3610474d097ff8e1e7f"
     },
     {
       "path": "RECOVERY_GUIDE.md",
       "size": 14899,
-      "sha256": "6c9c8c30659d9e1ad6e82a787e82c35554ffc13bc5e63c33be5f747b02cfd368"
+      "sha256": "a489ea52aee59a7387c3213c2338a932edb3331c8d9441c39c98fc7e8425d741"
     },
     {
       "path": "demo.py",
@@ -1186,13 +1186,13 @@
     },
     {
       "path": "ui/VIDEO_SCRIPT.md",
-      "size": 6948,
-      "sha256": "8f6c9a7fd4880d0a9ebc66beb4484d9fbfbac03face899f436bf88f54e11c6a3"
+      "size": 7351,
+      "sha256": "116e36892c8511809eedb98dfcd277d7e3c7350ab7c6c6e541885a21710a860c"
     },
     {
       "path": "ui/index.html",
-      "size": 28240,
-      "sha256": "8f50d432c19dc48ac75ec490892b2233ffad1b35a61a94c862175dde538f5372"
+      "size": 28243,
+      "sha256": "62dbad6c463deea067a3b81451080c3240d5da11c615a1a0e789ea276e4030bd"
     },
     {
       "path": "ui/serve.py",

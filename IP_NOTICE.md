@@ -1,7 +1,9 @@
 # Intellectual Property Notice
 
-H56 is distributed under the MIT License. See the [LICENSE](LICENSE) file for the applicable terms.
+H56 is distributed under the MIT License. The license contains no express patent license provision.
 
-The MIT License contains no express patent license provision.
+Certain technologies related to this project are the subject of patent applications held by a legally separate corporate entity.
 
-This notice is informational only. It does not modify the MIT License or impose additional conditions on the rights granted under that license.
+The software publisher and the corporate patent applicant are distinct legal persons. This notice does not modify the MIT License or impose additional restrictions on the rights granted under it.
+
+Patent application details and legal status are governed by the applicable official patent records.
