@@ -1,7 +1,7 @@
 {
   "schema_id": "H56_ASSEMBLED_CANDIDATE_STATUS_V2",
-  "candidate_id": "H56-CANDIDATE-20261030-V3.4.1",
-  "role": "PRIVATE_REVIEW_AND_DEMONSTRATION_CANDIDATE",
+  "candidate_id": "H56-CANDIDATE-20261030-V3.4.2",
+  "role": "PUBLIC_RELEASE_CANDIDATE_AWAITING_EXTERNAL_AUTHORIZATION",
   "current_entry": "demo.py",
   "ui_entry": "ui/serve.py",
   "model_entry": "model_ingress_v1/stage_b.py",
@@ -16,7 +16,7 @@
   "computation_members": 139,
   "source_manifest_sha256": "adeca462c152a7ee34c4bdee0f1f9b3833adab6b1aa5ae6e110d2ae58a42c6cb",
   "validation_reference": "metadata/BASELINE_ACCEPTANCE.json",
-  "validation_scope": "V3.4.1 is a targeted security/documentation revision of the MIT-licensed V3.4 base. All 139 original computation members, original offline CLI, registered scenarios and provider request construction retain their bytes. Entry credential filtering and loopback HTTP guards have focused regression coverage; current commit acceptance is retained externally.",
+  "validation_scope": "V3.4.2 is a documentation and identity closeout over V3.4.1; no Python source changed in this revision. All 139 computation-closure members, the offline CLI, registered scenarios and provider request construction retain the bytes accepted at V3.4.1. Entry credential filtering and the loopback HTTP guards keep their V3.4.1 regression coverage; acceptance for this commit is re-run from a clean clone and retained externally.",
   "historical_metadata": false,
   "supersedes_source_delivery_status": true,
   "original_status_preserved": "Private remediation preimage; not the current runtime state.",
@@ -24,8 +24,9 @@
   "public_blockers": [
     "Owner's final asset distribution approval and explicit public repository/release decision"
   ],
+  "publication_state_semantics": "The release state fields in this package record the freeze-time snapshot only. Final public authorization is an external adjudication bound to one specific commit and its release digests; it is not self-asserted by this file, and no field here is flipped to represent a pending or unverifiable approval.",
   "business_execution_authorized": false,
-  "documentation_update": "Explicit Git/ZIP verification routes and reviewer configuration guidance; local HTTP/read-token and name-based child-environment rules.",
+  "documentation_update": "Chinese overview rewritten as a full product document with the demonstration video link; the UI header separates the local offline assessment from the separate live-model entry; the backup recording script is corrected against the documented clone root and the actual outcome taxonomy; candidate identity and both inventories moved to V3.4.2.",
   "runtime_source_reference_commit": "3fb383d95e5b1721fa90876f84a898b584cf3420",
   "python_source_comparison": "metadata/SOURCE_COMPARISON.json",
   "demo_video_url": "https://youtu.be/Gxr5SzG3OMg",

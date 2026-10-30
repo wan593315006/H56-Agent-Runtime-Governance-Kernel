@@ -1,215 +1,183 @@
-> Candidate edition: the current assembled version is documented in [README.md](README.md), [RECOVERY_GUIDE.md](RECOVERY_GUIDE.md), [DEMO_GUIDE.md](DEMO_GUIDE.md) and [ARCHITECTURE.md](ARCHITECTURE.md). The Chinese text below preserves the earlier offline-edition notes; use the English candidate guides for the current model integration and recovery steps.
+# H56 — 面向智能体的通用 OS 治理内核
 
-# H56 — 离线候选资格判定引擎
+H56 将**事实与历史、动态状态、能力合同和候选资格计算**连接为可追溯的计算链。原版 `K0 → K1 → C1 → C2` 四核依据输入证据、当前状态和适用约束计算结果，并保存原因、来源身份与调用轨迹。
 
-一个确定性的离线**候选资格判定**引擎：输入某环境的证据封套，跑完整四核原生推导链
-（`K0 → K1 → C1 → C2`），输出一条**不可变、哈希钉住**的判定记录——同一条记录换一台机器、
-换一个 Python 版本重算，语义摘要逐字节相同。
+环境资格与受控任务准入是本次选取的代表性演示。领域规则通过版本化资产和适配层接入通用内核，CLI、UI、审计查看、关联重评和真实模型协同入口提供操作与集成方式。
 
-它只回答一个问题：*这个候选是「有条件可准入」、「被阻断」，还是「证据仍然不足」？*
-并且**永不**授予权限、永不放行执行。
+[观看英文演示视频](https://youtu.be/Gxr5SzG3OMg) · [English README](README.md) · [演示指南](DEMO_GUIDE.md) · [恢复指南](RECOVERY_GUIDE.md) · [技术架构](ARCHITECTURE.md)
 
-> English version: [README.md](README.md)
+## H56 解决什么问题
 
----
+智能体提出任务时，环境事实可能缺失，外部前提可能未知，状态也可能已经变化。H56 将这些条件纳入资格计算，分别给出可行、不可行、延后或需要补充证据的结果；输入校验在相应阶段返回明确的拒绝码。
 
-## 30 秒上手
+评估记录关联输入、约束、来源和计算过程。补充证据后，系统生成带父引用的新评估，保留此前的记录。候选资格与执行授权采用独立职责，便于规划器、操作者及其他智能体系统消费评估结果。
 
-只需要 **Python 3.9+** 与标准库。不用 pip、不用联网、不用 Docker、不用云。
+## 核心与配套能力
 
-```bash
-git clone <本仓库> h56
-cd h56
+| 组件 | 计算职责 |
+| --- | --- |
+| **K0 — 事实与历史** | 规范事实身份、来源与只追加历史。 |
+| **K1 — 状态推导** | 在固定版本上下文中，由历史构建并校验状态快照。 |
+| **C1 — 能力合同** | 能力定义、目录完整性与声明约束。 |
+| **C2 — 候选可行性** | 结合状态、能力和上下文计算资格与排除原因。 |
+
+围绕四核，H56 提供：
+
+- **输入与来源核验**：检查证据结构、资产身份与注册源码字节。
+- **CLI 与本地 UI**：运行案例，查看结果、原因码和已登记产物。
+- **审计与只读查看**：关联封存记录、声明、事件日志和语义摘要。
+- **补证重评**：建立新旧评估的父子关联，保留历史记录。
+- **受控模型接入**：校验模型提案，将场景选择映射到实际输入构造路径。
+- **请求范围与预算管理**：在显式配置的云端运行中检查端点、目录、授权、范围和用量。
+- **源码交付与恢复**：通过 Git 或 ZIP、完整清单和现有自检入口恢复主要运行能力。
+
+## 下载与启动
+
+使用 **Windows 10/11、Python 3.9.13**。离线应用与检查使用 Python 标准库，无需安装应用依赖或配置 API Key。选择短目录，并将环境与运行产物放在仓库之外。
+
+Git 克隆路线：
+
+```powershell
+git -c core.autocrlf=false -c core.longpaths=true clone '<repository-url>' C:\h56demo
+Set-Location C:\h56demo
+python -B verify_pack.py --expected-commit '<full-release-commit>'
 python -B demo.py
 ```
 
-预期结尾：
+`<full-release-commit>` 使用发布说明给出的完整提交号。包校验器检查 Git 身份、工作树、完整文件成员、SHA-256 以及 139 项计算闭包。
 
-```
-[1] 结局与冻结基线一致        PASS  6/6
-[2] 同输入重复提交幂等        PASS
-[3] 跨 Python 版本字节一致    跳过（加 --compare-python）
-[4] 补证后独立重评挂父引用    PASS
-[5] 已封存记录字节不变        PASS
-[6] view 只读复演不重算内核   PASS
-[7] 授权边界未被越过          PASS
+ZIP 路线：解压至实际运行目录，使用发布附件单独提供的 `RELEASE_MANIFEST.json` 摘要：
 
-结果：PASS_WITH_SKIPS —— 6 项通过，1 项跳过
+```powershell
+Set-Location C:\h56demo
+python -B verify_pack.py --expected-manifest-sha256 '<published-manifest-sha256>'
+python -B demo.py
 ```
 
-默认跑的是**六案例演示主线**，不是「挑几个快的」。这六条输入证据互不相同，覆盖引擎能给出的全部结局：
+本地 UI：
 
-| 案例 | 结局 | 证据被改动的地方 |
-|---|---|---|
-| `B06v0` | REJECTED `ENV_INPUT_REJECTED` | 某字段的知识态被改写为自相矛盾的组合 |
-| `A01v0` | DECIDED `INFEASIBLE` | `app_container=true`、`integrity_rid=4096` |
-| `B05v0` | DECIDED `NEED_MORE_EVIDENCE` | 移除 `supporting_attestation` |
-| `B01v0` | DECIDED `DEFER` | `outer_job_clear` 标记为 UNKNOWN |
-| `B07v1` | DECIDED `FEASIBLE` | `outer_job_clear.observed_at` 前移 |
-| `C01v0` | DECIDED `FEASIBLE` | 无改动（基准信封） |
-
-每次运行都会打印每条案例的输入摘要与**具体到字段的改动**，因此「操作真的施加了」是可以核对的，
-不需要读者相信一句声明。
-
-跑全量并对比第二个解释器：
-
-```bash
-python -B demo.py --all --compare-python /另一个/python
-python -B run_tests.py       # 单元测试 30 项
+```powershell
+python -B ui/serve.py --no-browser
 ```
 
-或者用浏览器驱动同一套演示（单页、零依赖、只监听 `127.0.0.1`）：
+在同一台机器打开 **http://127.0.0.1:8765**。页面按钮通过实际子进程执行 `demo.py --all`，显示结果、拒绝原因和证据查看入口。端口被占用时可用 `--port 8792`，浏览器地址使用对应端口。
 
-```bash
-python -B ui/serve.py --compare-python /另一个/python
-# → http://127.0.0.1:8765
+完整环境配置、输出保留、模型配置及排障见 [恢复指南](RECOVERY_GUIDE.md)。仓库本身是可恢复运行载体，离线路线自包含。
+
+## 六案例演示
+
+默认演示构造六条不同的合成证据输入，覆盖输入拒绝和四类计算结局：
+
+| 案例 | 输入变化 | 结果 |
+| --- | --- | --- |
+| `B06v0` | 字段声明 UNKNOWN，同时仍给出具体值 | `REJECTED / ENV_INPUT_REJECTED` |
+| `A01v0` | `app_container=true`、`integrity_rid=4096` | `INFEASIBLE` |
+| `B05v0` | 移除 `supporting_attestation` | `NEED_MORE_EVIDENCE` |
+| `B01v0` | `outer_job_clear` 标记 UNKNOWN | `DEFER` |
+| `B07v1` | 将 `outer_job_clear.observed_at` 前移 | `FEASIBLE` |
+| `C01v0` | 基准信封 | `FEASIBLE` |
+
+每行显示输入摘要与字段变化。通过门禁并产生记录的主评估执行 22 次具名原生调用，分布为 K0 6、K1 4、C1 6、C2 6。拒绝案例在对应校验阶段返回原因码，其评估产物列表为空。
+
+默认输出为 **`PASS_WITH_SKIPS`**：6 项性质通过，可选的跨解释器比较跳过。提供第二解释器后，性质 3 执行 C01 的跨版本对照；按当次回执显示 PASS 或其他状态。
+
+```powershell
+python -B demo.py --all
+# 可选：将路径替换为已安装的第二解释器
+python -B demo.py --compare-python 'C:\path\to\second\python.exe'
 ```
 
-页面会在**真实子进程**里执行 `demo.py --all`（不是回放录像）。顶部把**行数**与**有效覆盖**
-分开呈现：56 行给出 42 DECIDED / 14 REJECTED，但其中只有 26 行的输入证据是互不相同的，
-另外 30 行是同一信封的重复运行，按回归基线计，不按独立能力计。随后是三个可折叠面板：
-判定详情、拒绝路径、证据链（每个文件可按 sha256 打开原始字节）。
+## 真实 Nebius/NVIDIA 模型协同
 
----
+已记录的真实推理使用 **Nebius Token Factory** 与 **`nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B`**。模型根据用户意图提出已登记场景，Adapter 校验并映射到对应输入，再由原版四核计算资格。
 
-## 权威树 —— 哪些结果算交付证据
+| 请求 | 模型响应 | H56 结果 |
+| --- | --- | --- |
+| R1 | `SELECT / S-C01` | 主评估 `FEASIBLE`，22 条原生调用轨迹。 |
+| R5 | `SELECT / S-A01` | 主评估 `INFEASIBLE`，22 条轨迹及容器、完整性、策略原因码。 |
+| R7 | `NOT_APPLICABLE` | 合法终局，Adapter 按该响应结束，内核保持未启动状态。 |
 
-只有在源码身份与**本仓库**冻结版本一致的工作树上执行的运行才计入交付证据。构建机上的冻结
-副本与源码身份经核验一致的干净克隆属于同一棵树。文件系统路径本身不是权威。
+R1 与 R5/R7 来自两批执行。模型响应来自云端推理；评估输入来自受控合成场景。固定响应测试和真实模型请求分别标识，驱动附加的性质测试与所选场景的主评估分别统计。
 
-| 树 | 状态 | 效果 |
-|---|---|---|
-| 本仓库 | **AUTHORITY_TREE** | 本 README 引用的每个数字都可在此复现 |
-| `separation_workspace_v1/`（2026-10-26 分层重构，未随仓库交付） | **NOT_ON_AUTHORITY_TREE** | 该树上此前的全部结论均不作为交付证据——包括「25/25 选择器全绿」「19 PASS / 6 ERROR」「`_bounded` 修复」 |
+新云端请求使用操作者自己的凭据和显式范围、预算及计划。具体步骤见 [可选真实模型接入](RECOVERY_GUIDE.md#optional-live-model-integration)。安装与离线 UI 使用本地计算路线。
 
-那些结论对**那棵树**可能仍然成立，但它们不是本交付物的证据，两个方向都不能转移。
-该重构未被采纳的原因是冻结时它并未完成：`runtime_windows` 的 51 个模块里有 22 个从未搬迁、
-5 处 import 仍跨树指向、18 对同名文件字节已不一致（例如
-`offline_qualification_v1/contracts.py`，少 1,439 字节）。在一棵树上通过测试，
-不能说明另一棵树也是好的。
+## 评估记录、重评与权限分工
 
----
+评估记录包含输入身份、来源绑定、状态、能力上下文、候选结果、原因码和 `mapping_trace`。语义摘要覆盖调用轨迹；绑定方法条目的摘要范围及上下文关联见 [技术架构](ARCHITECTURE.md#the-four-cores)。
 
-## 它到底做了什么
+性质 4、5 使用父子评估验证关联重评：父评估为 DEFER，补充材料后的子评估为 FEASIBLE，子记录引用父记录，原产物与声明保持原字节。这组性质测试与模型请求示例分别呈现。
 
-每个案件依次经过四步：
-
-1. **校验来源身份** —— 每个原生模块在**被导入之前**先按 139 条 `SOURCE_MANIFEST.json`
-   逐项校验哈希；由自定义 import finder 拦下未登记模块、`.pyc` 回退与 `sys.path` 遮蔽。
-2. **推导状态** —— `K0` 构造规范事实与来源，`K1` 编译并校验状态快照。
-3. **解析能力** —— `C1` 构造能力目录与定义，`C2` 结合状态、目录与上下文做可行性投影。
-4. **封存记录** —— 规范 JSON 记录 + 语义摘要；记录只可追加，后续运行必须不改变其字节。
-
-通过输入/来源门禁并产生记录的评估执行 **22 次原生核心调用**，每一次都带输入摘要与输出摘要
-入账。拒绝路径会在写记录前停止，不得表述为完成了 22 次调用。
-
-## 实测结果
-
-用 `python -B demo.py --all --compare-python <py>` 可复算全部性质，包括可选的跨版本性质；未提供第二
-解释器时，性质 3 必须报告为 `SKIP`，而不是跨版本通过。
-
-| 衡量项 | 结果 |
-|---|---|
-| 合成案件 / 行数 | **31 / 56** |
-| 被判定的行数 | **42**（见下方有效覆盖） |
-| 设计内拒绝的行数 | **14**，覆盖 5 类原因码 |
-| **有效覆盖：互不相同的输入** | **56 行中 26 条**；其余 **30 行重复同一信封** |
-| **有效覆盖：去重后的结局分布** | FEASIBLE **2**、INFEASIBLE **5**、DEFER **4**、NEED_MORE_EVIDENCE **1**、REJECTED **14** |
-| 每次已记录评估的原生调用 | **22**；拒绝路径不是 22 次调用 |
-| `semantic_sha256` 跨 3.9.13 与 3.13.12 | **仅 C01；提供第二解释器时逐字节相同** |
-| 单元测试 | **30 项双解释器全通过** |
-| 导入前钉住哈希的来源成员 | **139** |
-| 仓库规模 | 244 文件、0 语法错误 |
-
-**42 / 14 要按回归行数读，不能读成 56 项独立能力。** 56 行里有 30 行的证据字节与 `C01v0`
-完全相同——它们的变体键没有被 fixture 构造器消费，实际施加的输入就是基准信封，相同的
-`semantic_sha256` 已经证明了这一点。保留这 30 行是为了让任何核心改动都以基线 diff 的形式暴露；
-它们不计入有效覆盖。真正携带不同证据的只有 26 行，其中达到 `FEASIBLE` 的只有 **2 条**：
-`C01v0`（基准）与 `B07v1`（真实变换）。
-
-那 14 条拒绝**不是失败**，是拒斥路径在工作：`ENV_TASK_SCOPE_MISMATCH`、
-`ENV_TIME_INVALID_OR_FUTURE`、`ENV_INPUT_REJECTED`、`ENV_EVIDENCE_CONFLICT`、
-`ENV_SOURCE_OR_VERSION_MISMATCH`。一个不会拒绝的判定引擎没有价值，所以它们是正式结果。
-
-## 边界：它明确做不到什么
-
-引擎在设计上就没有行动能力。每次投影都断言：
+本次资格演示的封存结果保持以下字段：
 
 ```python
+candidate_planning_only is True
 authority_granted      is False
 execution_permitted    is False
-candidate_planning_only is True
+business_action_calls  == 0
 ```
 
-没有写入器、没有派发器、不 spawn、不联网、不碰凭据。判定是**规划输入**，不是授权。
-这条限制写在代码里，并由演示的第 7 项性质断言，不只是文档承诺。
+资格计算产出规划层结果与审计记录，执行授权由独立职责处理。`SYNTHETIC_ONLY` 与 `SIMULATED_OPERATOR_METADATA_HOST` 标识本次演示的数据来源和环境角色。
 
-## 已知限制与暂缓项
+## 验证与覆盖
 
-这些写在这里，而不是等读者自己发现。没有任何一项被当作已完成能力呈现。
-
-| 限制 | 状态 |
-|---|---|
-| 任务描述是 fixture 文件，不是模型输出 | `contracts.py` 把 `task_kind`/`origin`/`origin_record_ref` 钉死为合成字面量，其他取值一律拒绝。接真实模型会被引擎自己的合同拒掉。 |
-| 证据等级为 `SYNTHETIC_ONLY`，环境角色为 `SIMULATED_OPERATOR_METADATA_HOST` | 由 `semantic_guard` 与 `seal()` 强制；`CURRENT_HOST` / `REAL_HOST` 按名拒绝。 |
-| 不执行任何业务动作 | `business_action_calls` 恒为 0 并被硬断言。这是设计边界，不是未完成功能。 |
-| 56 行里 30 行是信封重复 | 保留为回归行，不计入有效覆盖。 |
-| 跨版本字节一致只证到 `C01` | 不外推到全部案例。 |
-| 任务队列前门（`windows_frontdoor_v1_20261024`） | 占位实现：`kernel_port.py` 恒抛 `WINDOWS_CORE_RUNTIME_ADAPTER_NOT_RELEASED`，`native_calls=0`。真正可用的引擎路径是 `offline_qualification_v1/cli.py`。 |
-| `X02v0` reparse point 覆盖 | 只测叶子判定函数，没有构造真实 reparse point。 |
-| `X01` 绝对路径探针返回未类型化错误 | `C:\other\secret` 能过 `_root()`，随后以 `OPERATION_FAILED` 失败且不带 `stage` 键。登记为已知分类缺口。 |
-
-本交付**明确不做**：完整故障注入、全部路径与 ACL 变体、完整并发矩阵、系统级不可篡改证明、
-基于 Docker 的历史取证、任何 OS 级迁移。
-
-## 目录
-
-```text
-demo.py                            一键演示 + 7 项自检
-run_tests.py                       单元测试入口（注入必需的测试根）
-ui/serve.py                        本地服务：真实执行 demo.py 并转发进度
-ui/index.html                      单页 UI（零依赖，只监听 127.0.0.1）
-ui/VIDEO_SCRIPT.md                 3 分钟备份录像脚本
-offline_qualification_v1/          产品本体
-  cli.py                           操作者入口：evaluate | view
-  contracts.py                     规范编码、摘要、拒绝码
-  records.py                       只可追加的记录存储
-  assessment.py                    评估流水线
-  core_bridge.py                   校验过的原生来源加载器 + 调用追踪
-  SOURCE_MANIFEST.json             139 条哈希钉住的运行成员
-  fixtures/cases.json              31 案件 / 56 变体
-  tests/                           30 项测试
-runtime_windows/                   Windows 来源/环境身份辅助
-runtime_binding_v1_20261024/       母体副本、原版四核、双领域资产
+```powershell
+python -B run_tests.py
+python -B -m ui.test_release_guards
 ```
 
-## 必须知道的约束
+产品套件为 **30 项**，UI 发布守卫为 **12 项**。已有验收记录分别使用 Python 3.9.13 和 3.13.12；新环境按实际解释器和运行回执记录结果。固定响应的六场景 A2 通过真实 Adapter、CLI、四核和记录存储验证提案消费，命令见 [演示指南](DEMO_GUIDE.md#5-fixed-response-adapter-integration)。
 
-- **克隆路径要短。** 最深相对路径 217 字符，绝对路径须留在 Windows 传统 260 字符上限内。
-  `C:\h56demo` 安全；深层 `~/Documents/GitHub/...` 克隆会**静默丢文件**。必要时开
-  `git config core.longpaths true`。如果 `python -B demo.py` 报无法导入
-  `offline_qualification_v1`，先怀疑克隆路径而不是包本身，并用
-  `git ls-files | wc -l` 核对——必须是 **244**。
-- **`.gitattributes` 钉住 `* -text`。** 任何换行符转换都会改变文件字节，让 139 条清单哈希
-  全部失效。不要移除。
-- **按仓库字节策略检查 CRLF 差异。** 使用
-  `git -c core.whitespace=cr-at-eol diff --check`；不要为了消除默认行尾警告而批量转换冻结文件。
-- **运行输出必须在产品根之外**，否则 `cli.py` 以 `RUN_ROOT_OVERLAP` 拒绝。`demo.py`
-  默认使用系统临时目录。
-- **`TEST_ROOT` 必须显式注入** —— `test_records.py` 有意不提供环境变量或默认回退。
-  请用 `run_tests.py`。
+全量回归包含 **31 个案件、56 行、26 条不同输入**。基准输入出现 31 次，其余 25 条输入各出现一次。30 行重复用于回归比对，独立输入按构造后的证据字节统计。
 
-## 本仓库不包含什么
+| 去重后的输入结果 | 数量 |
+| --- | ---: |
+| FEASIBLE | 2 |
+| INFEASIBLE | 5 |
+| DEFER | 4 |
+| NEED_MORE_EVIDENCE | 1 |
+| REJECTED | 14 |
 
-| 排除项 | 原因 |
-|---|---|
-| `evidence/`（11,295 文件 / 199 MB） | 只读历史归档，按摘要引用，运行不需要 |
-| `separation_workspace_v1/` | 未完成的分层重构，已被本树取代 |
-| `ar_pure_driver` 纯度闸门 | 在本机逻辑上不可满足（要求 `st_nlink == 1`，而 `ADVAPI32.dll` 违反） |
-| `windows_frontdoor_v1` 任务队列 | 回报 `native_calls=0` 的占位入口；真正的引擎是 `offline_qualification_v1/cli.py` |
-| `runtime_binding_v1_20261024/offline/source-lock.json` | 含本机私有路径，运行路径不消费它 |
+14 条拒绝分布在输入、时间、证据冲突、任务范围及来源版本校验，返回对应原因码。UI 同时展示回归行数与不同输入数量。
 
-## 状态
+当前候选包含 **132 个 Python 文件**：124 个与开发工作树对应文件逐字节一致，7 个包含已说明的可移植性或入口安全调整，另有独立的 `verify_pack.py`。原版 **139 项计算闭包**保持原字节，合计 **582,506 B**。完整公开成员由 `RELEASE_MANIFEST.json` 和 `PACKAGE_MANIFEST.json` 定义，具体比对范围见 [来源对照](metadata/SOURCE_COMPARISON.json)。
 
-私有开发包。上述正确性性质可从干净克隆复现。发布、外部 API 联调、真实宿主执行
-**均不**由本仓库授权。
+<details>
+<summary>路径校验用例的技术口径</summary>
+
+- X02v0 的具名测试覆盖 `_check_stat` 元数据判定；文件系统重解析点属于单独的测试层级。
+- X01 外部缺失目录探针会以 `OPERATION_FAILED` 返回，payload 不含 `stage`。检查该路径时按实际响应字段定位原因。
+
+</details>
+
+## 来源、赛期更新与发展方向
+
+H56 源于此前五体运行域的通用 OS 与本地多智能体研发积累，涉及任务协调、运行状态、能力约束、健康检查、状态记忆和变更历史。
+
+赛期工作形成并集成四核独立组件，将其连接到结构化输入合同、资产与来源核验、CLI/UI、封存记录和补证重评，并新增受控模型 Adapter、Provider 与真实 Nebius/NVIDIA 协同。源码历史记录了 9 月 K0/K1、10 月初 C1/C2、10 月下旬独立交付及模型接线的演进，详见 [研发时间线](ARCHITECTURE.md#development-timeline)。
+
+后续开发方向：
+
+- 通过版本化事实、状态映射与能力合同接入更多领域。
+- 扩展模型提案接口，保持提案、证据校验和资格计算的清晰分工。
+- 改善多智能体与外部工具对评估结果、关联决策的消费方式。
+- 改善规则编写、证据查看、配置与可移植部署体验。
+
+## 运行目录与文件
+
+| 路径 | 用途 |
+| --- | --- |
+| `demo.py`、`run_tests.py` | 一键演示、性质检查与产品测试。 |
+| `offline_qualification_v1/` | 资格合同、资产、四核桥接、记录与 CLI。 |
+| `runtime_binding_v1_20261024/engineering/vendor/` | 固定来源的原版四核、Profile 与关联源码。 |
+| `runtime_windows/` | 来源身份与支撑合同、辅助模块。 |
+| `model_ingress_v1/` | Provider、Adapter、登记表、计划驱动与固定响应测试。 |
+| `ui/` | 本地操作界面、发布守卫与备用取景说明。 |
+| `verify_pack.py` | 完整包、Git/ZIP 身份与计算闭包核验。 |
+
+使用短运行目录，保留 `.gitattributes` 的字节策略。环境、输出、原始视频和私有回执存放在仓库外；应用命令带 `-B`，使校验后的文件成员保持稳定。留存评估时使用恢复指南中的绝对路径、独占运行目录和 `--keep`。产品测试通过 `run_tests.py` 配置临时测试根。
+
+公开包包含运行所需源码、资产、公开来源锁、界面和说明文档；凭据、私有来源侧车、母体归档及历史运行材料保存在仓库外。离线恢复直接消费包内依赖，操作顺序与故障排查见 [恢复指南](RECOVERY_GUIDE.md)。
+
+## 许可证与知识产权说明
+
+H56 采用 [MIT License](LICENSE)，版权署名为万根。独立的 [IP_NOTICE.md](IP_NOTICE.md) 说明相关专利申请与主体关系，并保持 MIT 正文的授权范围。发布状态由 [PACKAGE_STATUS.json](PACKAGE_STATUS.json) 记录。该文件只记录冻结时的快照；最终公开授权由外部裁决绑定到具体提交与发行摘要，不由包内字段自证。

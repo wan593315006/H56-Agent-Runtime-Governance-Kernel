@@ -1,6 +1,6 @@
 {
   "schema_id": "H56_ASSEMBLED_PACKAGE_MANIFEST_V2",
-  "candidate_id": "H56-CANDIDATE-20261030-V3.4.1",
+  "candidate_id": "H56-CANDIDATE-20261030-V3.4.2",
   "member_count": 242,
   "candidate_file_count": 244,
   "files": [
@@ -36,18 +36,18 @@
     },
     {
       "path": "PACKAGE_STATUS.json",
-      "size": 2241,
-      "sha256": "dc0dcc6dd794b8c1af7c32bf743578350094483967c84d74c93e040d886ef6c8"
+      "size": 2873,
+      "sha256": "1ed9f7628fe53410b9b81c3e77aaa9d8b76795ff5e8fbf218e4de213fe68b548"
     },
     {
       "path": "README.md",
-      "size": 15379,
-      "sha256": "8b2afa94709c2d5a33d0f1f2725f7aaf62a30a3486fc937d2ab342a067c22a72"
+      "size": 15636,
+      "sha256": "1528b21ce7292a21e31aaa6bac88e004284947fed1f55feef364c2f27af40430"
     },
     {
       "path": "README.zh-CN.md",
-      "size": 11949,
-      "sha256": "bdfd71281c3cd3d525f0f732516b3ea9244740c17d3319a52a99e8731d049a8f"
+      "size": 11396,
+      "sha256": "fbbae3f285a32049959db1157fd7c7cade83c24e171710a4bceebab74bd07297"
     },
     {
       "path": "RECOVERY_GUIDE.md",
@@ -1186,13 +1186,13 @@
     },
     {
       "path": "ui/VIDEO_SCRIPT.md",
-      "size": 7351,
-      "sha256": "116e36892c8511809eedb98dfcd277d7e3c7350ab7c6c6e541885a21710a860c"
+      "size": 7226,
+      "sha256": "e79ed441b89e8a7f38627b670750d239e70f9b6a520277da75f70cdd206be793"
     },
     {
       "path": "ui/index.html",
-      "size": 28243,
-      "sha256": "62dbad6c463deea067a3b81451080c3240d5da11c615a1a0e789ea276e4030bd"
+      "size": 28152,
+      "sha256": "fe301d73b03646375fc2188f950489400d57e714d35fb91f24094f541f0da67c"
     },
     {
       "path": "ui/serve.py",

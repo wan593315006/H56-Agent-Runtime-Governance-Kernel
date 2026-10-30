@@ -197,6 +197,6 @@ Of the **132 Python files distributed in this candidate, 124 are byte-identical 
 | [RECOVERY_GUIDE.md](RECOVERY_GUIDE.md) | Clone, verify identities, start the application, and troubleshoot. |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Explore core responsibilities, contracts, provenance, and evidence scope. |
 
-An [earlier Chinese overview](README.zh-CN.md) remains available with an edition note. The four English guides form the main documentation set.
+A [Chinese overview](README.zh-CN.md) covers the product, demonstration, model integration, and recovery entry points. The four English guides provide the detailed operating and architecture references.
 
-H56 is licensed under the [MIT License](LICENSE), which permits personal and commercial use, modification and distribution subject to its terms. The separate [Intellectual Property Notice](IP_NOTICE.md) explains that MIT contains no express patent license provision and adds no conditions to the MIT grant. The current distribution state is recorded in [PACKAGE_STATUS.json](PACKAGE_STATUS.json).
+H56 is licensed under the [MIT License](LICENSE), which permits personal and commercial use, modification and distribution subject to its terms. The separate [Intellectual Property Notice](IP_NOTICE.md) explains that MIT contains no express patent license provision and adds no conditions to the MIT grant. The current distribution state is recorded in [PACKAGE_STATUS.json](PACKAGE_STATUS.json). That file records the freeze-time snapshot only; final public authorization is an external decision bound to one specific commit and its release digests, not a claim the package makes about itself.

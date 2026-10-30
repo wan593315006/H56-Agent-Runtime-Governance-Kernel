@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>H56 · 离线资格评估 · 演示</title>
+  <title>H56 · OS 治理内核 · 环境资格演示</title>
 <style>
   :root {
     --bg: #0a0f13;
@@ -182,15 +182,16 @@
 
   <header class="top">
     <div class="brand">
-      <h1>H56 · 离线<span>资格评估</span>引擎</h1>
-      <p>通过输入/来源门禁并产生记录的合成案件会真实执行
+      <h1>H56 · 通用<span>OS 治理</span>内核</h1>
+      <p>本页演示环境资格与受控任务准入。通过输入/来源门禁并产生记录的合成案件会执行
          <code>K0 → K1 → C1 → C2</code>（每例 22 次原生调用）；拒绝路径在写记录前停止。
-         本页只展示本次本机运行结果，不做回放。</p>
+         本页展示当次本机执行的结果。</p>
       <p class="hint" style="margin-top:8px">任务描述来自合成 fixture
          （<code>origin=SYNTHETIC_DEMO_TASK</code>，证据等级 <code>SYNTHETIC_ONLY</code>），
-         本交付<strong>未接入真实模型</strong>；全部判定在本地确定性计算，候选结论不含执行授权。</p>
+         本页运行<strong>本地离线评估</strong>；真实 Nebius/NVIDIA 模型协同由独立模型入口提供。
+         模型提出场景候选，四核依据结构化输入独立计算资格；候选结论不含执行授权。</p>
     </div>
-    <div class="badge">AUTHORITY TREE = 当前源码身份</div>
+    <div class="badge">源码身份核验 · 可追溯评估</div>
   </header>
 
   <section class="hero">
@@ -289,10 +290,8 @@
       <span>状态</span><span id="mState">未运行</span>
     </div>
     <p style="margin:13px 0 0">
-      <b>证据口径声明</b>　只有与冻结源码身份一致的本仓库工作树或干净克隆上的运行结果计入交付；
-      路径只用于展示运行位置。
-      <code>separation_workspace_v1</code> 上此前的任何测试结论标记为
-      <code>NOT_ON_AUTHORITY_TREE</code>，不作为交付证据。
+      <b>运行记录与版本</b>　运行结果关联源码身份与输入摘要；产生评估记录的案例可查看原生调用轨迹与封存产物。
+      记录中的版本与摘要用于区分不同运行。
     </p>
   </footer>
 
@@ -411,8 +410,7 @@
     rej.forEach(function (r) { (groups[r.value] = groups[r.value] || []).push(r); });
 
     $("rejNote").textContent =
-      rej.length + " 条 REJECTED 不是失败，而是拒斥路径工作：引擎在准入 / 来源 / 时序等关口主动停下，"
-      + "返回 STOPPED 与原因码，且不写出任何评估记录 —— 无法拒斥的资格引擎才是坏的。"
+      rej.length + " 条输入在准入、来源或时序校验阶段被拒绝，返回对应原因码，未生成评估记录。"
       + "共 " + Object.keys(groups).length + " 类原因码。";
 
     var box = $("rejGroups"); box.innerHTML = "";
