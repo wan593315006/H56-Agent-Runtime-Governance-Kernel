@@ -60,7 +60,7 @@
     {
       "path": "PACKAGE_MANIFEST.json",
       "bytes": 54612,
-      "sha256": "f097c6c337c752a377d853ad7cd8e805b7ec232622bedeb2afa696143f8368e2",
+      "sha256": "b8d5b41b441bf2318c8732ffd5e7958b924c3c5ace082cc78cdecccdb7852ba3",
       "computation_closure": false
     },
     {
@@ -77,8 +77,8 @@
     },
     {
       "path": "README.zh-CN.md",
-      "bytes": 11977,
-      "sha256": "1244c9b034043309af3de2b26cc80d4a65d70f6345ece3610474d097ff8e1e7f",
+      "bytes": 11949,
+      "sha256": "bdfd71281c3cd3d525f0f732516b3ea9244740c17d3319a52a99e8731d049a8f",
       "computation_closure": false
     },
     {
