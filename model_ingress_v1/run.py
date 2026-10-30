@@ -46,13 +46,12 @@ EVIDENCE_JSON = "model_selection_evidence.json"
 # 用前缀而非固定名单：将来新增的任何 H56_MODEL_* 变量自动被剔除（失败关闭）。
 ENV_PREFIX = "H56_MODEL_"
 
-# 前缀之外的具名变量。NEBIUS_API_KEY 不匹配上面的前缀，必须单独点名，
-# 否则它会随默认继承进入 demo.py 及其派生的每一个 Python 进程。
+# 前缀之外的默认具名变量；下面的后缀规则也清理其他常见凭据名称。
 ENV_EXTRA_REMOVE = ("NEBIUS_API_KEY",)
+ENV_CREDENTIAL_SUFFIXES = ("_KEY", "_TOKEN", "_SECRET", "_PASSWORD",
+                           "_CREDENTIAL", "_CREDENTIALS", "_ACCESS_KEY_ID")
 # 注意这份名单只能是「已知的默认名」。密钥变量名可切（--key-env）之后，
-# 静态名单追不上调用方实际使用的名字，所以调用方必须把本次选中的名字经
-# `key_env=` 传进来（见 _kernel_env 的 extra_names）。名单不是安全边界，
-# 传参才是；只加名单项而不传参，等于没修。
+# 不符合名称规则的自定义槽位仍须经 key_env 显式传入，不能从名称猜出所有秘密。
 
 
 class EvidenceDirExists(Exception):
@@ -183,19 +182,17 @@ def _kernel_env(environ=None, extra_names=()):
     subprocess.run 会完整继承父进程环境，于是 H56_MODEL_API_KEY 会出现在
     demo.py 及其派生的每个 Python 进程里 —— 那些进程一个字节都不需要它。
 
-    `extra_names` 是「本次实际使用的密钥变量名」。密钥变量名可切之后
-    （`--key-env NVIDIA_API_KEY` 之类），静态名单 ENV_EXTRA_REMOVE 覆盖不到
-    这些名字，而环境继承不看名字、照传不误。所以：**谁选的槽位，谁负责把
-    名字传下来**。不传时只有前缀与静态名单生效 —— 这是默认路径的原行为，
-    不是「已经安全」。
+    前缀、默认名单与凭据后缀覆盖常见名称；extra_names 另外清理本次实际
+    选中的槽位，包括不符合这些规则的自定义名称。只按名称筛选，不探测值。
     """
     env = dict(os.environ if environ is None else environ)
     extra = set(ENV_EXTRA_REMOVE)
     for n in (extra_names or ()):
         if isinstance(n, str) and n:
-            extra.add(n)
+            extra.add(n.upper())
     removed = sorted(k for k in env
-                     if k.startswith(ENV_PREFIX) or k in extra)
+                     if k.upper().startswith(ENV_PREFIX) or k.upper() in extra
+                     or k.upper().endswith(ENV_CREDENTIAL_SUFFIXES))
     for k in removed:
         env.pop(k, None)
     return env, removed
@@ -391,11 +388,11 @@ def _spawn_kernel(python, scenario_id, evidence_dir, spawn, timeout,
             "removed_count": len(removed_env),
             "values_recorded": False,
             "key_env_targeted": key_env,
-            "rule": ("剔除 H56_MODEL_* 前缀、ENV_EXTRA_REMOVE 静态名单，"
-                     "以及本次实际使用的密钥变量名（key_env_targeted）。"),
+            "rule": ("按名称剔除 H56_MODEL_* 前缀、ENV_EXTRA_REMOVE 静态名单、"
+                     "凭据后缀，以及本次实际使用的槽位名（key_env_targeted）。"),
             "note": ("传给内核子进程的环境已按上述规则剔除；此处只记变量名，"
                      "不记任何值。key_env_targeted=None 表示调用方没指定，"
-                     "此时只剔除前缀与静态名单里的默认名。"),
+                     "此时按前缀、静态名单和凭据后缀筛选。"),
         },
         "call_counting": counting_block(row.get("native_calls"), spawned["n"]),
         "selected_scenario": {

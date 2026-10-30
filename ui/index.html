@@ -500,7 +500,8 @@
 
   function loadRaw(rel, sha) {
     $("evRaw").textContent = "加载中…";
-    fetch("/api/evidence?rel=" + encodeURIComponent(rel))
+    fetch("/api/evidence?rel=" + encodeURIComponent(rel), {
+      headers: { "X-H56-Run-Token": window.H56_RUN_TOKEN } })
       .then(function (r) { return r.text(); })
       .then(function (txt) {
         var pretty = txt;
@@ -570,7 +571,8 @@
   }
 
   function poll() {
-    fetch("/api/state").then(function (r) { return r.json(); }).then(function (st) {
+    fetch("/api/state", { headers: { "X-H56-Run-Token": window.H56_RUN_TOKEN } })
+      .then(function (r) { return r.json(); }).then(function (st) {
       apply(st);
       if (st.status === "running") {
         if (!poller) poller = setInterval(poll, 700);

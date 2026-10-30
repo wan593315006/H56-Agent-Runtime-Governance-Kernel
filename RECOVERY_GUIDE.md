@@ -95,7 +95,7 @@ python -B -m unittest model_ingress_v1.tests.test_stage_b -v
 python -B -m unittest model_ingress_v1.tests.test_smoke -v
 ```
 
-The product suite currently defines 30 tests and the release-guard suite nine. Use `run_tests.py` for the product suite: it supplies the explicit temporary test root required by the record tests. The adapter suites use fixed responses and local fixtures rather than paid model requests.
+The product suite currently defines 30 tests and the release-guard suite eleven. Use `run_tests.py` for the product suite: it supplies the explicit temporary test root required by the record tests. The adapter suites use fixed responses and local fixtures rather than paid model requests.
 
 For the six-scenario model-to-core integration exercise:
 
@@ -115,6 +115,8 @@ python -B ui/serve.py --no-browser
 Open **http://127.0.0.1:8765** in the same machine's browser. The page's run button launches `demo.py --all`. Expected totals are 56 rows, 42 DECIDED, 14 REJECTED, 26 distinct inputs and 30 repeated rows. Allow the run to finish before opening its registered evidence.
 
 Use `--port 8792` if the default port is occupied. Use the matching `127.0.0.1` URL; origin and token checks intentionally reject unrelated origins and hand-crafted requests missing the page token.
+
+All routes require the listener's exact Host; a supplied foreign Origin or cross-site browser request is rejected. API reads also require the current `X-H56-Run-Token`, which the page automatically supplies when polling results and viewing evidence. Keep this service on loopback. Subprocess environments remove model-prefixed, named and credential-suffixed variables, plus the model driver's selected custom key slot; ordinary Windows process variables remain available. This is a name-based filter rather than a general-purpose OS sandbox.
 
 ## Optional cross-interpreter check
 

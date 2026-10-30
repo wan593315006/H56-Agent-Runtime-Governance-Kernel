@@ -121,6 +121,7 @@ class ServeGuardTests(unittest.TestCase):
             handler = serve.Handler.__new__(serve.Handler)
             handler.path = "/api/run"
             handler.headers = {
+                "Host": "127.0.0.1:8765",
                 "Origin": origin,
                 "X-H56-Run-Token": token,
                 "Content-Length": str(len(body)),
@@ -149,6 +150,39 @@ class ServeGuardTests(unittest.TestCase):
             handler.do_POST()
             start.assert_called_once_with()
             self.assertEqual(replies[0], (202, {"started": True, "detail": "fixture-run"}))
+
+    def test_get_routes_reject_foreign_host_and_origin(self):
+        for path in ("/", "/api/health", "/api/state", "/api/evidence?rel=x"):
+            for extra in ({"Host": "foreign.example.invalid"},
+                          {"Origin": "https://foreign.example.invalid"},
+                          {"Sec-Fetch-Site": "cross-site"}):
+                with self.subTest(path=path, headers=extra):
+                    handler = serve.Handler.__new__(serve.Handler)
+                    handler.path = path
+                    handler.headers = {"Host": "127.0.0.1:8765",
+                                       "X-H56-Run-Token": serve.RUN_TOKEN, **extra}
+                    handler.server = SimpleNamespace(server_port=8765)
+                    replies = []
+                    handler._json = lambda payload, code=200: replies.append((code, payload))
+                    handler.do_GET()
+                    self.assertEqual(replies[0][0], 403)
+
+    def test_api_reads_require_the_current_token(self):
+        for path in ("/api/health", "/api/state", "/api/evidence?rel=x"):
+            handler = serve.Handler.__new__(serve.Handler)
+            handler.path = path
+            handler.headers = {"Host": "127.0.0.1:8765"}
+            handler.server = SimpleNamespace(server_port=8765)
+            replies = []
+            handler._json = lambda payload, code=200: replies.append((code, payload))
+            handler.do_GET()
+            self.assertEqual(replies[0][0], 403)
+
+        handler.path = "/api/health"
+        handler.headers["X-H56-Run-Token"] = serve.RUN_TOKEN
+        replies.clear()
+        handler.do_GET()
+        self.assertEqual(replies[0][0], 200)
 
 
 if __name__ == "__main__":

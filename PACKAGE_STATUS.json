@@ -1,6 +1,6 @@
 {
   "schema_id": "H56_ASSEMBLED_CANDIDATE_STATUS_V2",
-  "candidate_id": "H56-CANDIDATE-20261030-V3.4",
+  "candidate_id": "H56-CANDIDATE-20261030-V3.4.1",
   "role": "PRIVATE_REVIEW_AND_DEMONSTRATION_CANDIDATE",
   "current_entry": "demo.py",
   "ui_entry": "ui/serve.py",
@@ -16,7 +16,7 @@
   "computation_members": 139,
   "source_manifest_sha256": "adeca462c152a7ee34c4bdee0f1f9b3833adab6b1aa5ae6e110d2ae58a42c6cb",
   "validation_reference": "metadata/BASELINE_ACCEPTANCE.json",
-  "validation_scope": "All 132 Python sources and all 139 computation members retain the accepted V3.3 bytes. This successor adds the owner-approved MIT license, separate informational IP notice, README links and refreshed inventories. V3.3 clean-clone/venv runtime acceptance is retained; successor package identity is verified separately.",
+  "validation_scope": "V3.4.1 is a targeted security/documentation revision of the MIT-licensed V3.4 base. All 139 original computation members, original offline CLI, registered scenarios and provider request construction retain their bytes. Entry credential filtering and loopback HTTP guards have focused regression coverage; current commit acceptance is retained externally.",
   "historical_metadata": false,
   "supersedes_source_delivery_status": true,
   "original_status_preserved": "Private remediation preimage; not the current runtime state.",
@@ -25,8 +25,8 @@
     "Owner's final asset distribution approval and explicit public repository/release decision"
   ],
   "business_execution_authorized": false,
-  "documentation_update": "Owner-approved standard MIT license with copyright 万根, separate informational IP notice, and README license links.",
-  "runtime_source_reference_commit": "951a9879439c2e93b9b19ded024230a99c174b4f",
+  "documentation_update": "Explicit Git/ZIP verification routes and reviewer configuration guidance; local HTTP/read-token and name-based child-environment rules.",
+  "runtime_source_reference_commit": "3fb383d95e5b1721fa90876f84a898b584cf3420",
   "python_source_comparison": "metadata/SOURCE_COMPARISON.json",
   "demo_video_url": "https://youtu.be/Gxr5SzG3OMg",
   "package_verification_entry": "verify_pack.py",
@@ -35,5 +35,6 @@
   "copyright_holder": "万根",
   "copyright_year": 2026,
   "ip_notice": "IP_NOTICE.md",
-  "license_selection": "OWNER_CONFIRMED_MIT_WITH_INFORMATIONAL_IP_NOTICE"
+  "license_selection": "OWNER_CONFIRMED_MIT_WITH_INFORMATIONAL_IP_NOTICE",
+  "runtime_source_reference_scope": "Base identity for unchanged computation/CLI/scenario/provider files; five adjusted Python files are identified separately in metadata/SOURCE_COMPARISON.json."
 }

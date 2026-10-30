@@ -46,12 +46,16 @@ RUN_TOKEN = secrets.token_urlsafe(32)
 # 等价性由 model_ingress_v1/tests/test_stage_b.py 的 S61–S63 断言。
 ENV_PREFIX = "H56_MODEL_"
 ENV_EXTRA_REMOVE = ("NEBIUS_API_KEY", "NVIDIA_API_KEY")
+ENV_CREDENTIAL_SUFFIXES = ("_KEY", "_TOKEN", "_SECRET", "_PASSWORD",
+                           "_CREDENTIAL", "_CREDENTIALS", "_ACCESS_KEY_ID")
 
 
 def _clean_env(environ=None):
     """返回一份剔除了密钥类变量的环境副本。不修改入参，不记录任何值。"""
     env = dict(os.environ if environ is None else environ)
-    drop = [k for k in env if k.startswith(ENV_PREFIX) or k in ENV_EXTRA_REMOVE]
+    drop = [k for k in env if k.upper().startswith(ENV_PREFIX)
+            or k.upper() in ENV_EXTRA_REMOVE
+            or k.upper().endswith(ENV_CREDENTIAL_SUFFIXES)]
     for k in drop:
         env.pop(k, None)
     return env
@@ -200,6 +204,11 @@ def is_allowed_run_origin(origin, port):
     return origin == f"http://127.0.0.1:{port}"
 
 
+def is_allowed_host(host, port):
+    """Reject foreign Host headers on every route, including page bootstrap."""
+    return host == f"127.0.0.1:{port}" or (port == 80 and host == "127.0.0.1")
+
+
 class Handler(BaseHTTPRequestHandler):
     server_version = "h56-demo"
     protocol_version = "HTTP/1.1"
@@ -224,9 +233,29 @@ class Handler(BaseHTTPRequestHandler):
     def _json(self, obj, code=200):
         self._send(code, json.dumps(obj, ensure_ascii=False))
 
+    def _check_local_request(self):
+        port = self.server.server_port
+        if not is_allowed_host(self.headers.get("Host", ""), port):
+            self._json({"error": "请求主机不属于本次本地服务"}, 403)
+            return False
+        origin = self.headers.get("Origin")
+        if origin is not None and not is_allowed_run_origin(origin, port):
+            self._json({"error": "请求来源不属于本次本地服务"}, 403)
+            return False
+        if self.headers.get("Sec-Fetch-Site", "") == "cross-site":
+            self._json({"error": "不接受跨站读取请求"}, 403)
+            return False
+        return True
+
     def do_GET(self):
+        if not self._check_local_request():
+            return
         parsed = urlparse(self.path)
         path = parsed.path
+
+        if path.startswith("/api/") and not is_valid_run_token(
+                self.headers.get("X-H56-Run-Token", "")):
+            return self._json({"error": "缺少或无效的本次服务令牌"}, 403)
 
         if path in ("/", "/index.html"):
             if not INDEX.exists():
@@ -280,6 +309,8 @@ class Handler(BaseHTTPRequestHandler):
         return self._json({"error": "not found"}, 404)
 
     def do_POST(self):
+        if not self._check_local_request():
+            return
         parsed = urlparse(self.path)
         if parsed.path != "/api/run":
             return self._json({"error": "not found"}, 404)

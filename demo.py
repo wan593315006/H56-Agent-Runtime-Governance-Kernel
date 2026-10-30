@@ -63,12 +63,16 @@ CLI = PRODUCT / "offline_qualification_v1" / "cli.py"
 # 白名单式环境在 Windows 上会直接失败。
 ENV_PREFIX = "H56_MODEL_"
 ENV_EXTRA_REMOVE = ("NEBIUS_API_KEY", "NVIDIA_API_KEY")
+ENV_CREDENTIAL_SUFFIXES = ("_KEY", "_TOKEN", "_SECRET", "_PASSWORD",
+                           "_CREDENTIAL", "_CREDENTIALS", "_ACCESS_KEY_ID")
 
 
 def _clean_env(environ=None):
     """返回一份剔除了密钥类变量的环境副本。不修改入参，不记录任何值。"""
     env = dict(os.environ if environ is None else environ)
-    drop = [k for k in env if k.startswith(ENV_PREFIX) or k in ENV_EXTRA_REMOVE]
+    drop = [k for k in env if k.upper().startswith(ENV_PREFIX)
+            or k.upper() in ENV_EXTRA_REMOVE
+            or k.upper().endswith(ENV_CREDENTIAL_SUFFIXES)]
     for k in drop:
         env.pop(k, None)
     return env

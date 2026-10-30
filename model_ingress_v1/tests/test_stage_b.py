@@ -1239,19 +1239,19 @@ class TestCredentialIsolation(unittest.TestCase):
                          "只记变量名，不记值")
 
     def test_S57_custom_slot_name_is_stripped_only_when_handed_over(self):
-        # 负例：静态名单管不到自定义名字 —— 这是默认路径的真实边界，不粉饰。
+        # 使用不符合通用凭据后缀的名字，仍证明显式槽位参数承担实际清理。
         from model_ingress_v1 import run as run_mod
-        environ = {"PATH": "/x", "NVIDIA_API_KEY": "nvapi-must-not-leak"}
+        environ = {"PATH": "/x", "CUSTOM_PROVIDER_AUTH": "synthetic-must-not-leak"}
         env_default, removed_default = run_mod._kernel_env(environ)
-        self.assertIn("NVIDIA_API_KEY", env_default,
+        self.assertIn("CUSTOM_PROVIDER_AUTH", env_default,
                       "不传名字时不剔除：证明参数是承重的，不是装饰")
-        self.assertNotIn("NVIDIA_API_KEY", removed_default)
+        self.assertNotIn("CUSTOM_PROVIDER_AUTH", removed_default)
 
         env, removed = run_mod._kernel_env(environ,
-                                           extra_names=("NVIDIA_API_KEY",))
-        self.assertNotIn("NVIDIA_API_KEY", env, "传了名字就必须剔除")
-        self.assertIn("NVIDIA_API_KEY", removed)
-        self.assertNotIn("nvapi-must-not-leak", json.dumps(removed),
+                                           extra_names=("CUSTOM_PROVIDER_AUTH",))
+        self.assertNotIn("CUSTOM_PROVIDER_AUTH", env, "传了名字就必须剔除")
+        self.assertIn("CUSTOM_PROVIDER_AUTH", removed)
+        self.assertNotIn("synthetic-must-not-leak", json.dumps(removed),
                          "只记变量名，不记值")
 
     def test_S60_custom_slot_is_absent_from_the_real_kernel_env(self):
@@ -1435,6 +1435,41 @@ class TestKeyEnvWiring(Base):
 
         self._run(plan, patch_run=fake_run, environ=self.env)
         self.assertEqual(saw, {"R1": stage_b.KEY_ENV})
+
+
+class TestCredentialSuffixIsolation(unittest.TestCase):
+    def test_direct_entry_helpers_remove_other_provider_credentials(self):
+        import demo
+        from ui import serve
+        from model_ingress_v1 import run as run_mod
+        names = ("DEEPSEEK_API_KEY", "OPENAI_API_KEY", "ZAI_API_KEY", "BAIDU_API_KEY",
+                 "NVIDIA_API_KEY", "CUSTOM_PROVIDER_KEY", "AWS_ACCESS_KEY_ID",
+                 "AWS_SESSION_TOKEN", "AZURE_CLIENT_SECRET", "lowercase_api_key")
+        fixture = {name: "SYNTHETIC-ONLY" for name in names}
+        fixture.update(PATH="/keep", SYSTEMROOT="C:\\Windows", TEMP="/keep-temp",
+                       UNRELATED_SETTING="keep")
+        results = [demo._clean_env(fixture), serve._clean_env(fixture),
+                   run_mod._kernel_env(fixture)[0]]
+        for result in results:
+            self.assertFalse(set(names) & set(result))
+            self.assertEqual(result, {k: fixture[k] for k in
+                             ("PATH", "SYSTEMROOT", "TEMP", "UNRELATED_SETTING")})
+
+    def test_real_child_receives_no_fixture_credentials(self):
+        import demo
+        from ui import serve
+        from model_ingress_v1 import run as run_mod
+        import subprocess
+        names = ("DEEPSEEK_API_KEY", "OPENAI_API_KEY", "ZAI_API_KEY", "BAIDU_API_KEY")
+        fixture = dict(os.environ)
+        fixture.update({name: "SYNTHETIC-ONLY" for name in names})
+        code = "import os,json;print(json.dumps([k for k in %r if k in os.environ]))" % (names,)
+        for env in (demo._clean_env(fixture), serve._clean_env(fixture),
+                    run_mod._kernel_env(fixture)[0]):
+            child = subprocess.run([sys.executable, "-I", "-B", "-S", "-c", code],
+                                   env=env, capture_output=True, text=True)
+            self.assertEqual(child.returncode, 0)
+            self.assertEqual(json.loads(child.stdout), [])
 
 
 class TestEvidencePersistence(Base):

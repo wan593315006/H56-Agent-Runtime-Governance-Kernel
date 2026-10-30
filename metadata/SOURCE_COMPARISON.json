@@ -1,6 +1,6 @@
 {
   "schema": "H56_SELECTED_PYTHON_SOURCE_COMPARISON_V2",
-  "scope": "The 132 delivered Python files: 131 inherited from the prior accepted candidate plus one standalone package verifier.",
+  "scope": "132 delivered Python files: 124 match the recorded development working-tree bytes, seven carry documented candidate portability/security changes, and one standalone delivery verifier is added.",
   "development_baseline": {
     "type": "working-tree snapshot",
     "git_head": "9a480ad1c0d89143ede35f6bc2b4057c68bc4f93",
@@ -8,8 +8,8 @@
     "selected_file_digest": "e279213da742e681039951e8e2a7cc0e0357a540ce69f7a508f564295f0f0cd5"
   },
   "candidate_python_files": 132,
-  "byte_identical_to_development": 129,
-  "candidate_specific_test_helpers": 2,
+  "byte_identical_to_development": 124,
+  "candidate_specific_test_helpers": 4,
   "adjustments": [
     {
       "path": "model_ingress_v1/tests/a2_integration.py",
@@ -22,12 +22,42 @@
       "development_sha256": "5553f2afa54611ec7e3c6c587a2d25957087cf8c19e79d7071d934bd768ee46c",
       "candidate_sha256": "7b9d477d7202caae63fb3760ecb042329089657e1087efe579f44902e5bc7f96",
       "purpose": "Inventory roots match the delivered candidate: UI and four English guides included; two absent historical directories removed."
+    },
+    {
+      "path": "demo.py",
+      "development_sha256": "abf67dc45cfb24c611cd5325cb7b9281365d8b0d73c840758ce80eb67de624aa",
+      "candidate_sha256": "5b23297bc1a62c3265029688d9f42b10a3aa3cba05b1f3f7f6cbaf910b8bfb26",
+      "purpose": "Remove common credential-named environment variables from direct CLI child launches; retain Windows process variables."
+    },
+    {
+      "path": "ui/serve.py",
+      "development_sha256": "5c9d878b846fd38c623efb0d214f45dae8ac887e2460387fd1f0044f3d87f7f8",
+      "candidate_sha256": "f9a4e6c3dcaa535ec6ee5bbaf35589cd16a977ab276985429545921512de77ba",
+      "purpose": "Match child credential filtering, validate loopback Host/source and require the current token on API reads."
+    },
+    {
+      "path": "model_ingress_v1/run.py",
+      "development_sha256": "55579056ce0992b80d524816734bcdc39ddb23ed6f46af9b9bab1c487f76f072",
+      "candidate_sha256": "afd3849ebaeb4c52a9dfd5c0827c58b313f34b379a62751ac9c6fae506c4253b",
+      "purpose": "Apply the same credential suffix rules while preserving explicit custom key-slot filtering."
+    },
+    {
+      "path": "ui/test_release_guards.py",
+      "development_sha256": "fe71a2c74b8ac33349cf1f84d1b3481949497855a1a17d123c1057ce2c793c6d",
+      "candidate_sha256": "fa752d4732cce88ed08d8ae15bcd881fe8dc24ad1ab868b83bcb86482206dfbb",
+      "purpose": "Regression coverage for foreign Host/origin GETs, API-read tokens and existing POST rules."
+    },
+    {
+      "path": "model_ingress_v1/tests/test_stage_b.py",
+      "development_sha256": "6e43e15e43051f98aacd0d44f9f7474041494d8c72f471a0fdac94e7f20e0182",
+      "candidate_sha256": "c481ffd3715e27903cf5afb5b53c652d028aa504efea4b7f385fbab0e534888b",
+      "purpose": "Regression coverage for other-provider credentials, actual child visibility and custom slot wiring."
     }
   ],
   "accepted_candidate_comparison": {
     "commit": "a2facd8c5316e19a41fddc2a74c46d7f1d646d94",
-    "python_files_byte_identical": 131,
-    "scope": "All 131 inherited Python files match; verify_pack.py is one additional file."
+    "python_files_byte_identical": 126,
+    "scope": "Relative to accepted V2, 126 inherited Python files match, five entry/security-test files are adjusted and verify_pack.py is added."
   },
   "computation_closure": {
     "members": 139,
@@ -41,5 +71,19 @@
       "purpose": "Read-only complete package, release identity and original computation-closure verification.",
       "sha256": "958f551fa1e6c40af80c0d6332e253cb39e2f62cea81b9d67786f1b8a8103f5b"
     }
-  ]
+  ],
+  "candidate_specific_runtime_hardening_files": 3,
+  "release_base_comparison": {
+    "commit": "3fb383d95e5b1721fa90876f84a898b584cf3420",
+    "python_files_byte_identical": 127,
+    "python_files_adjusted": 5,
+    "python_files_added": 0,
+    "adjusted_paths": [
+      "demo.py",
+      "ui/serve.py",
+      "model_ingress_v1/run.py",
+      "ui/test_release_guards.py",
+      "model_ingress_v1/tests/test_stage_b.py"
+    ]
+  }
 }

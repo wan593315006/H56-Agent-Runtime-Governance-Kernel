@@ -46,6 +46,18 @@ Use **Windows and Python 3.9.13**. The offline application and checks use the Py
 git -c core.autocrlf=false -c core.longpaths=true clone <repository-url> C:\h56demo
 Set-Location C:\h56demo
 python -B verify_pack.py --expected-commit '<full-release-commit>'
+```
+
+**Downloaded a ZIP instead?** Extract it to a short root, such as `C:\h56demo`, change into that directory, and use the separately published release-manifest digest. A ZIP has no Git metadata:
+
+```powershell
+Set-Location C:\h56demo
+python -B verify_pack.py --expected-manifest-sha256 '<published-manifest-sha256>'
+```
+
+After either verification route:
+
+```powershell
 python -B demo.py
 python -B ui/serve.py --no-browser
 ```
@@ -172,7 +184,7 @@ For the model-to-core route, use the six-scenario A2 command in [Demo Guide](DEM
 
 The extended regression contains **56 rows and 26 byte-distinct inputs**. The baseline input occurs 31 times; the other 25 inputs occur once each. The 30 repeated rows are retained regression cases, rather than additional independent scenarios. The default demonstration uses six distinct inputs.
 
-Of the **132 Python files distributed in this candidate, 129 are byte-identical to the corresponding development working-tree files; two test helpers contain candidate portability adjustments, and one new standalone `verify_pack.py` checks the delivered package**. Their paths, purposes, and comparison scopes are listed in [Source Comparison](metadata/SOURCE_COMPARISON.json). The 131 Python files inherited from the accepted prior candidate retain their bytes; the package verifier is an additional entry point.
+Of the **132 Python files distributed in this candidate, 124 are byte-identical to the corresponding development working-tree files; seven carry candidate portability or entry-security adjustments, and one added standalone `verify_pack.py` checks the delivered package**. The V3.4.1 revision tightens subprocess credential filtering and loopback HTTP access, with focused regression checks. Core computation, registered scenarios and model request construction retain their bytes. Paths, purposes and comparison scopes are listed in [Source Comparison](metadata/SOURCE_COMPARISON.json).
 
 `offline_qualification_v1/SOURCE_MANIFEST.json` binds the **139-member computation closure**, whose members remain byte-identical to the development source. `RELEASE_MANIFEST.json` inventories the broader candidate, including interfaces, documentation, and image assets; the Git commit identifies the assembled version. Preserve `.gitattributes` and registered source bytes.
 

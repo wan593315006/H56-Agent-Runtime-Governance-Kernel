@@ -1,6 +1,6 @@
 {
   "schema": "H56_ASSEMBLED_CANDIDATE_MANIFEST_V1",
-  "candidate_id": "H56-CANDIDATE-20261030-V3.4",
+  "candidate_id": "H56-CANDIDATE-20261030-V3.4.1",
   "source_head": "9a480ad1c0d89143ede35f6bc2b4057c68bc4f93",
   "source_state": "WORKING_TREE_SNAPSHOT_WITH_RECORDED_CANDIDATE_CHANGES",
   "distribution_status": "PRIVATE_CANDIDATE_MIT_LICENSE_PUBLICATION_SEPARATE",
@@ -35,14 +35,14 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 9897,
-      "sha256": "1f01a7a5a1f8b743cdc189c4c2e7708549bde7b2921b9ebf484ad4e9160610a2",
+      "bytes": 9956,
+      "sha256": "f0643f977a1822ebc51f686c884a20e4eeab1aacd94ae9aa70ce1932263e1d32",
       "computation_closure": false
     },
     {
       "path": "DEMO_GUIDE.md",
-      "bytes": 12400,
-      "sha256": "19b0362839fb58dce80de2bc586073f208a79c515fe6dcbb4acda8952d9bbba7",
+      "bytes": 12499,
+      "sha256": "378ae4c75de93e15bba2d06a758b8859a7d4be0125bae1ae9b6ae237b743f33c",
       "computation_closure": false
     },
     {
@@ -59,20 +59,20 @@
     },
     {
       "path": "PACKAGE_MANIFEST.json",
-      "bytes": 54609,
-      "sha256": "b84b931f570728c9cfe48fc2c8166316b619f966371d13f7a4bed587ab6bc783",
+      "bytes": 54611,
+      "sha256": "f9e27a8014d408eadf13e082f058a11e340b25e4b2435e9777d177f443451d37",
       "computation_closure": false
     },
     {
       "path": "PACKAGE_STATUS.json",
-      "bytes": 1988,
-      "sha256": "8a84e85a1ebe9bd7f20c84626bf0229f2fd5a1bc72c73e7dc59e0653d2287638",
+      "bytes": 2241,
+      "sha256": "dc0dcc6dd794b8c1af7c32bf743578350094483967c84d74c93e040d886ef6c8",
       "computation_closure": false
     },
     {
       "path": "README.md",
-      "bytes": 14934,
-      "sha256": "b6386a67f47f2c7c8bdb40ae4a5b84cadcf6a8bf61404879f3d15517f44c03ff",
+      "bytes": 15379,
+      "sha256": "8b2afa94709c2d5a33d0f1f2725f7aaf62a30a3486fc937d2ab342a067c22a72",
       "computation_closure": false
     },
     {
@@ -83,14 +83,14 @@
     },
     {
       "path": "RECOVERY_GUIDE.md",
-      "bytes": 13962,
-      "sha256": "b25c6f188d8fdbb82c0a574f8ac62d1ef088441b1e9f4ce0befd146ca9dccf4e",
+      "bytes": 14507,
+      "sha256": "230e833540482527ff1fdf2a0e1c181671165ade00f7caad94479160feab6e64",
       "computation_closure": false
     },
     {
       "path": "demo.py",
-      "bytes": 32745,
-      "sha256": "abf67dc45cfb24c611cd5325cb7b9281365d8b0d73c840758ce80eb67de624aa",
+      "bytes": 32981,
+      "sha256": "5b23297bc1a62c3265029688d9f42b10a3aa3cba05b1f3f7f6cbaf910b8bfb26",
       "computation_closure": false
     },
     {
@@ -125,8 +125,8 @@
     },
     {
       "path": "metadata/SOURCE_COMPARISON.json",
-      "bytes": 2264,
-      "sha256": "c24a629711f73c396ce25831705642bd965f1bb94ca2b6b4f830cbb859aa7620",
+      "bytes": 4637,
+      "sha256": "cd44900ae5836651f6bd539412c7475156eb2ed03b7795cc6c72b97668294f59",
       "computation_closure": false
     },
     {
@@ -173,8 +173,8 @@
     },
     {
       "path": "model_ingress_v1/run.py",
-      "bytes": 32968,
-      "sha256": "55579056ce0992b80d524816734bcdc39ddb23ed6f46af9b9bab1c487f76f072",
+      "bytes": 32763,
+      "sha256": "afd3849ebaeb4c52a9dfd5c0827c58b313f34b379a62751ac9c6fae506c4253b",
       "computation_closure": false
     },
     {
@@ -221,8 +221,8 @@
     },
     {
       "path": "model_ingress_v1/tests/test_stage_b.py",
-      "bytes": 84117,
-      "sha256": "6e43e15e43051f98aacd0d44f9f7474041494d8c72f471a0fdac94e7f20e0182",
+      "bytes": 86053,
+      "sha256": "c481ffd3715e27903cf5afb5b53c652d028aa504efea4b7f385fbab0e534888b",
       "computation_closure": false
     },
     {
@@ -1451,20 +1451,20 @@
     },
     {
       "path": "ui/index.html",
-      "bytes": 28111,
-      "sha256": "24b292a43cdc339f537c711efd2a10698d2ffadfebbbaae5948fd2b8fbeaada2",
+      "bytes": 28240,
+      "sha256": "8f50d432c19dc48ac75ec490892b2233ffad1b35a61a94c862175dde538f5372",
       "computation_closure": false
     },
     {
       "path": "ui/serve.py",
-      "bytes": 13978,
-      "sha256": "5c9d878b846fd38c623efb0d214f45dae8ac887e2460387fd1f0044f3d87f7f8",
+      "bytes": 15398,
+      "sha256": "f9a4e6c3dcaa535ec6ee5bbaf35589cd16a977ab276985429545921512de77ba",
       "computation_closure": false
     },
     {
       "path": "ui/test_release_guards.py",
-      "bytes": 7360,
-      "sha256": "fe71a2c74b8ac33349cf1f84d1b3481949497855a1a17d123c1057ce2c793c6d",
+      "bytes": 9074,
+      "sha256": "fa752d4732cce88ed08d8ae15bcd881fe8dc24ad1ab868b83bcb86482206dfbb",
       "computation_closure": false
     },
     {
@@ -1481,7 +1481,7 @@
     }
   ],
   "self_exclusion": "This file and .git are excluded from their own content inventory; the candidate Git commit binds this file.",
-  "supersedes_candidate_commit": "951a9879439c2e93b9b19ded024230a99c174b4f",
+  "supersedes_candidate_commit": "3fb383d95e5b1721fa90876f84a898b584cf3420",
   "license_spdx_id": "MIT",
   "license_file": "LICENSE",
   "ip_notice": "IP_NOTICE.md"
