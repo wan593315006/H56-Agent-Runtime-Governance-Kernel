@@ -1,13 +1,13 @@
 {
-  "schema": "H56_SELECTED_PYTHON_SOURCE_COMPARISON_V1",
-  "scope": "Only the 131 Python files distributed in this candidate; not the entire development workspace.",
+  "schema": "H56_SELECTED_PYTHON_SOURCE_COMPARISON_V2",
+  "scope": "The 132 delivered Python files: 131 inherited from the prior accepted candidate plus one standalone package verifier.",
   "development_baseline": {
     "type": "working-tree snapshot",
     "git_head": "9a480ad1c0d89143ede35f6bc2b4057c68bc4f93",
     "note": "HEAD is provenance; the selected working-tree file digests, including uncommitted changes, are the comparison basis.",
     "selected_file_digest": "e279213da742e681039951e8e2a7cc0e0357a540ce69f7a508f564295f0f0cd5"
   },
-  "candidate_python_files": 131,
+  "candidate_python_files": 132,
   "byte_identical_to_development": 129,
   "candidate_specific_test_helpers": 2,
   "adjustments": [
@@ -26,11 +26,20 @@
   ],
   "accepted_candidate_comparison": {
     "commit": "a2facd8c5316e19a41fddc2a74c46d7f1d646d94",
-    "python_files_byte_identical": 131
+    "python_files_byte_identical": 131,
+    "scope": "All 131 inherited Python files match; verify_pack.py is one additional file."
   },
   "computation_closure": {
     "members": 139,
     "byte_identical_to_development": 139,
     "manifest_sha256": "adeca462c152a7ee34c4bdee0f1f9b3833adab6b1aa5ae6e110d2ae58a42c6cb"
-  }
+  },
+  "candidate_new_delivery_helpers": 1,
+  "new_files": [
+    {
+      "path": "verify_pack.py",
+      "purpose": "Read-only complete package, release identity and original computation-closure verification.",
+      "sha256": "958f551fa1e6c40af80c0d6332e253cb39e2f62cea81b9d67786f1b8a8103f5b"
+    }
+  ]
 }

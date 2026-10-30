@@ -27,6 +27,38 @@ Start from a new destination directory. Preserve `.gitattributes` and its `* -te
 
 `git status --porcelain` should be empty before and after the documented checks. H56's output belongs outside the checkout.
 
+## Verify the complete delivered package
+
+Obtain the full commit ID from the release announcement or the repository's selected release. Substitute that value below; do not simply copy the checkout's own HEAD as the expected value.
+
+```powershell
+python -B verify_pack.py --expected-commit '<full-release-commit>'
+```
+
+Expected result: `H56 pack: PASS`. This read-only standard-library command checks the selected HEAD, clean working tree, tracked membership, both assembled manifests, every delivered file's size/SHA-256, and all 139 original computation members. Missing, extra (including ignored private files), changed and reparse-point members fail the check. Only the checkout-root `.git` metadata is outside the file inventory; keep virtual environments, caches and outputs outside the checkout. Use `--json` for the full machine-readable result. The verifier imports no product modules and starts no model or core computations.
+
+For a source ZIP with no `.git`, obtain the `RELEASE_MANIFEST.json` SHA-256 from the release's separately published checksums:
+
+```powershell
+python -B verify_pack.py --expected-manifest-sha256 '<published-manifest-sha256>'
+```
+
+That route verifies the extracted files against the supplied manifest identity and explicitly reports no Git HEAD check. A ZIP or bundle's own SHA-256 belongs in a separate release checksum file or attachment. Neither a manifest nor a hash inside the same package authenticates the publisher; compare with the release obtained through your trusted source. The Git commit binds `RELEASE_MANIFEST.json`, which covers `PACKAGE_MANIFEST.json`; the latter excludes both inventory files to avoid circular digests.
+
+## Included assets and independent directories
+
+The assembled source includes the four-core computation closure, its registered assets/public lock, CLI/demo, loopback UI, controlled model ingress, retained tests, English guides, Chinese overview and documentation images. It excludes credentials, private provenance locks/sidecars, Mother-system archives, private historical run evidence and inactive historical front doors. The two assembled manifests define exact membership, including registered files in evidence-named source directories.
+
+Use a fresh, short checkout root and an independent environment outside it:
+
+```powershell
+python -m venv C:\h56env
+& C:\h56env\Scripts\python.exe -B verify_pack.py --expected-commit '<full-release-commit>'
+& C:\h56env\Scripts\python.exe -B demo.py
+```
+
+No `pip install` is needed for the documented offline route. Subsequent commands below can use this same environment's `python.exe`. Allocate new external run directories, retain their reports, and leave prior evidence intact. Keep API credentials in the operator's credential manager/process environment; do not copy `.env`, key files, private plans or historical evidence into the checkout. Ordinary offline runs need no credentials and the application does not initiate cloud inference for them.
+
 ## Verify the computation identity and run
 
 ```powershell
@@ -94,7 +126,7 @@ The second interpreter is supplied by the operator. Without this option, the cro
 
 ## Output-root defaults
 
-Always supply an absolute external `--root` for catalog, adapter, smoke or stage-B commands. Their retained defaults use `C:/h56_release_evidence` and can create that path on a different workstation. The A2 driver defaults to a unique directory under the system temporary directory. Explicit output roots avoid dependence on the developer's drive layout.
+Always supply an absolute external `--root` for catalog, adapter, smoke or stage-B commands. Catalog, adapter and stage-B retain `C:/h56_release_evidence` defaults and can create that path on a different workstation; smoke requires an explicit `--root`. The A2 driver defaults to a unique directory under the system temporary directory. Explicit output roots avoid dependence on the developer's drive layout.
 
 ## Optional live model integration
 
@@ -140,3 +172,9 @@ A new live request is an operator action with potential charges. The offline can
 The normal demonstration consumes the self-contained 139-member computation closure and the included public lock. The historical 181-member component manifest describes an earlier source-delivery layout; its excluded private provenance lock is not a dependency of these demonstrated entry points. Do not copy a private sidecar into a public checkout to satisfy that historical aggregate.
 
 Preserve the whole candidate repository, its commit and the external run evidence. No Mother-system copy, private source lock, key file, registry repair, administrator operation or new recovery program is needed for the documented offline recovery path.
+
+## Recovery acceptance and its scope
+
+A successful package check establishes the bytes and membership of the chosen delivery. The six-case CLI demonstrates its recorded candidate outcomes, source loading, linked reassessment and record-preservation properties. A complete UI run adds the actual browser-service/subprocess route and registered evidence access. The six-case A2 exercise adds fixed-response proposal consumption by the real adapter, CLI and cores. Keep the per-command exit codes and reports associated with the chosen commit.
+
+`PASS_WITH_SKIPS` retains its exact meaning: six evaluated properties pass and the optional second-interpreter comparison is skipped. A successful fixed-response test is offline integration evidence, while a real model run has its own provider, model and request/response evidence. Feasibility remains distinct from permission to execute a task. Local recovery acceptance records the tested OS/Python environment; another machine repeats these steps against the same release identity. Distribution rights and publication approval are recorded separately in `PACKAGE_STATUS.json`.

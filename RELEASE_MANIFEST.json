@@ -1,6 +1,6 @@
 {
   "schema": "H56_ASSEMBLED_CANDIDATE_MANIFEST_V1",
-  "candidate_id": "H56-CANDIDATE-20261030-V3.2",
+  "candidate_id": "H56-CANDIDATE-20261030-V3.3",
   "source_head": "9a480ad1c0d89143ede35f6bc2b4057c68bc4f93",
   "source_state": "WORKING_TREE_SNAPSHOT_WITH_RECORDED_CANDIDATE_CHANGES",
   "distribution_status": "PRIVATE_CANDIDATE_LICENSE_AND_PUBLICATION_SEPARATE",
@@ -35,32 +35,32 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 9721,
-      "sha256": "733882427bf5fee11e0f5570f1d07d5d18804f7eb450bb70be422121dbd4ab1c",
+      "bytes": 9897,
+      "sha256": "1f01a7a5a1f8b743cdc189c4c2e7708549bde7b2921b9ebf484ad4e9160610a2",
       "computation_closure": false
     },
     {
       "path": "DEMO_GUIDE.md",
-      "bytes": 12267,
-      "sha256": "23f2a00f06916d02f7763680ef35d704f8927be1940d9ead5dfd8e8aa2e7db6f",
+      "bytes": 12400,
+      "sha256": "19b0362839fb58dce80de2bc586073f208a79c515fe6dcbb4acda8952d9bbba7",
       "computation_closure": false
     },
     {
       "path": "PACKAGE_MANIFEST.json",
-      "bytes": 54172,
-      "sha256": "d18134d4d58b4993c1dfd6e3e5f45b18e8d80afb0164aff6463ce46b06471ca6",
+      "bytes": 54323,
+      "sha256": "9273b53b287c0674a2ee9d1e4807c88e422accc6adc1dc9b5bb3d6ecf24d6d9f",
       "computation_closure": false
     },
     {
       "path": "PACKAGE_STATUS.json",
-      "bytes": 1537,
-      "sha256": "a81e03909c8dbb1a8bf0a712a0bb01855536f7610290093c1550d89f7821be64",
+      "bytes": 1719,
+      "sha256": "a46b37e071257ad5803fbb668c5b4024d70ea7e06a40ee08fc1d164e4caf3fc9",
       "computation_closure": false
     },
     {
       "path": "README.md",
-      "bytes": 14164,
-      "sha256": "6d69ad8dcccd1c1e30b0c3a8acf4e4a3dffbf44d2b47ce198cb2743deb6f2117",
+      "bytes": 14689,
+      "sha256": "9368dd6df82744ea82c38c722084326657c8ee2457b0fce8c80581bebac396a4",
       "computation_closure": false
     },
     {
@@ -71,8 +71,8 @@
     },
     {
       "path": "RECOVERY_GUIDE.md",
-      "bytes": 9813,
-      "sha256": "b990b1a5e6e41bc33138a63c3051545bd93c47016cd4aa2867220844dd3e966f",
+      "bytes": 13962,
+      "sha256": "b25c6f188d8fdbb82c0a574f8ac62d1ef088441b1e9f4ce0befd146ca9dccf4e",
       "computation_closure": false
     },
     {
@@ -113,8 +113,8 @@
     },
     {
       "path": "metadata/SOURCE_COMPARISON.json",
-      "bytes": 1848,
-      "sha256": "dffbe45b9fca81eeb0f11edd7d1cbf375bd8439770401c02d7b164c5fcf2ea48",
+      "bytes": 2264,
+      "sha256": "c24a629711f73c396ce25831705642bd965f1bb94ca2b6b4f830cbb859aa7620",
       "computation_closure": false
     },
     {
@@ -1456,12 +1456,18 @@
       "computation_closure": false
     },
     {
+      "path": "verify_pack.py",
+      "bytes": 10918,
+      "sha256": "958f551fa1e6c40af80c0d6332e253cb39e2f62cea81b9d67786f1b8a8103f5b",
+      "computation_closure": false
+    },
+    {
       "path": "work_packages.json",
-      "bytes": 936,
-      "sha256": "cdb0e56fdd480844d95bed0adf382162476addd56752d76a95f27aacf7bda498",
+      "bytes": 1077,
+      "sha256": "5df28e4867cd0e53999576b877c0d41b2c4e3ff3b495ab3f010af1e31c1d99ff",
       "computation_closure": false
     }
   ],
   "self_exclusion": "This file and .git are excluded from their own content inventory; the candidate Git commit binds this file.",
-  "supersedes_candidate_commit": "e2c394aaac60dc2d886e253182e9142d1c54c940"
+  "supersedes_candidate_commit": "edce4d0e90855345cc2a35b5d347c59a74dc18b6"
 }

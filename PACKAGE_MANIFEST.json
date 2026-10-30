@@ -1,8 +1,8 @@
 {
   "schema_id": "H56_ASSEMBLED_PACKAGE_MANIFEST_V2",
-  "candidate_id": "H56-CANDIDATE-20261030-V3.2",
-  "member_count": 239,
-  "candidate_file_count": 241,
+  "candidate_id": "H56-CANDIDATE-20261030-V3.3",
+  "member_count": 240,
+  "candidate_file_count": 242,
   "files": [
     {
       "path": ".gitattributes",
@@ -16,23 +16,23 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "size": 9721,
-      "sha256": "733882427bf5fee11e0f5570f1d07d5d18804f7eb450bb70be422121dbd4ab1c"
+      "size": 9897,
+      "sha256": "1f01a7a5a1f8b743cdc189c4c2e7708549bde7b2921b9ebf484ad4e9160610a2"
     },
     {
       "path": "DEMO_GUIDE.md",
-      "size": 12267,
-      "sha256": "23f2a00f06916d02f7763680ef35d704f8927be1940d9ead5dfd8e8aa2e7db6f"
+      "size": 12400,
+      "sha256": "19b0362839fb58dce80de2bc586073f208a79c515fe6dcbb4acda8952d9bbba7"
     },
     {
       "path": "PACKAGE_STATUS.json",
-      "size": 1537,
-      "sha256": "a81e03909c8dbb1a8bf0a712a0bb01855536f7610290093c1550d89f7821be64"
+      "size": 1719,
+      "sha256": "a46b37e071257ad5803fbb668c5b4024d70ea7e06a40ee08fc1d164e4caf3fc9"
     },
     {
       "path": "README.md",
-      "size": 14164,
-      "sha256": "6d69ad8dcccd1c1e30b0c3a8acf4e4a3dffbf44d2b47ce198cb2743deb6f2117"
+      "size": 14689,
+      "sha256": "9368dd6df82744ea82c38c722084326657c8ee2457b0fce8c80581bebac396a4"
     },
     {
       "path": "README.zh-CN.md",
@@ -41,8 +41,8 @@
     },
     {
       "path": "RECOVERY_GUIDE.md",
-      "size": 9813,
-      "sha256": "b990b1a5e6e41bc33138a63c3051545bd93c47016cd4aa2867220844dd3e966f"
+      "size": 13962,
+      "sha256": "b25c6f188d8fdbb82c0a574f8ac62d1ef088441b1e9f4ce0befd146ca9dccf4e"
     },
     {
       "path": "demo.py",
@@ -76,8 +76,8 @@
     },
     {
       "path": "metadata/SOURCE_COMPARISON.json",
-      "size": 1848,
-      "sha256": "dffbe45b9fca81eeb0f11edd7d1cbf375bd8439770401c02d7b164c5fcf2ea48"
+      "size": 2264,
+      "sha256": "c24a629711f73c396ce25831705642bd965f1bb94ca2b6b4f830cbb859aa7620"
     },
     {
       "path": "metadata/SOURCE_DELIVERY_HISTORY.json",
@@ -1195,9 +1195,14 @@
       "sha256": "fe71a2c74b8ac33349cf1f84d1b3481949497855a1a17d123c1057ce2c793c6d"
     },
     {
+      "path": "verify_pack.py",
+      "size": 10918,
+      "sha256": "958f551fa1e6c40af80c0d6332e253cb39e2f62cea81b9d67786f1b8a8103f5b"
+    },
+    {
       "path": "work_packages.json",
-      "size": 936,
-      "sha256": "cdb0e56fdd480844d95bed0adf382162476addd56752d76a95f27aacf7bda498"
+      "size": 1077,
+      "sha256": "5df28e4867cd0e53999576b877c0d41b2c4e3ff3b495ab3f010af1e31c1d99ff"
     }
   ],
   "excludes": [

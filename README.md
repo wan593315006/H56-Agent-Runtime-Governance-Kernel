@@ -45,11 +45,12 @@ Use **Windows and Python 3.9.13**. The offline application and checks use the Py
 ```powershell
 git -c core.autocrlf=false -c core.longpaths=true clone <repository-url> C:\h56demo
 Set-Location C:\h56demo
+python -B verify_pack.py --expected-commit '<full-release-commit>'
 python -B demo.py
 python -B ui/serve.py --no-browser
 ```
 
-For a local candidate, replace `<repository-url>` with its repository or Git bundle path. Open **http://127.0.0.1:8765** to use the UI. Its run button starts the extended regression in a real subprocess.
+For a local candidate, replace `<repository-url>` with its repository or Git bundle path. Obtain `<full-release-commit>` from the release announcement; the package verifier checks that commit, clean membership, file hashes and the 139-member closure. Source ZIP verification uses a separately published manifest digest as described in [Recovery Guide](RECOVERY_GUIDE.md#verify-the-complete-delivered-package). Open **http://127.0.0.1:8765** to use the UI. Its run button starts the extended regression in a real subprocess.
 
 The six-case CLI normally ends with `PASS_WITH_SKIPS`: six properties pass, and the cross-interpreter property is skipped unless a second interpreter is supplied. See [Recovery Guide](RECOVERY_GUIDE.md) for retained output, alternative ports, model setup, and troubleshooting.
 
@@ -171,7 +172,7 @@ For the model-to-core route, use the six-scenario A2 command in [Demo Guide](DEM
 
 The extended regression contains **56 rows and 26 byte-distinct inputs**. The baseline input occurs 31 times; the other 25 inputs occur once each. The 30 repeated rows are retained regression cases, rather than additional independent scenarios. The default demonstration uses six distinct inputs.
 
-Of the **131 Python files distributed in this candidate, 129 are byte-identical to the corresponding development working-tree files; two test helpers contain candidate portability adjustments**. Their paths, purposes, and before/after digests are listed in [Source Comparison](metadata/SOURCE_COMPARISON.json). The accepted prior candidate has the same 131 Python file bytes.
+Of the **132 Python files distributed in this candidate, 129 are byte-identical to the corresponding development working-tree files; two test helpers contain candidate portability adjustments, and one new standalone `verify_pack.py` checks the delivered package**. Their paths, purposes, and comparison scopes are listed in [Source Comparison](metadata/SOURCE_COMPARISON.json). The 131 Python files inherited from the accepted prior candidate retain their bytes; the package verifier is an additional entry point.
 
 `offline_qualification_v1/SOURCE_MANIFEST.json` binds the **139-member computation closure**, whose members remain byte-identical to the development source. `RELEASE_MANIFEST.json` inventories the broader candidate, including interfaces, documentation, and image assets; the Git commit identifies the assembled version. Preserve `.gitattributes` and registered source bytes.
 

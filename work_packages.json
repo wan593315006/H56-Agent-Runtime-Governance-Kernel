@@ -5,6 +5,10 @@
   "scope": "Current demonstration and recovery workflow; no runtime or publication permission is created by this file.",
   "steps": [
     {
+      "entry": "verify_pack.py",
+      "purpose": "Read-only complete delivery identity and original computation-closure check"
+    },
+    {
       "entry": "demo.py",
       "purpose": "Six distinct-input qualification demonstration"
     },
