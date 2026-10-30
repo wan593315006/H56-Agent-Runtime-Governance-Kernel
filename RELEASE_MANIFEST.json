@@ -1,9 +1,9 @@
 {
   "schema": "H56_ASSEMBLED_CANDIDATE_MANIFEST_V1",
-  "candidate_id": "H56-CANDIDATE-20261030-V3.3",
+  "candidate_id": "H56-CANDIDATE-20261030-V3.4",
   "source_head": "9a480ad1c0d89143ede35f6bc2b4057c68bc4f93",
   "source_state": "WORKING_TREE_SNAPSHOT_WITH_RECORDED_CANDIDATE_CHANGES",
-  "distribution_status": "PRIVATE_CANDIDATE_LICENSE_AND_PUBLICATION_SEPARATE",
+  "distribution_status": "PRIVATE_CANDIDATE_MIT_LICENSE_PUBLICATION_SEPARATE",
   "entry_points": [
     "demo.py",
     "ui/serve.py",
@@ -46,21 +46,33 @@
       "computation_closure": false
     },
     {
+      "path": "IP_NOTICE.md",
+      "bytes": 340,
+      "sha256": "1ba33af6f1cccb311dd4a5145ada74cdb6fc29e51a1fda100df4b60989eb7d4c",
+      "computation_closure": false
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1063,
+      "sha256": "a85a34650735ac4d244c069358a89b0faa3d9d525ec7a3d37b606efce61af0fc",
+      "computation_closure": false
+    },
+    {
       "path": "PACKAGE_MANIFEST.json",
-      "bytes": 54323,
-      "sha256": "9273b53b287c0674a2ee9d1e4807c88e422accc6adc1dc9b5bb3d6ecf24d6d9f",
+      "bytes": 54609,
+      "sha256": "b84b931f570728c9cfe48fc2c8166316b619f966371d13f7a4bed587ab6bc783",
       "computation_closure": false
     },
     {
       "path": "PACKAGE_STATUS.json",
-      "bytes": 1719,
-      "sha256": "a46b37e071257ad5803fbb668c5b4024d70ea7e06a40ee08fc1d164e4caf3fc9",
+      "bytes": 1988,
+      "sha256": "8a84e85a1ebe9bd7f20c84626bf0229f2fd5a1bc72c73e7dc59e0653d2287638",
       "computation_closure": false
     },
     {
       "path": "README.md",
-      "bytes": 14689,
-      "sha256": "9368dd6df82744ea82c38c722084326657c8ee2457b0fce8c80581bebac396a4",
+      "bytes": 14934,
+      "sha256": "b6386a67f47f2c7c8bdb40ae4a5b84cadcf6a8bf61404879f3d15517f44c03ff",
       "computation_closure": false
     },
     {
@@ -1469,5 +1481,8 @@
     }
   ],
   "self_exclusion": "This file and .git are excluded from their own content inventory; the candidate Git commit binds this file.",
-  "supersedes_candidate_commit": "edce4d0e90855345cc2a35b5d347c59a74dc18b6"
+  "supersedes_candidate_commit": "951a9879439c2e93b9b19ded024230a99c174b4f",
+  "license_spdx_id": "MIT",
+  "license_file": "LICENSE",
+  "ip_notice": "IP_NOTICE.md"
 }

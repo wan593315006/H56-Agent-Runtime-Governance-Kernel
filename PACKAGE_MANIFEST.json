@@ -1,8 +1,8 @@
 {
   "schema_id": "H56_ASSEMBLED_PACKAGE_MANIFEST_V2",
-  "candidate_id": "H56-CANDIDATE-20261030-V3.3",
-  "member_count": 240,
-  "candidate_file_count": 242,
+  "candidate_id": "H56-CANDIDATE-20261030-V3.4",
+  "member_count": 242,
+  "candidate_file_count": 244,
   "files": [
     {
       "path": ".gitattributes",
@@ -25,14 +25,24 @@
       "sha256": "19b0362839fb58dce80de2bc586073f208a79c515fe6dcbb4acda8952d9bbba7"
     },
     {
+      "path": "IP_NOTICE.md",
+      "size": 340,
+      "sha256": "1ba33af6f1cccb311dd4a5145ada74cdb6fc29e51a1fda100df4b60989eb7d4c"
+    },
+    {
+      "path": "LICENSE",
+      "size": 1063,
+      "sha256": "a85a34650735ac4d244c069358a89b0faa3d9d525ec7a3d37b606efce61af0fc"
+    },
+    {
       "path": "PACKAGE_STATUS.json",
-      "size": 1719,
-      "sha256": "a46b37e071257ad5803fbb668c5b4024d70ea7e06a40ee08fc1d164e4caf3fc9"
+      "size": 1988,
+      "sha256": "8a84e85a1ebe9bd7f20c84626bf0229f2fd5a1bc72c73e7dc59e0653d2287638"
     },
     {
       "path": "README.md",
-      "size": 14689,
-      "sha256": "9368dd6df82744ea82c38c722084326657c8ee2457b0fce8c80581bebac396a4"
+      "size": 14934,
+      "sha256": "b6386a67f47f2c7c8bdb40ae4a5b84cadcf6a8bf61404879f3d15517f44c03ff"
     },
     {
       "path": "README.zh-CN.md",

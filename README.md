@@ -185,4 +185,6 @@ Of the **132 Python files distributed in this candidate, 129 are byte-identical 
 | [RECOVERY_GUIDE.md](RECOVERY_GUIDE.md) | Clone, verify identities, start the application, and troubleshoot. |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Explore core responsibilities, contracts, provenance, and evidence scope. |
 
-An [earlier Chinese overview](README.zh-CN.md) remains available with an edition note. The four English guides form the main documentation set; `LICENSE` is selected by the rights holder before publication. The current distribution state is recorded in [PACKAGE_STATUS.json](PACKAGE_STATUS.json).
+An [earlier Chinese overview](README.zh-CN.md) remains available with an edition note. The four English guides form the main documentation set.
+
+H56 is licensed under the [MIT License](LICENSE), which permits personal and commercial use, modification and distribution subject to its terms. The separate [Intellectual Property Notice](IP_NOTICE.md) explains that MIT contains no express patent license provision and adds no conditions to the MIT grant. The current distribution state is recorded in [PACKAGE_STATUS.json](PACKAGE_STATUS.json).
